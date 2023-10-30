@@ -30,9 +30,13 @@ export default function useSeiNativeBalances(
         try {
           const client = await getSeiQueryClient();
           const wasmClient = await getSeiWasmClient();
+          let pageRequest = undefined
           // TODO: pagination?
+          // @ts-ignore
           const response = await client.cosmos.bank.v1beta1.allBalances({
             address: walletAddress,
+            // @ts-ignore
+            pagination: pageRequest,
           });
           // NOTE: this UI only handles the translator factory tokens for now
           const seiCoin = response.balances.find(

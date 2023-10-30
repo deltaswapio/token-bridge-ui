@@ -9,7 +9,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import { useWallet } from "@sei-js/react";
+import {useWallet, WalletConnectButton} from "@sei-js/react";
 import { useCallback } from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -63,33 +63,9 @@ const SeiConnectWalletDialog = ({
   onClose: () => void;
 }) => {
   const {
-    connect,
-    installedWallets: installedWalletKeys,
-    supportedWallets: supportedWalletKeys,
+    connectedWallet
   } = useWallet();
   const classes = useStyles();
-
-  const installedWallets = installedWalletKeys.map((walletInfo) => (
-    <WalletOptions
-      walletInfo={walletInfo}
-      connect={connect}
-      isInstalled={true}
-      onClose={onClose}
-      key={walletInfo}
-    />
-  ));
-
-  const undetectedWallets = supportedWalletKeys
-    .filter((walletInfo) => !installedWalletKeys.includes(walletInfo))
-    .map((walletInfo) => (
-      <WalletOptions
-        walletInfo={walletInfo}
-        connect={connect}
-        isInstalled={false}
-        onClose={onClose}
-        key={walletInfo}
-      />
-    ));
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
@@ -101,13 +77,7 @@ const SeiConnectWalletDialog = ({
           </IconButton>
         </div>
       </DialogTitle>
-      <List>
-        {installedWallets}
-        {!!installedWallets.length && !!undetectedWallets.length && (
-          <Divider variant="middle" />
-        )}
-        {undetectedWallets}
-      </List>
+      <WalletConnectButton />
     </Dialog>
   );
 };
