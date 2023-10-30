@@ -16,7 +16,7 @@ If using the node version specified in `.nvmrc`, run with
 npm start
 ```
 
-If on latest LTS (v18.16.0), run with
+If on latest LTS (v20.9.0), run with
 
 ```bash
 NODE_OPTIONS=--openssl-legacy-provider npm start
