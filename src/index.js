@@ -1,6 +1,5 @@
 import { CssBaseline } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { SeiWalletProvider } from "@sei-js/react";
 import { SnackbarProvider } from "notistack";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -34,17 +33,11 @@ ReactDOM.render(
                     <XplaWalletProvider>
                       <AptosWalletProvider>
                         <InjectiveWalletProvider>
-                          <NearContextProvider>
-                            <SeiWalletProvider
-                              chainConfiguration={SEI_CHAIN_CONFIGURATION}
-                            >
                               <SuiWalletProvider>
                                 <HashRouter>
                                   <App />
                                 </HashRouter>
                               </SuiWalletProvider>
-                            </SeiWalletProvider>
-                          </NearContextProvider>
                         </InjectiveWalletProvider>
                       </AptosWalletProvider>
                     </XplaWalletProvider>
