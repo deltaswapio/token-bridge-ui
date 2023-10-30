@@ -19,6 +19,7 @@ import {
   CHAIN_ID_NEON,
   CHAIN_ID_OASIS,
   CHAIN_ID_OPTIMISM,
+  CHAIN_ID_PLANQ,
   CHAIN_ID_POLYGON,
   CHAIN_ID_SEPOLIA,
   CHAIN_ID_SOLANA,
@@ -33,7 +34,7 @@ import {
   TerraChainId,
   CHAIN_ID_SEI,
   cosmos,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import { clusterApiUrl } from "@solana/web3.js";
 import { getAddress } from "ethers/lib/utils";
 import { CHAIN_CONFIG_MAP } from "../config";
@@ -54,6 +55,7 @@ import moonbeamIcon from "../icons/moonbeam.svg";
 import neonIcon from "../icons/neon.svg";
 import oasisIcon from "../icons/oasis-network-rose-logo.svg";
 import optimismIcon from "../icons/optimism.svg";
+import planqIcon from "../icons/planq.svg";
 import polygonIcon from "../icons/polygon.svg";
 import seiIcon from "../icons/sei.svg";
 import solanaIcon from "../icons/solana.svg";
@@ -80,7 +82,20 @@ export interface ChainInfo {
   logo: string;
 }
 export const CHAINS: ChainInfo[] =
-  CLUSTER === "testnet"
+    CLUSTER === "testnet"
+        ? [
+            {
+                id: CHAIN_ID_PLANQ,
+                name: "Planq",
+                logo: planqIcon,
+            },
+            {
+                id: CHAIN_ID_BSC,
+                name: "Binance Smart Chain",
+                logo: bscIcon,
+            },
+        ]
+  /*CLUSTER === "testnet"
     ? [
         {
           id: CHAIN_ID_ACALA,
@@ -183,6 +198,11 @@ export const CHAINS: ChainInfo[] =
           logo: optimismIcon,
         },
         {
+          id: CHAIN_ID_PLANQ,
+          name: "Planq",
+          logo: planqIcon,
+        },
+        {
           id: CHAIN_ID_POLYGON,
           name: "Polygon",
           logo: polygonIcon,
@@ -217,7 +237,7 @@ export const CHAINS: ChainInfo[] =
           name: "XPLA",
           logo: xplaIcon,
         },
-      ]
+      ]*/
     : [
         {
           id: CHAIN_ID_ALGORAND,
@@ -271,6 +291,7 @@ export const CHAINS_WITH_NFT_SUPPORT = CHAINS.filter(
     id === CHAIN_ID_BSC ||
     id === CHAIN_ID_ETH ||
     id === CHAIN_ID_SEPOLIA ||
+    id === CHAIN_ID_PLANQ ||
     id === CHAIN_ID_POLYGON ||
     id === CHAIN_ID_OASIS ||
     id === CHAIN_ID_SOLANA ||
@@ -304,6 +325,8 @@ export const getDefaultNativeCurrencySymbol = (chainId: ChainId) =>
     ? "LUNC"
     : chainId === CHAIN_ID_TERRA2
     ? "LUNA"
+    : chainId === CHAIN_ID_PLANQ
+    ? "PLQ"
     : chainId === CHAIN_ID_POLYGON
     ? "MATIC"
     : chainId === CHAIN_ID_AVAX
@@ -349,6 +372,8 @@ export const getDefaultNativeCurrencyAddressEvm = (chainId: ChainId) => {
     ? WETH_ADDRESS_SEPOLIA
     : chainId === CHAIN_ID_BSC
     ? WBNB_ADDRESS
+    : chainId === CHAIN_ID_PLANQ
+    ? WPLANQ_ADDRESS
     : chainId === CHAIN_ID_POLYGON
     ? WMATIC_ADDRESS
     : chainId === CHAIN_ID_AVAX
@@ -381,6 +406,8 @@ export const getExplorerName = (chainId: ChainId) =>
     ? "BscScan"
     : isTerraChain(chainId)
     ? "Finder"
+    : chainId === CHAIN_ID_PLANQ
+    ? "Planq EVM Explorer"
     : chainId === CHAIN_ID_POLYGON
     ? "Polygonscan"
     : chainId === CHAIN_ID_AVAX
@@ -404,11 +431,12 @@ export const getExplorerName = (chainId: ChainId) =>
     : "Explorer";
 export const WORMHOLE_RPC_HOSTS =
   CLUSTER === "testnet"
-    ? ["https://wormhole-v2-testnet-api.certus.one"]
+    ? ["https://p-1.deltaswap.io"]
     : ["http://localhost:7071"];
 export const ETH_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 5 : 1337;
 export const SEPOLIA_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 11155111 : 1337;
-export const BSC_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 97 : 1397;
+export const BSC_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 56 : 1397;
+export const PLANQ_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 7070 : 7777;
 export const POLYGON_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 80001 : 1381;
 export const AVAX_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 43113 : 1381;
 export const OASIS_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 42261 : 1381;
@@ -431,6 +459,8 @@ export const getEvmChainId = (chainId: ChainId) =>
     ? SEPOLIA_NETWORK_CHAIN_ID
     : chainId === CHAIN_ID_BSC
     ? BSC_NETWORK_CHAIN_ID
+    : chainId === CHAIN_ID_PLANQ
+    ? PLANQ_NETWORK_CHAIN_ID
     : chainId === CHAIN_ID_POLYGON
     ? POLYGON_NETWORK_CHAIN_ID
     : chainId === CHAIN_ID_AVAX
@@ -577,15 +607,15 @@ export const NEAR_TOKEN_BRIDGE_ACCOUNT =
   CLUSTER === "testnet" ? "token.wormhole.testnet" : "token.test.near";
 
 export const getBridgeAddressForChain = (chainId: ChainId) =>
-  CONTRACTS[CLUSTER === "testnet" ? "TESTNET" : "DEVNET"][
+  CONTRACTS[CLUSTER === "testnet" ? "MAINNET" : "DEVNET"][
     coalesceChainName(chainId)
   ].core || "";
 export const getNFTBridgeAddressForChain = (chainId: ChainId) =>
-  CONTRACTS[CLUSTER === "testnet" ? "TESTNET" : "DEVNET"][
+  CONTRACTS[CLUSTER === "testnet" ? "MAINNET" : "DEVNET"][
     coalesceChainName(chainId)
   ].nft_bridge || "";
 export const getTokenBridgeAddressForChain = (chainId: ChainId) =>
-  CONTRACTS[CLUSTER === "testnet" ? "TESTNET" : "DEVNET"][
+  CONTRACTS[CLUSTER === "testnet" ? "MAINNET" : "DEVNET"][
     coalesceChainName(chainId)
   ].token_bridge || "";
 
@@ -674,6 +704,10 @@ export const BLOCKSCOUT_GET_TOKENS_URL = (
       ? CLUSTER === "testnet"
         ? "https://blockscout.karura-dev.aca-dev.network"
         : ""
+      : chainId === CHAIN_ID_PLANQ
+      ? CLUSTER === "testnet"
+        ? "https://evm.planq.network"
+        : ""
       : chainId === CHAIN_ID_CELO
       ? CLUSTER === "testnet"
         ? "https://alfajores-blockscout.celo-testnet.org"
@@ -699,10 +733,15 @@ export const WETH_ADDRESS_SEPOLIA =
     : "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E";
 export const WETH_DECIMALS_SEPOLIA = 18;
 
+export const WPLANQ_ADDRESS =
+    CLUSTER === "testnet"
+        ? "0x5EBCdf1De1781e8B5D41c016B0574aD53E2F6E1A"
+        : "0x5EBCdf1De1781e8B5D41c016B0574aD53E2F6E1A";
+
 export const WBNB_ADDRESS =
   CLUSTER === "testnet"
-    ? "0xae13d989dac2f0debff460ac112a837c89baa7cd"
-    : "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E";
+    ? "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+    : "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
 export const WBNB_DECIMALS = 18;
 
 export const WMATIC_ADDRESS =
@@ -911,6 +950,7 @@ export const RELAYER_COMPARE_ASSET: RelayerCompareAsset = {
   [CHAIN_ID_ETH]: "ethereum",
   [CHAIN_ID_TERRA]: "terra-luna",
   [CHAIN_ID_BSC]: "binancecoin",
+  [CHAIN_ID_PLANQ]: "planq",
   [CHAIN_ID_POLYGON]: "matic-network",
   [CHAIN_ID_AVAX]: "avalanche-2",
   [CHAIN_ID_OASIS]: "oasis-network",

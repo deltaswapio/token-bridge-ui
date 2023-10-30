@@ -1,4 +1,4 @@
-import { cosmos } from "@certusone/wormhole-sdk";
+import { cosmos } from "@deltaswapio/deltaswap-sdk";
 import { base58, formatUnits } from "ethers/lib/utils";
 import { MutableRefObject, useEffect, useMemo, useState } from "react";
 import { NFTParsedTokenAccount } from "../store/nftSlice";

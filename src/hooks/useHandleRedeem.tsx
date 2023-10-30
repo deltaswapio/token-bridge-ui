@@ -26,8 +26,8 @@ import {
   redeemOnTerra,
   redeemOnXpla,
   uint8ArrayToHex,
-} from "@certusone/wormhole-sdk";
-import { completeTransferAndRegister } from "@certusone/wormhole-sdk/lib/esm/aptos/api/tokenBridge";
+} from "@deltaswapio/deltaswap-sdk";
+import { completeTransferAndRegister } from "@deltaswapio/deltaswap-sdk/lib/esm/aptos/api/tokenBridge";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 import { calculateFee } from "@cosmjs/stargate";
 import { WalletStrategy } from "@injectivelabs/wallet-ts";

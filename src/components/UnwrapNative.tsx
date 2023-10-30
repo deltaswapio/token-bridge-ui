@@ -2,13 +2,14 @@ import {
   CHAIN_ID_AVAX,
   CHAIN_ID_BSC,
   CHAIN_ID_ETH,
+  CHAIN_ID_PLANQ,
   CHAIN_ID_FANTOM,
   CHAIN_ID_KLAYTN,
   CHAIN_ID_NEON,
   CHAIN_ID_OASIS,
   CHAIN_ID_POLYGON,
   ethers_contracts,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import {
   Container,
   ListItemIcon,
@@ -25,6 +26,7 @@ import { useEthereumProvider } from "../contexts/EthereumProviderContext";
 import useIsWalletReady from "../hooks/useIsWalletReady";
 import avaxIcon from "../icons/avax.svg";
 import bnbIcon from "../icons/bnb.svg";
+import planqIcon from "../icons/planq.svg";
 import ethIcon from "../icons/eth.svg";
 import fantomIcon from "../icons/fantom.svg";
 import klaytnIcon from "../icons/klaytn.svg";
@@ -43,6 +45,7 @@ import {
   WAVAX_DECIMALS,
   WBNB_ADDRESS,
   WBNB_DECIMALS,
+  WPLANQ_ADDRESS,
   WETH_ADDRESS,
   WETH_DECIMALS,
   WFTM_ADDRESS,
@@ -104,6 +107,12 @@ const supportedTokens = {
     symbol: "WBNB",
     icon: bnbIcon,
     address: WBNB_ADDRESS,
+    decimals: WBNB_DECIMALS,
+  },
+  [CHAIN_ID_PLANQ]: {
+    symbol: "WPLQ",
+    icon: planqIcon,
+    address: WPLANQ_ADDRESS,
     decimals: WBNB_DECIMALS,
   },
   [CHAIN_ID_POLYGON]: {

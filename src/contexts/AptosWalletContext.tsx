@@ -36,7 +36,7 @@ export const AptosWalletProvider = ({
       new AptosSnapAdapter(),
       new BitkeepWalletAdapter(),
       new TokenPocketWalletAdapter(),
-      new BloctoWalletAdapter(),
+      //new BloctoWalletAdapter(),
     ],
     []
   );

@@ -11,12 +11,12 @@ import {
   hexToNativeAssetString,
   isEVMChain,
   uint8ArrayToHex,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import {
   getOriginalAssetEth,
   getOriginalAssetSol,
-  WormholeWrappedNFTInfo,
-} from "@certusone/wormhole-sdk/lib/esm/nft_bridge";
+  DeltaswapWrappedNFTInfo,
+} from "@deltaswapio/deltaswap-sdk/lib/esm/nft_bridge";
 import {
   Button,
   Card,
@@ -83,7 +83,7 @@ export default function NFTOriginVerifier() {
     NFTParsedTokenAccount | undefined
   >(undefined);
   const [originInfo, setOriginInfo] = useState<
-    WormholeWrappedNFTInfo | undefined
+      DeltaswapWrappedNFTInfo | undefined
   >(undefined);
   const [isLoading, setIsLoading] = useState(false);
   const handleChainChange = useCallback((event) => {

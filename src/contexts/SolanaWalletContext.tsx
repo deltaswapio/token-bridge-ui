@@ -40,7 +40,7 @@ export const SolanaWalletProvider: FC = (props) => {
     ];
     if (CLUSTER === "testnet") {
       wallets.push(
-        new BloctoWalletAdapter({ network: WalletAdapterNetwork.Devnet })
+        //new BloctoWalletAdapter({ network: WalletAdapterNetwork.Devnet })
       );
     }
     return wallets;

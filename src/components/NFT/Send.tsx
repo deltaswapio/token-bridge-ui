@@ -1,4 +1,4 @@
-import { isTerraChain } from "@certusone/wormhole-sdk";
+import { isTerraChain } from "@deltaswapio/deltaswap-sdk";
 import { Alert } from "@material-ui/lab";
 import { useSelector } from "react-redux";
 import { useHandleNFTTransfer } from "../../hooks/useHandleNFTTransfer";

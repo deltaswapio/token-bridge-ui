@@ -1,4 +1,4 @@
-import { CHAIN_ID_XPLA, isNativeDenomXpla } from "@certusone/wormhole-sdk";
+import { CHAIN_ID_XPLA, isNativeDenomXpla } from "@deltaswapio/deltaswap-sdk";
 import { formatUnits } from "@ethersproject/units";
 import { useCallback, useMemo, useRef } from "react";
 import { createParsedTokenAccount } from "../../hooks/useGetSourceParsedTokenAccounts";

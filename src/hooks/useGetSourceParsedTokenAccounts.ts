@@ -6,6 +6,7 @@ import {
   CHAIN_ID_AURORA,
   CHAIN_ID_AVAX,
   CHAIN_ID_BSC,
+  CHAIN_ID_PLANQ,
   CHAIN_ID_CELO,
   CHAIN_ID_ETH,
   CHAIN_ID_FANTOM,
@@ -27,7 +28,7 @@ import {
   WSOL_DECIMALS,
   CHAIN_ID_SEI,
   CHAIN_ID_SUI,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import { Dispatch } from "@reduxjs/toolkit";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import {
@@ -53,6 +54,7 @@ import acalaIcon from "../icons/acala.svg";
 import auroraIcon from "../icons/aurora.svg";
 import avaxIcon from "../icons/avax.svg";
 import bnbIcon from "../icons/bnb.svg";
+import planqIcon from "../icons/planq.svg";
 import celoIcon from "../icons/celo.svg";
 import ethIcon from "../icons/eth.svg";
 import fantomIcon from "../icons/fantom.svg";
@@ -104,6 +106,7 @@ import {
   SOLANA_HOST,
   WAVAX_ADDRESS,
   WAVAX_DECIMALS,
+  WPLANQ_ADDRESS,
   WBNB_ADDRESS,
   WBNB_DECIMALS,
   CELO_ADDRESS,
@@ -327,6 +330,29 @@ const createNativeBscParsedTokenAccount = (
           true //isNativeAsset
         );
       });
+};
+
+const createNativePlanqParsedTokenAccount = (
+    provider: Provider,
+    signerAddress: string | undefined
+) => {
+    return !(provider && signerAddress)
+        ? Promise.reject()
+        : provider.getBalance(signerAddress).then((balanceInWei) => {
+            const balanceInEth = ethers.utils.formatEther(balanceInWei);
+            return createParsedTokenAccount(
+                signerAddress, //public key
+                WPLANQ_ADDRESS, //Mint key, On the other side this will be WBNB, so this is hopefully a white lie.
+                balanceInWei.toString(), //amount, in wei
+                WBNB_DECIMALS, //Luckily both BNB and WBNB have 18 decimals, so this should not be an issue.
+                parseFloat(balanceInEth), //This loses precision, but is a limitation of the current datamodel. This field is essentially deprecated
+                balanceInEth.toString(), //This is the actual display field, which has full precision.
+                "PLQ", //A white lie for display purposes
+                "Planq", //A white lie for display purposes
+                planqIcon,
+                true //isNativeAsset
+            );
+        });
 };
 
 const createNativePolygonParsedTokenAccount = (
@@ -1189,6 +1215,40 @@ function useGetAvailableTokens(nft: boolean = false) {
       cancelled = true;
     };
   }, [lookupChain, provider, signerAddress, nft, ethNativeAccount]);
+
+    //Planq Chain native asset load
+    useEffect(() => {
+        let cancelled = false;
+        if (
+            signerAddress &&
+            lookupChain === CHAIN_ID_PLANQ &&
+            !ethNativeAccount &&
+            !nft
+        ) {
+            setEthNativeAccountLoading(true);
+            createNativePlanqParsedTokenAccount(provider, signerAddress).then(
+                (result) => {
+                    console.log("create native account returned with value", result);
+                    if (!cancelled) {
+                        setEthNativeAccount(result);
+                        setEthNativeAccountLoading(false);
+                        setEthNativeAccountError("");
+                    }
+                },
+                (error) => {
+                    if (!cancelled) {
+                        setEthNativeAccount(undefined);
+                        setEthNativeAccountLoading(false);
+                        setEthNativeAccountError("Unable to retrieve your BNB balance.");
+                    }
+                }
+            );
+        }
+
+        return () => {
+            cancelled = true;
+        };
+    }, [lookupChain, provider, signerAddress, nft, ethNativeAccount]);
 
   //Binance Smart Chain native asset load
   useEffect(() => {

@@ -7,13 +7,13 @@ import {
   ChainName,
   CosmWasmChainId,
   CosmWasmChainName,
-  WormholeWrappedInfo,
+  DeltaswapWrappedInfo,
   coalesceChainId,
   coalesceCosmWasmChainId,
   hexToUint8Array,
   isTerraChain,
-} from "@certusone/wormhole-sdk";
-import { isNativeDenom } from "@certusone/wormhole-sdk/lib/esm/terra";
+} from "@deltaswapio/deltaswap-sdk";
+import { isNativeDenom } from "@deltaswapio/deltaswap-sdk/lib/esm/terra";
 import { getCosmWasmClient, getQueryClient } from "@sei-js/core";
 import { keccak256 } from "ethers/lib/utils";
 import { fromUint8Array } from "js-base64";
@@ -139,7 +139,7 @@ export async function getIsTransferCompletedSei(
 export async function getOriginalAssetSei(
   wrappedAddress: string,
   client: CosmWasmClient
-): Promise<WormholeWrappedInfo> {
+): Promise<DeltaswapWrappedInfo> {
   const chainId = CHAIN_ID_SEI;
   if (isNativeCosmWasmDenom(chainId, wrappedAddress)) {
     return {

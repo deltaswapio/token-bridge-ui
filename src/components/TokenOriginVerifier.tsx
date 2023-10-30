@@ -6,7 +6,7 @@ import {
   CHAIN_ID_TERRA2,
   isEVMChain,
   nativeToHexString,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import {
   Card,
   CircularProgress,

@@ -32,7 +32,7 @@ import {
   updateWrappedOnSolana,
   updateWrappedOnTerra,
   updateWrappedOnXpla,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 import { calculateFee } from "@cosmjs/stargate";
 import { WalletStrategy } from "@injectivelabs/wallet-ts";
@@ -115,7 +115,7 @@ import { sleep } from "../utils/sleep";
 import {
   getPackageId,
   getWrappedCoinType,
-} from "@certusone/wormhole-sdk/lib/cjs/sui";
+} from "@deltaswapio/deltaswap-sdk/lib/cjs/sui";
 
 // TODO: replace with SDK method
 export async function updateWrappedOnSui(

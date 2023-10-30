@@ -1,4 +1,4 @@
-import { CHAIN_ID_SOLANA, isEVMChain } from "@certusone/wormhole-sdk";
+import { CHAIN_ID_SOLANA, isEVMChain } from "@deltaswapio/deltaswap-sdk";
 import { Button, makeStyles } from "@material-ui/core";
 import { VerifiedUser } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";
@@ -57,7 +57,7 @@ function Source() {
     <>
       <StepDescription>
         <div style={{ display: "flex", alignItems: "center" }}>
-          Select an NFT to send through the Wormhole NFT Bridge.
+          Select an NFT to send through the Deltaswap NFT Bridge.
           <div style={{ flexGrow: 1 }} />
           <div>
             <Button

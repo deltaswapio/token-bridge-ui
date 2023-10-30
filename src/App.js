@@ -84,9 +84,9 @@ function App() {
       {
         <AppBar position="static" elevation={0} style={{ marginBottom: 40 }}>
           <Toolbar variant="dense">
-            <Button component={Link} to="/usdc">
+            {/*<Button component={Link} to="/usdc">
               USDC
-            </Button>
+            </Button>*/}
             <Button component={Link} to="/transfer">
               Tokens
             </Button>
@@ -97,7 +97,7 @@ function App() {
               Redeem
             </Button>
             <Box sx={{ flexGrow: 1 }} />
-            <Select
+            {/*<Select
               value={CLUSTER}
               onChange={handleClusterChange}
               variant="outlined"
@@ -105,7 +105,7 @@ function App() {
             >
               <MenuItem value="testnet">Testnet</MenuItem>
               <MenuItem value="devnet">Devnet</MenuItem>
-            </Select>
+            </Select>*/}
           </Toolbar>
         </AppBar>
       }
@@ -117,7 +117,7 @@ function App() {
               <>
                 <Typography>
                   This is a developmental token bridge that tests transfers
-                  across chains for tokens and NFTs wrapped by Wormhole.
+                  across chains for tokens and NFTs wrapped by Deltaswap.
                 </Typography>
               </>
             }

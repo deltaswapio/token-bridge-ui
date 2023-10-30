@@ -1,4 +1,4 @@
-import { ChainId, CHAIN_ID_ALGORAND } from "@certusone/wormhole-sdk";
+import { ChainId, CHAIN_ID_ALGORAND } from "@deltaswapio/deltaswap-sdk";
 import { formatUnits } from "@ethersproject/units";
 import { Algodv2 } from "algosdk";
 import { useCallback } from "react";

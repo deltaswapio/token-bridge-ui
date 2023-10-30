@@ -146,6 +146,20 @@ export const METAMASK_CHAIN_PARAMETERS: {
     rpcUrls: ["https://goerli.optimism.io"],
     blockExplorerUrls: ["https://goerli-optimism.etherscan.io"],
   },
+  7070: {
+    chainId: "7070",
+    chainName: "Planq",
+    nativeCurrency: { name: "Planq", symbol: "PLQ", decimals: 18 },
+    rpcUrls: ["https://evm-rpc.planq.network"],
+    blockExplorerUrls: ["https://evm.planq.network"],
+  },
+  56: {
+    chainId: "0x38",
+    chainName: "BSC",
+    nativeCurrency: { name: "BSC", symbol: "BNB", decimals: 18 },
+    rpcUrls: ["https://bsc-dataseed3.bnbchain.org"],
+    blockExplorerUrls: ["https://bscscan.com/"],
+  },
 };
 
 export interface EvmRpcMap {

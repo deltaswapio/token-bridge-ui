@@ -14,7 +14,7 @@ import {
   CHAIN_ID_POLYGON,
   CHAIN_ID_SOLANA,
   isEVMChain,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import { LinearProgress, makeStyles, Typography } from "@material-ui/core";
 import { Connection } from "@solana/web3.js";
 import { useEffect, useState } from "react";

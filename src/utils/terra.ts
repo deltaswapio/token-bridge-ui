@@ -3,12 +3,12 @@ import {
   CHAIN_ID_TERRA2,
   TerraChainId,
   terra,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import { formatUnits } from "@ethersproject/units";
 import { LCDClient, isTxError } from "@terra-money/terra.js";
 import { ConnectedWallet, TxResult } from "@terra-money/wallet-provider";
 import axios from "axios";
-import { getTerraGasPricesUrl, getTerraConfig } from "./consts";
+import {getTerraGasPricesUrl, getTerraConfig, XPLA_LCD_CLIENT_CONFIG} from "./consts";
 
 export const NATIVE_TERRA_DECIMALS = 6;
 export const LUNA_SYMBOL = "LUNA";

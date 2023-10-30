@@ -38,9 +38,9 @@ import {
   parseSequenceFromLogTerra,
   parseSequenceFromLogXpla,
   uint8ArrayToHex,
-} from "@certusone/wormhole-sdk";
-import { getOriginalPackageId } from "@certusone/wormhole-sdk/lib/cjs/sui";
-import { getEmitterAddressAndSequenceFromResponseSui } from "@certusone/wormhole-sdk/lib/esm/sui";
+} from "@deltaswapio/deltaswap-sdk";
+import { getOriginalPackageId } from "@deltaswapio/deltaswap-sdk/lib/cjs/sui";
+import { getEmitterAddressAndSequenceFromResponseSui } from "@deltaswapio/deltaswap-sdk/lib/esm/sui";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 import { calculateFee } from "@cosmjs/stargate";
 import { WalletStrategy } from "@injectivelabs/wallet-ts";
@@ -56,13 +56,12 @@ import {
   WalletContextState as WalletContextStateSui,
   useWallet,
 } from "@suiet/wallet-kit";
-import {
-  ConnectedWallet,
-  useConnectedWallet,
+import { ConnectedWallet } from "@terra-money/wallet-types";
+import {useConnectedWallet,
 } from "@terra-money/wallet-provider";
 import {
-  ConnectedWallet as XplaConnectedWallet,
-  useConnectedWallet as useXplaConnectedWallet,
+  ConnectedWallet as XplaConnectedWallet } from "@xpla/wallet-types"
+import {  useConnectedWallet as useXplaConnectedWallet,
 } from "@xpla/wallet-provider";
 import algosdk from "algosdk";
 import { Types } from "aptos";

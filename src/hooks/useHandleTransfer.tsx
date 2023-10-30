@@ -40,11 +40,11 @@ import {
   transferNearFromNear,
   transferTokenFromNear,
   uint8ArrayToHex,
-} from "@certusone/wormhole-sdk";
-import { getOriginalPackageId } from "@certusone/wormhole-sdk/lib/cjs/sui";
-import { CHAIN_ID_NEAR } from "@certusone/wormhole-sdk/lib/esm";
-import { transferTokens } from "@certusone/wormhole-sdk/lib/esm/aptos/api/tokenBridge";
-import { getEmitterAddressAndSequenceFromResponseSui } from "@certusone/wormhole-sdk/lib/esm/sui";
+} from "@deltaswapio/deltaswap-sdk";
+import { getOriginalPackageId } from "@deltaswapio/deltaswap-sdk/lib/cjs/sui";
+import { CHAIN_ID_NEAR } from "@deltaswapio/deltaswap-sdk/lib/esm";
+import { transferTokens } from "@deltaswapio/deltaswap-sdk/lib/esm/aptos/api/tokenBridge";
+import { getEmitterAddressAndSequenceFromResponseSui } from "@deltaswapio/deltaswap-sdk/lib/esm/sui";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 import { calculateFee } from "@cosmjs/stargate";
 import { WalletStrategy } from "@injectivelabs/wallet-ts";

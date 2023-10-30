@@ -25,12 +25,12 @@ import {
   queryExternalIdInjective,
   uint8ArrayToHex,
   uint8ArrayToNative,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import {
-  WormholeWrappedNFTInfo,
+  DeltaswapWrappedNFTInfo,
   getOriginalAssetEth as getOriginalAssetEthNFT,
   getOriginalAssetSol as getOriginalAssetSolNFT,
-} from "@certusone/wormhole-sdk/lib/esm/nft_bridge";
+} from "@deltaswapio/deltaswap-sdk/lib/esm/nft_bridge";
 import { Web3Provider } from "@ethersproject/providers";
 import { Connection } from "@solana/web3.js";
 import { LCDClient } from "@terra-money/terra.js";
@@ -186,7 +186,7 @@ export async function getOriginalAsset(
   tokenId?: string,
   provider?: Provider,
   nearAccountId?: string | null
-): Promise<WormholeWrappedNFTInfo> {
+): Promise<DeltaswapWrappedNFTInfo> {
   const result = nft
     ? await getOriginalAssetNFT(
         foreignChain,

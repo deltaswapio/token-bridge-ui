@@ -16,16 +16,16 @@ import {
   isEVMChain,
   isTerraChain,
   uint8ArrayToHex,
-  WormholeWrappedInfo,
+  DeltaswapWrappedInfo,
   CHAIN_ID_SEI,
   cosmos,
   CHAIN_ID_SUI,
   getOriginalAssetSui,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import {
   getOriginalAssetEth as getOriginalAssetEthNFT,
   getOriginalAssetSol as getOriginalAssetSolNFT,
-} from "@certusone/wormhole-sdk/lib/esm/nft_bridge";
+} from "@deltaswapio/deltaswap-sdk/lib/esm/nft_bridge";
 import { Connection } from "@solana/web3.js";
 import { LCDClient } from "@terra-money/terra.js";
 import { Algodv2 } from "algosdk";
@@ -74,7 +74,7 @@ export interface StateSafeWormholeWrappedInfo {
 }
 
 const makeStateSafe = (
-  info: WormholeWrappedInfo
+  info: DeltaswapWrappedInfo
 ): StateSafeWormholeWrappedInfo => ({
   ...info,
   assetAddress: uint8ArrayToHex(info.assetAddress),

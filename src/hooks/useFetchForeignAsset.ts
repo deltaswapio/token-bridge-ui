@@ -23,8 +23,8 @@ import {
   isEVMChain,
   isTerraChain,
   nativeToHexString,
-} from "@certusone/wormhole-sdk";
-import { buildTokenId } from "@certusone/wormhole-sdk/lib/esm/cosmwasm/address";
+} from "@deltaswapio/deltaswap-sdk";
+import { buildTokenId } from "@deltaswapio/deltaswap-sdk/lib/esm/cosmwasm/address";
 import { Connection } from "@solana/web3.js";
 import { LCDClient } from "@terra-money/terra.js";
 import { LCDClient as XplaLCDClient } from "@xpla/xpla.js";

@@ -30,19 +30,7 @@ export default function Footer() {
 
       <Button
         variant="outlined"
-        href="https://wormhole.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        color="inherit"
-        className={classes.button}
-      >
-        {" "}
-        Wormhole
-      </Button>
-
-      <Button
-        variant="outlined"
-        href="https://github.com/wormhole-foundation/wormhole"
+        href="https://github.com/deltaswapio/"
         target="_blank"
         rel="noopener noreferrer"
         color="inherit"

@@ -1,4 +1,4 @@
-import { isEVMChain, isTerraChain } from "@certusone/wormhole-sdk";
+import { isEVMChain, isTerraChain } from "@deltaswapio/deltaswap-sdk";
 import { Checkbox, FormControlLabel } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { ethers } from "ethers";

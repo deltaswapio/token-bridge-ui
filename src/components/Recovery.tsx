@@ -39,9 +39,9 @@ import {
   queryExternalIdInjective,
   tryHexToNativeStringNear,
   uint8ArrayToHex,
-} from "@certusone/wormhole-sdk";
-import { getOriginalPackageId } from "@certusone/wormhole-sdk/lib/cjs/sui";
-import { getEmitterAddressAndSequenceFromResponseSui } from "@certusone/wormhole-sdk/lib/esm/sui";
+} from "@deltaswapio/deltaswap-sdk";
+import { getOriginalPackageId } from "@deltaswapio/deltaswap-sdk/lib/cjs/sui";
+import { getEmitterAddressAndSequenceFromResponseSui } from "@deltaswapio/deltaswap-sdk/lib/esm/sui";
 import {
   Accordion,
   AccordionDetails,

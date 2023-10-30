@@ -10,7 +10,7 @@ import {
   parseVaa,
   tryUint8ArrayToNative,
   uint8ArrayToHex,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import {
   Container,
   FormControlLabel,

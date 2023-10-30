@@ -15,7 +15,7 @@ import {
   isEVMChain,
   isTerraChain,
   WSOL_ADDRESS,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import {
   Button,
   Checkbox,

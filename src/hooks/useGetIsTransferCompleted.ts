@@ -18,7 +18,7 @@ import {
   getIsTransferCompletedXpla,
   isEVMChain,
   isTerraChain,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import { Connection } from "@solana/web3.js";
 import { LCDClient } from "@terra-money/terra.js";
 import { LCDClient as XplaLCDClient } from "@xpla/xpla.js";

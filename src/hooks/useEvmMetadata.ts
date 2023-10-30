@@ -1,4 +1,4 @@
-import { ChainId, isEVMChain } from "@certusone/wormhole-sdk";
+import { ChainId, isEVMChain } from "@deltaswapio/deltaswap-sdk";
 import { ethers } from "ethers";
 import { useEffect, useMemo, useState } from "react";
 import {

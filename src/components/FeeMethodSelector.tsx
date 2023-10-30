@@ -5,7 +5,7 @@ import {
   hexToNativeAssetString,
   isEVMChain,
   isTerraChain,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import {
   Card,
   Checkbox,

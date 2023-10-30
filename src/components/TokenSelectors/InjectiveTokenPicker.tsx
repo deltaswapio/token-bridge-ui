@@ -2,7 +2,7 @@ import {
   CHAIN_ID_INJECTIVE,
   isNativeDenomInjective,
   parseSmartContractStateResponse,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import { formatUnits } from "@ethersproject/units";
 import { useCallback, useMemo, useRef } from "react";
 import { createParsedTokenAccount } from "../../hooks/useGetSourceParsedTokenAccounts";

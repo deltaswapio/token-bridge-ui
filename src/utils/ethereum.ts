@@ -1,4 +1,4 @@
-import { ethers_contracts } from "@certusone/wormhole-sdk";
+import { ethers_contracts } from "@deltaswapio/deltaswap-sdk";
 import { ethers } from "ethers";
 import { arrayify, formatUnits } from "ethers/lib/utils";
 import {

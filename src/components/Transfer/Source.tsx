@@ -115,7 +115,7 @@ function Source() {
     <>
       <StepDescription>
         <div style={{ display: "flex", alignItems: "center" }}>
-          Select tokens to send through the {CLUSTER.toUpperCase()} bridge.
+          Select tokens to send through the bridge.
           <div style={{ flexGrow: 1 }} />
           <div>
             <Button

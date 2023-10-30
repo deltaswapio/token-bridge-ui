@@ -3,7 +3,7 @@ import {
   ChainName,
   getGovernorIsVAAEnqueued,
   getSignedVAA,
-} from "@certusone/wormhole-sdk";
+} from "@deltaswapio/deltaswap-sdk";
 import { WORMHOLE_RPC_HOSTS } from "./consts";
 
 export interface GetSignedVAAWithRetryResult {
