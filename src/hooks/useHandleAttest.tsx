@@ -106,7 +106,7 @@ import {
   SOL_TOKEN_BRIDGE_ADDRESS,
   WORMHOLE_RPC_HOSTS,
   getBridgeAddressForChain,
-  getTokenBridgeAddressForChain,
+  getTokenBridgeAddressForChain, getDefaultNativeCurrencyAddressEvm, getFeesEvm,
 } from "../utils/consts";
 import { broadcastInjectiveTx } from "../utils/injective";
 import {
@@ -239,10 +239,12 @@ async function evm(
   dispatch(setIsSending(true));
   try {
     // Klaytn requires specifying gasPrice
-    const overrides =
+    let overrides =
       chainId === CHAIN_ID_KLAYTN
         ? { gasPrice: (await signer.getGasPrice()).toString() }
         : {};
+    overrides["value"] = getFeesEvm(chainId);
+
     const receipt = await attestFromEth(
       getTokenBridgeAddressForChain(chainId),
       signer,

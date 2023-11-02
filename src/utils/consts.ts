@@ -365,6 +365,14 @@ export const getDefaultNativeCurrencySymbol = (chainId: ChainId) =>
     ? "SUI"
     : "";
 
+export const getFeesEvm = (chainId: ChainId) => {
+    return chainId === CHAIN_ID_BSC
+        ? "4400000000000000"
+        : chainId === CHAIN_ID_PLANQ
+        ? "45000000000000000000"
+        : ""
+}
+
 export const getDefaultNativeCurrencyAddressEvm = (chainId: ChainId) => {
   return chainId === CHAIN_ID_ETH
     ? WETH_ADDRESS
