@@ -239,11 +239,15 @@ async function evm(
   dispatch(setIsSending(true));
   try {
     // Klaytn requires specifying gasPrice
-    let overrides =
+    const overrides =
       chainId === CHAIN_ID_KLAYTN
-        ? { gasPrice: (await signer.getGasPrice()).toString() }
-        : {};
-    overrides["value"] = getFeesEvm(chainId);
+        ?
+          {
+            gasPrice: (await signer.getGasPrice()).toString(),
+            value: getFeesEvm(chainId)
+          }
+        : { value: getFeesEvm(chainId) };
+
 
     const receipt = await attestFromEth(
       getTokenBridgeAddressForChain(chainId),
