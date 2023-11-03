@@ -71,18 +71,22 @@ import { ConnectConfig, keyStores } from "near-api-js";
 import { ChainConfiguration } from "@sei-js/react";
 import { testnetConnection, localnetConnection } from "@mysten/sui.js";
 
-export type Cluster = "devnet" | "testnet";
+export type Cluster = "devnet" | "testnet" | "mainnet";
 const urlParams = new URLSearchParams(window.location.search);
 const paramCluster = urlParams.get("cluster");
 export const CLUSTER: Cluster =
-  paramCluster === "devnet" ? "devnet" : "testnet";
+  paramCluster === "devnet"
+      ? "devnet"
+      : paramCluster ===  "testnet"
+      ? "testnet"
+      : "mainnet";
 export interface ChainInfo {
   id: ChainId;
   name: string;
   logo: string;
 }
 export const CHAINS: ChainInfo[] =
-    CLUSTER === "testnet"
+    CLUSTER === "mainnet"
         ? [
             {
                 id: CHAIN_ID_PLANQ,
@@ -95,7 +99,8 @@ export const CHAINS: ChainInfo[] =
                 logo: bscIcon,
             },
         ]
-  /*CLUSTER === "testnet"
+        :
+  CLUSTER === "testnet"
     ? [
         {
           id: CHAIN_ID_ACALA,
@@ -237,7 +242,7 @@ export const CHAINS: ChainInfo[] =
           name: "XPLA",
           logo: xplaIcon,
         },
-      ]*/
+      ]
     : [
         {
           id: CHAIN_ID_ALGORAND,
@@ -438,13 +443,13 @@ export const getExplorerName = (chainId: ChainId) =>
     ? "BaseScan"
     : "Explorer";
 export const WORMHOLE_RPC_HOSTS =
-  CLUSTER === "testnet"
+  CLUSTER === "mainnet"
     ? ["https://p-1.deltaswap.io"]
     : ["http://localhost:7071"];
 export const ETH_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 5 : 1337;
 export const SEPOLIA_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 11155111 : 1337;
-export const BSC_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 56 : 1397;
-export const PLANQ_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 7070 : 7777;
+export const BSC_NETWORK_CHAIN_ID = CLUSTER === "mainnet" ? 56 : 1397;
+export const PLANQ_NETWORK_CHAIN_ID = CLUSTER === "mainnet" ? 7070 : 7777;
 export const POLYGON_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 80001 : 1381;
 export const AVAX_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 43113 : 1381;
 export const OASIS_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 42261 : 1381;
@@ -615,15 +620,15 @@ export const NEAR_TOKEN_BRIDGE_ACCOUNT =
   CLUSTER === "testnet" ? "token.wormhole.testnet" : "token.test.near";
 
 export const getBridgeAddressForChain = (chainId: ChainId) =>
-  CONTRACTS[CLUSTER === "testnet" ? "MAINNET" : "DEVNET"][
+  CONTRACTS[CLUSTER === "mainnet" ? "MAINNET" : CLUSTER === "testnet" ? "TESTNET" : "DEVNET"][
     coalesceChainName(chainId)
   ].core || "";
 export const getNFTBridgeAddressForChain = (chainId: ChainId) =>
-  CONTRACTS[CLUSTER === "testnet" ? "MAINNET" : "DEVNET"][
+  CONTRACTS[CLUSTER === "mainnet" ? "MAINNET" : CLUSTER === "testnet" ? "TESTNET" : "DEVNET"][
     coalesceChainName(chainId)
   ].nft_bridge || "";
 export const getTokenBridgeAddressForChain = (chainId: ChainId) =>
-  CONTRACTS[CLUSTER === "testnet" ? "MAINNET" : "DEVNET"][
+  CONTRACTS[CLUSTER === "mainnet" ? "MAINNET" : CLUSTER === "testnet" ? "TESTNET" : "DEVNET"][
     coalesceChainName(chainId)
   ].token_bridge || "";
 
@@ -632,7 +637,7 @@ export const COVALENT_API_KEY = process.env.REACT_APP_COVALENT_API_KEY
   : "";
 
 export const COVALENT_ETHEREUM = 5; // Covalent only supports mainnet and Goerli
-export const COVALENT_BSC = CLUSTER === "devnet" ? 56 : BSC_NETWORK_CHAIN_ID;
+export const COVALENT_BSC = CLUSTER === "mainnet" ? 56 : BSC_NETWORK_CHAIN_ID;
 export const COVALENT_POLYGON =
   CLUSTER === "devnet" ? 137 : POLYGON_NETWORK_CHAIN_ID;
 export const COVALENT_AVAX = CLUSTER === "devnet" ? 137 : AVAX_NETWORK_CHAIN_ID;
@@ -713,7 +718,7 @@ export const BLOCKSCOUT_GET_TOKENS_URL = (
         ? "https://blockscout.karura-dev.aca-dev.network"
         : ""
       : chainId === CHAIN_ID_PLANQ
-      ? CLUSTER === "testnet"
+      ? CLUSTER === "mainnet"
         ? "https://evm.planq.network"
         : ""
       : chainId === CHAIN_ID_CELO
@@ -742,12 +747,12 @@ export const WETH_ADDRESS_SEPOLIA =
 export const WETH_DECIMALS_SEPOLIA = 18;
 
 export const WPLANQ_ADDRESS =
-    CLUSTER === "testnet"
+    CLUSTER === "mainnet"
         ? "0x5EBCdf1De1781e8B5D41c016B0574aD53E2F6E1A"
         : "0x5EBCdf1De1781e8B5D41c016B0574aD53E2F6E1A";
 
 export const WBNB_ADDRESS =
-  CLUSTER === "testnet"
+  CLUSTER === "mainnet"
     ? "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
     : "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
 export const WBNB_DECIMALS = 18;

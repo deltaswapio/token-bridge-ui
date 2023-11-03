@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
     borderTop: "1px solid #585587",
     position: "relative",
     maxWidth: 1100,
+    color: "#333333",
     margin: "80px auto 0px",
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(6.5),

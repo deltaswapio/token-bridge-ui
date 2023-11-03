@@ -1,33 +1,33 @@
 import {
-  ChainId,
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_AURORA,
-  CHAIN_ID_AVAX,
-  CHAIN_ID_BSC,
-  CHAIN_ID_CELO,
-  CHAIN_ID_ETH,
-  CHAIN_ID_FANTOM,
-  CHAIN_ID_KLAYTN,
-  CHAIN_ID_KARURA,
-  CHAIN_ID_MOONBEAM,
-  CHAIN_ID_OASIS,
-  CHAIN_ID_POLYGON,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_ACALA,
-  isTerraChain,
-  CHAIN_ID_TERRA2,
-  TerraChainId,
-  CHAIN_ID_XPLA,
-  CHAIN_ID_APTOS,
-  isValidAptosType,
-  CHAIN_ID_ARBITRUM,
-  CHAIN_ID_INJECTIVE,
-  terra,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_BASE,
-  CHAIN_ID_OPTIMISM,
-  CHAIN_ID_SEPOLIA,
-  CHAIN_ID_SUI,
+    ChainId,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_AURORA,
+    CHAIN_ID_AVAX,
+    CHAIN_ID_BSC,
+    CHAIN_ID_CELO,
+    CHAIN_ID_ETH,
+    CHAIN_ID_FANTOM,
+    CHAIN_ID_KLAYTN,
+    CHAIN_ID_KARURA,
+    CHAIN_ID_MOONBEAM,
+    CHAIN_ID_OASIS,
+    CHAIN_ID_POLYGON,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_ACALA,
+    isTerraChain,
+    CHAIN_ID_TERRA2,
+    TerraChainId,
+    CHAIN_ID_XPLA,
+    CHAIN_ID_APTOS,
+    isValidAptosType,
+    CHAIN_ID_ARBITRUM,
+    CHAIN_ID_INJECTIVE,
+    terra,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_BASE,
+    CHAIN_ID_OPTIMISM,
+    CHAIN_ID_SEPOLIA,
+    CHAIN_ID_SUI, CHAIN_ID_PLANQ,
 } from "@deltaswapio/deltaswap-sdk";
 import { Button, makeStyles, Tooltip, Typography } from "@material-ui/core";
 import { FileCopy, OpenInNew } from "@material-ui/icons";
@@ -171,6 +171,12 @@ export default function SmartAddress({
     ? `https://${CLUSTER === "testnet" ? "goerli-" : ""}optimism.etherscan.io/${
         isAsset ? "token" : "address"
       }/${useableAddress}`
+    : chainId === CHAIN_ID_PLANQ
+    ? `https://${
+      CLUSTER === "testnet"
+          ? "evm.planq.network"
+          : "evm.planq.network"
+      }/${isAsset ? "token" : "address"}/${useableAddress}`
     : chainId === CHAIN_ID_KARURA
     ? `https://${
         CLUSTER === "testnet"

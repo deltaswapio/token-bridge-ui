@@ -1,30 +1,30 @@
 import {
-  ChainId,
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_AURORA,
-  CHAIN_ID_AVAX,
-  CHAIN_ID_BSC,
-  CHAIN_ID_CELO,
-  CHAIN_ID_ETH,
-  CHAIN_ID_FANTOM,
-  CHAIN_ID_KLAYTN,
-  CHAIN_ID_KARURA,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_MOONBEAM,
-  CHAIN_ID_OASIS,
-  CHAIN_ID_POLYGON,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_ACALA,
-  isTerraChain,
-  CHAIN_ID_TERRA2,
-  CHAIN_ID_XPLA,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_ARBITRUM,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_BASE,
-  CHAIN_ID_OPTIMISM,
-  CHAIN_ID_SEPOLIA,
-  CHAIN_ID_SUI,
+    ChainId,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_AURORA,
+    CHAIN_ID_AVAX,
+    CHAIN_ID_BSC,
+    CHAIN_ID_CELO,
+    CHAIN_ID_ETH,
+    CHAIN_ID_FANTOM,
+    CHAIN_ID_KLAYTN,
+    CHAIN_ID_KARURA,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_MOONBEAM,
+    CHAIN_ID_OASIS,
+    CHAIN_ID_POLYGON,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_ACALA,
+    isTerraChain,
+    CHAIN_ID_TERRA2,
+    CHAIN_ID_XPLA,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_ARBITRUM,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_BASE,
+    CHAIN_ID_OPTIMISM,
+    CHAIN_ID_SEPOLIA,
+    CHAIN_ID_SUI, CHAIN_ID_PLANQ,
 } from "@deltaswapio/deltaswap-sdk";
 import { Button, makeStyles, Typography } from "@material-ui/core";
 import { Transaction } from "../store/transferSlice";
@@ -49,6 +49,7 @@ export default function ShowTx({
 }) {
   const classes = useStyles();
   const showExplorerLink =
+    CLUSTER === "mainnet" ||
     CLUSTER === "testnet" ||
     (CLUSTER === "devnet" &&
       (chainId === CHAIN_ID_SOLANA || isTerraChain(chainId)));
@@ -63,6 +64,10 @@ export default function ShowTx({
         }`
       : chainId === CHAIN_ID_BSC
       ? `https://${CLUSTER === "testnet" ? "testnet." : ""}bscscan.com/tx/${
+          tx?.id
+        }`
+      : chainId === CHAIN_ID_PLANQ
+      ? `https://${CLUSTER === "testnet" ? "testnet." : ""}evm.planq.network/tx/${
           tx?.id
         }`
       : chainId === CHAIN_ID_POLYGON

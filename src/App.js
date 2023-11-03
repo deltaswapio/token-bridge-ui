@@ -23,6 +23,7 @@ import Transfer from "./components/Transfer";
 import UnwrapNative from "./components/UnwrapNative";
 import USDC from "./components/USDC";
 import WithdrawTokensTerra from "./components/WithdrawTokensTerra";
+
 import { CLUSTER } from "./utils/consts";
 
 const useStyles = makeStyles((theme) => ({
@@ -97,15 +98,16 @@ function App() {
               Redeem
             </Button>
             <Box sx={{ flexGrow: 1 }} />
-            {/*<Select
+            {<Select
               value={CLUSTER}
               onChange={handleClusterChange}
               variant="outlined"
               margin="dense"
             >
+              <MenuItem value="mainnet">Mainnet</MenuItem>
               <MenuItem value="testnet">Testnet</MenuItem>
               <MenuItem value="devnet">Devnet</MenuItem>
-            </Select>*/}
+            </Select>}
           </Toolbar>
         </AppBar>
       }
@@ -115,9 +117,8 @@ function App() {
             white
             subtitle={
               <>
-                <Typography>
-                  This is a developmental token bridge that tests transfers
-                  across chains for tokens and NFTs wrapped by Deltaswap.
+                <Typography style={{color: "#333333"}}>
+                  This is a bridge for transferring tokens and NFTs across chains wrapped by Deltaswap.
                 </Typography>
               </>
             }
