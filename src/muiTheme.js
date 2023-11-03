@@ -37,7 +37,7 @@ export const theme = responsiveFontSizes(
             backgroundPosition: "top center",
             backgroundRepeat: "repeat-y",
             backgroundSize: "120%",
-            backgroundColor: "#dbcaff"
+            backgroundColor: "#8380a2"
           },
           "*": {
             scrollbarWidth: "thin",
