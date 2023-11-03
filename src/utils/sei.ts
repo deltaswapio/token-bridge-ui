@@ -132,7 +132,7 @@ export async function getIsTransferCompletedSei(
 
 /**
  * Returns information about the asset
- * @param wrappedAddress Address of the asset in wormhole wrapped format (hex string)
+ * @param wrappedAddress Address of the asset in deltaswap wrapped format (hex string)
  * @param client WASM api client
  * @returns Information about the asset
  */

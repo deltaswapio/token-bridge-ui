@@ -40,7 +40,7 @@ function Send() {
   return (
     <>
       <StepDescription>
-        Transfer the NFT to the Wormhole Token Bridge.
+        Transfer the NFT to the Deltaswap Token Bridge.
       </StepDescription>
       <KeyAndBalance chainId={sourceChain} />
       {isTerraChain(sourceChain) && (

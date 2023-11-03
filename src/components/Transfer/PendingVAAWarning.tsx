@@ -20,11 +20,11 @@ const PendingVAAWarning = ({ sourceChain }: { sourceChain: ChainId }) => {
     <Alert variant="outlined" severity="warning" className={classes.alert}>
       {message}
       <Link
-        href="https://discord.gg/wormholecrypto"
+        href="https://discord.gg/planq-network"
         target="_blank"
         rel="noopener noreferrer"
       >
-        https://discord.gg/wormholecrypto
+        https://discord.gg/planq-network
       </Link>
       {"."}
     </Alert>

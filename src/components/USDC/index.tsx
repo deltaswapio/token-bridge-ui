@@ -695,7 +695,7 @@ function USDC() {
           enqueueSnackbar(null, {
             content: <Alert severity="success">Circle attestation found</Alert>,
           });
-          // find wormhole message
+          // find deltaswap message
           const seq = parseSequenceFromLogEth(
             receipt,
             getBridgeAddressForChain(sourceChain)

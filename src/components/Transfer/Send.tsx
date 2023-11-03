@@ -149,7 +149,7 @@ function Send() {
   return (
     <>
       <StepDescription>
-        Transfer the tokens to the Wormhole Token Bridge.
+        Transfer the tokens to the Deltaswap Token Bridge.
       </StepDescription>
       <KeyAndBalance chainId={sourceChain} />
       {isTerraChain(sourceChain) && (

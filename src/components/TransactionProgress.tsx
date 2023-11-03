@@ -128,7 +128,7 @@ export default function TransactionProgress({
             ? `Waiting for Ethereum finality on Optimism block ${tx?.block}` //TODO: more advanced finality checking for Optimism
             : blockDiff < expectedBlocks
             ? `Waiting for ${blockDiff} / ${expectedBlocks} confirmations on ${CHAINS_BY_ID[chainId].name}...`
-            : `Waiting for Wormhole Network consensus...`}
+            : `Waiting for Deltaswap Network consensus...`}
         </Typography>
       </div>
     );
