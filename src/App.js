@@ -117,7 +117,7 @@ function App() {
             white
             subtitle={
               <>
-                <Typography style={{color: "#333333"}}>
+                <Typography>
                   This is a bridge for transferring tokens and NFTs across chains wrapped by Deltaswap.
                 </Typography>
               </>

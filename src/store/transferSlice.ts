@@ -14,6 +14,7 @@ import {
   getEmptyDataWrapper,
   receiveDataWrapper,
 } from "./helpers";
+import {getDecimals, getDefaultNativeCurrencySymbol, getEvmChainId, getFeesEvm} from "../utils/consts";
 
 const LAST_STEP = 3;
 
@@ -47,6 +48,9 @@ export interface TransferState {
   sourceParsedTokenAccount: ParsedTokenAccount | undefined;
   sourceParsedTokenAccounts: DataWrapper<ParsedTokenAccount[]>;
   amount: string;
+  fee: string;
+  nativeAsset: string,
+  nativeAssetDecimals: number,
   targetChain: ChainId;
   targetAddressHex: string | undefined;
   targetAsset: DataWrapper<ForeignAssetInfo>;
@@ -75,6 +79,9 @@ const initialState: TransferState = {
   originChain: undefined,
   originAsset: undefined,
   amount: "",
+  fee: getFeesEvm(CHAIN_ID_PLANQ),
+  nativeAsset: getDefaultNativeCurrencySymbol(CHAIN_ID_PLANQ),
+  nativeAssetDecimals: 18,
   targetChain: CHAIN_ID_BSC,
   targetAddressHex: undefined,
   targetAsset: getEmptyDataWrapper(),
@@ -109,6 +116,9 @@ export const transferSlice = createSlice({
     setSourceChain: (state, action: PayloadAction<ChainId>) => {
       const prevSourceChain = state.sourceChain;
       state.sourceChain = action.payload;
+      state.fee = getFeesEvm(action.payload)
+      state.nativeAsset = getDefaultNativeCurrencySymbol(action.payload)
+      state.nativeAssetDecimals = getDecimals(action.payload)
       state.sourceParsedTokenAccount = undefined;
       state.sourceParsedTokenAccounts = getEmptyDataWrapper();
       // clear targetAsset so that components that fire before useFetchTargetAsset don't get stale data

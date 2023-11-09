@@ -378,6 +378,13 @@ export const getFeesEvm = (chainId: ChainId) => {
         : ""
 }
 
+export const getDecimals = (chainId: ChainId) => {
+    return chainId === CHAIN_ID_BSC
+        ? 18
+        : chainId === CHAIN_ID_PLANQ
+            ? 18
+            : 18
+}
 export const getDefaultNativeCurrencyAddressEvm = (chainId: ChainId) => {
   return chainId === CHAIN_ID_ETH
     ? WETH_ADDRESS

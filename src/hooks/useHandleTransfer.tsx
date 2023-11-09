@@ -120,7 +120,7 @@ import {
   SOL_BRIDGE_ADDRESS,
   SOL_TOKEN_BRIDGE_ADDRESS,
   getBridgeAddressForChain,
-  getTokenBridgeAddressForChain,
+  getTokenBridgeAddressForChain, getFeesEvm,
 } from "../utils/consts";
 import { getSignedVAAWithRetry } from "../utils/getSignedVAAWithRetry";
 import { broadcastInjectiveTx } from "../utils/injective";
@@ -365,10 +365,23 @@ async function evm(
       originChain
     );
     // Klaytn requires specifying gasPrice
-    const overrides =
+    let overrides =
       chainId === CHAIN_ID_KLAYTN
-        ? { gasPrice: (await signer.getGasPrice()).toString() }
-        : {};
+        ? { gasPrice: (await signer.getGasPrice()).toString(),
+            value: transferAmountParsed.toString() }
+        : { value: transferAmountParsed.toString() };
+
+    // Fee override for non native token transfers
+    if (!isNative) {
+      overrides =
+        chainId === CHAIN_ID_KLAYTN
+          ?
+          {
+            gasPrice: (await signer.getGasPrice()).toString(),
+            value: getFeesEvm(chainId)
+          }
+          : { value: getFeesEvm(chainId) };
+    }
     const receipt = isNative
       ? await transferFromEthNative(
           getTokenBridgeAddressForChain(chainId),

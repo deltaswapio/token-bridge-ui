@@ -7,9 +7,13 @@ import useIsWalletReady from "../../hooks/useIsWalletReady";
 import {
   selectTransferAmount,
   selectTransferIsSourceComplete,
+  selectTransferRelayerFee,
   selectTransferShouldLockFields,
   selectTransferSourceBalanceString,
   selectTransferSourceChain,
+  selectTransferSourceChainFee,
+  selectTransferSourceChainNativeAsset,
+  selectTransferSourceChainNativeAssetDecimals,
   selectTransferSourceError,
   selectTransferSourceParsedTokenAccount,
   selectTransferTargetChain,
@@ -20,7 +24,7 @@ import {
   setSourceChain,
   setTargetChain,
 } from "../../store/transferSlice";
-import { CHAINS, CLUSTER, getIsTransferDisabled } from "../../utils/consts";
+import {CHAINS, CLUSTER, getDefaultNativeCurrencySymbol, getIsTransferDisabled} from "../../utils/consts";
 import ButtonWithLoader from "../ButtonWithLoader";
 import ChainSelect from "../ChainSelect";
 import ChainSelectArrow from "../ChainSelectArrow";
@@ -33,6 +37,7 @@ import SourceAssetWarning from "./SourceAssetWarning";
 import ChainWarningMessage from "../ChainWarningMessage";
 import useIsTransferLimited from "../../hooks/useIsTransferLimited";
 import TransferLimitedWarning from "./TransferLimitedWarning";
+import {formatUnits} from "ethers/lib/utils";
 
 const useStyles = makeStyles((theme) => ({
   chainSelectWrapper: {
@@ -63,6 +68,13 @@ function Source() {
   const dispatch = useDispatch();
   const sourceChain = useSelector(selectTransferSourceChain);
   const targetChain = useSelector(selectTransferTargetChain);
+  const fee = useSelector(selectTransferSourceChainFee);
+  const nativeAsset = useSelector(selectTransferSourceChainNativeAsset);
+  const nativeAssetDecimals = useSelector(selectTransferSourceChainNativeAssetDecimals);
+
+  const feeParsed =
+      formatUnits(fee, nativeAssetDecimals)
+
   const targetChainOptions = useMemo(
     () => CHAINS.filter((c) => c.id !== sourceChain),
     [sourceChain]
@@ -194,6 +206,7 @@ function Source() {
           }
         />
       ) : null}
+      Fees for this transfer are {feeParsed} {nativeAsset}
       <ChainWarningMessage chainId={sourceChain} />
       <ChainWarningMessage chainId={targetChain} />
       <TransferLimitedWarning isTransferLimited={isTransferLimited} />

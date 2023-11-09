@@ -17,7 +17,7 @@ export const theme = responsiveFontSizes(
       fontSize: 13,
       h1: {
         lineHeight: 0.9,
-        color: "#333333",
+        color: "#fff",
         letterSpacing: -2,
         fontWeight: "bold",
       },

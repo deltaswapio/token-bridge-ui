@@ -167,6 +167,12 @@ export const selectTransferActiveStep = (state: RootState) =>
   state.transfer.activeStep;
 export const selectTransferSourceChain = (state: RootState) =>
   state.transfer.sourceChain;
+export const selectTransferSourceChainNativeAssetDecimals = (state: RootState) =>
+    state.transfer.nativeAssetDecimals;
+export const selectTransferSourceChainNativeAsset = (state: RootState) =>
+    state.transfer.nativeAsset;
+export const selectTransferSourceChainFee = (state: RootState) =>
+    state.transfer.fee;
 export const selectTransferSourceAsset = (state: RootState) => {
   return state.transfer.sourceParsedTokenAccount?.mintKey || undefined;
 };
