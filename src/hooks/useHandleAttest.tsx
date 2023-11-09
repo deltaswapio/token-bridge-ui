@@ -106,7 +106,7 @@ import {
   SOL_TOKEN_BRIDGE_ADDRESS,
   WORMHOLE_RPC_HOSTS,
   getBridgeAddressForChain,
-  getTokenBridgeAddressForChain, getDefaultNativeCurrencyAddressEvm, getFeesEvm,
+  getTokenBridgeAddressForChain, getFeesEvm,
 } from "../utils/consts";
 import { broadcastInjectiveTx } from "../utils/injective";
 import {
