@@ -13,11 +13,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: "yarn"
+          cache: "npm"
       - name: Install
-        run: yarn install --frozen-lockfile
+        run: npm ci
       - name: Build 🔧
-        run: yarn build
+        run: npm run build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
