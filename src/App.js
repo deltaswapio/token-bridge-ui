@@ -27,6 +27,13 @@ import WithdrawTokensTerra from "./components/WithdrawTokensTerra";
 import { CLUSTER } from "./utils/consts";
 
 const useStyles = makeStyles((theme) => ({
+  disclaimerText: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  donwloadHref: {
+    color: "#ffffff"
+  },
   appBar: {
     background: "transparent",
     marginTop: theme.spacing(2),
@@ -96,6 +103,12 @@ function App() {
             </Button>
             <Button component={Link} to="/redeem">
               Redeem
+            </Button>
+            <Button href={"https://physica.finance"}>
+              DEX
+            </Button>
+            <Button href={"https://vesting.deltaswap.io"}>
+              Vesting
             </Button>
             <Box sx={{ flexGrow: 1 }} />
             {<Select

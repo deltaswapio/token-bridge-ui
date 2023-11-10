@@ -18,6 +18,7 @@ import XplaWalletProvider from "./contexts/XplaWalletContext";
 import { theme } from "./muiTheme";
 import { store } from "./store";
 import { SEI_CHAIN_CONFIGURATION } from "./utils/consts";
+import Disclaimer from "./components/Disclaimer";
 
 ReactDOM.render(
   <ErrorBoundary>
@@ -35,6 +36,7 @@ ReactDOM.render(
                         <InjectiveWalletProvider>
                               <SuiWalletProvider>
                                 <HashRouter>
+                                  <Disclaimer />
                                   <App />
                                 </HashRouter>
                               </SuiWalletProvider>
