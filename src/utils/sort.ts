@@ -1,4 +1,4 @@
-import { ParsedTokenAccount } from "../store/transferSlice";
+import {ParsedTokenAccount} from "../store/transferSlice";
 
 export const sortParsedTokenAccounts = (
   a: ParsedTokenAccount,

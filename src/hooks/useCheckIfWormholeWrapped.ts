@@ -1,70 +1,70 @@
 import {
-  ChainId,
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_XPLA,
-  getOriginalAssetAlgorand,
-  getOriginalAssetAptos,
-  getOriginalAssetCosmWasm,
-  getOriginalAssetEth,
-  getOriginalAssetInjective,
-  getOriginalAssetNear,
-  getOriginalAssetSol,
-  isEVMChain,
-  isTerraChain,
-  uint8ArrayToHex,
-  DeltaswapWrappedInfo,
-  CHAIN_ID_SEI,
-  cosmos,
-  CHAIN_ID_SUI,
-  getOriginalAssetSui,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_XPLA,
+    ChainId,
+    cosmos,
+    DeltaswapWrappedInfo,
+    getOriginalAssetAlgorand,
+    getOriginalAssetAptos,
+    getOriginalAssetCosmWasm,
+    getOriginalAssetEth,
+    getOriginalAssetInjective,
+    getOriginalAssetNear,
+    getOriginalAssetSol,
+    getOriginalAssetSui,
+    isEVMChain,
+    isTerraChain,
+    uint8ArrayToHex,
 } from "@deltaswapio/deltaswap-sdk";
 import {
-  getOriginalAssetEth as getOriginalAssetEthNFT,
-  getOriginalAssetSol as getOriginalAssetSolNFT,
+    getOriginalAssetEth as getOriginalAssetEthNFT,
+    getOriginalAssetSol as getOriginalAssetSolNFT,
 } from "@deltaswapio/deltaswap-sdk/lib/esm/nft_bridge";
-import { Connection } from "@solana/web3.js";
-import { LCDClient } from "@terra-money/terra.js";
-import { Algodv2 } from "algosdk";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { useNearContext } from "../contexts/NearWalletContext";
-import { setSourceWormholeWrappedInfo as setNFTSourceWormholeWrappedInfo } from "../store/nftSlice";
+import {Connection} from "@solana/web3.js";
+import {LCDClient} from "@terra-money/terra.js";
+import {Algodv2} from "algosdk";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {setSourceWormholeWrappedInfo as setNFTSourceWormholeWrappedInfo} from "../store/nftSlice";
 import {
-  selectNFTIsRecovery,
-  selectNFTSourceAsset,
-  selectNFTSourceChain,
-  selectNFTSourceParsedTokenAccount,
-  selectTransferIsRecovery,
-  selectTransferSourceAsset,
-  selectTransferSourceChain,
+    selectNFTIsRecovery,
+    selectNFTSourceAsset,
+    selectNFTSourceChain,
+    selectNFTSourceParsedTokenAccount,
+    selectTransferIsRecovery,
+    selectTransferSourceAsset,
+    selectTransferSourceChain,
 } from "../store/selectors";
-import { setSourceWormholeWrappedInfo as setTransferSourceWormholeWrappedInfo } from "../store/transferSlice";
+import {setSourceWormholeWrappedInfo as setTransferSourceWormholeWrappedInfo} from "../store/transferSlice";
 import {
-  ALGORAND_HOST,
-  ALGORAND_TOKEN_BRIDGE_ID,
-  getNFTBridgeAddressForChain,
-  getTerraConfig,
-  getTokenBridgeAddressForChain,
-  NATIVE_NEAR_PLACEHOLDER,
-  NEAR_TOKEN_BRIDGE_ACCOUNT,
-  SOLANA_HOST,
-  SOL_NFT_BRIDGE_ADDRESS,
-  SOL_TOKEN_BRIDGE_ADDRESS,
-  XPLA_LCD_CLIENT_CONFIG,
-  SEI_TRANSLATOR,
+    ALGORAND_HOST,
+    ALGORAND_TOKEN_BRIDGE_ID,
+    getNFTBridgeAddressForChain,
+    getTerraConfig,
+    getTokenBridgeAddressForChain,
+    NATIVE_NEAR_PLACEHOLDER,
+    NEAR_TOKEN_BRIDGE_ACCOUNT,
+    SEI_TRANSLATOR,
+    SOL_NFT_BRIDGE_ADDRESS,
+    SOL_TOKEN_BRIDGE_ADDRESS,
+    SOLANA_HOST,
+    XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
-import { LCDClient as XplaLCDClient } from "@xpla/xpla.js";
-import { getInjectiveWasmClient } from "../utils/injective";
-import { getAptosClient } from "../utils/aptos";
-import { makeNearProvider } from "../utils/near";
-import { getOriginalAssetSei, getSeiWasmClient } from "../utils/sei";
-import { base58 } from "ethers/lib/utils";
-import { getSuiProvider } from "../utils/sui";
+import {LCDClient as XplaLCDClient} from "@xpla/xpla.js";
+import {getInjectiveWasmClient} from "../utils/injective";
+import {getAptosClient} from "../utils/aptos";
+import {makeNearProvider} from "../utils/near";
+import {getOriginalAssetSei, getSeiWasmClient} from "../utils/sei";
+import {base58} from "ethers/lib/utils";
+import {getSuiProvider} from "../utils/sui";
 
 export interface StateSafeWormholeWrappedInfo {
   isWrapped: boolean;

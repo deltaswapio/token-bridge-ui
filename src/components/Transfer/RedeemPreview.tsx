@@ -1,11 +1,8 @@
-import { makeStyles, Typography } from "@material-ui/core";
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectTransferRedeemTx,
-  selectTransferTargetChain,
-} from "../../store/selectors";
-import { reset } from "../../store/transferSlice";
+import {makeStyles, Typography} from "@material-ui/core";
+import {useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {selectTransferRedeemTx, selectTransferTargetChain,} from "../../store/selectors";
+import {reset} from "../../store/transferSlice";
 import ButtonWithLoader from "../ButtonWithLoader";
 import ShowTx from "../ShowTx";
 import AddToMetamask from "./AddToMetamask";

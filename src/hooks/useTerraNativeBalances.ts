@@ -1,7 +1,7 @@
-import { TerraChainId } from "@deltaswapio/deltaswap-sdk";
-import { LCDClient } from "@terra-money/terra.js";
-import { MutableRefObject, useEffect, useMemo, useState } from "react";
-import { getTerraConfig } from "../utils/consts";
+import {TerraChainId} from "@deltaswapio/deltaswap-sdk";
+import {LCDClient} from "@terra-money/terra.js";
+import {MutableRefObject, useEffect, useMemo, useState} from "react";
+import {getTerraConfig} from "../utils/consts";
 
 export interface TerraNativeBalances {
   [index: string]: string;

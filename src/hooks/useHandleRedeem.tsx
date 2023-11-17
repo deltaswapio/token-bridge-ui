@@ -1,107 +1,87 @@
 import {
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_KLAYTN,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  CHAIN_ID_XPLA,
-  ChainId,
-  TerraChainId,
-  isEVMChain,
-  isTerraChain,
-  parseTransferPayload,
-  parseVaa,
-  postVaaSolanaWithRetry,
-  redeemAndUnwrapOnSolana,
-  redeemOnAlgorand,
-  redeemOnEth,
-  redeemOnEthNative,
-  redeemOnInjective,
-  redeemOnNear,
-  redeemOnSolana,
-  redeemOnSui,
-  redeemOnTerra,
-  redeemOnXpla,
-  uint8ArrayToHex,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_KLAYTN,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_XPLA,
+    ChainId,
+    isEVMChain,
+    isTerraChain,
+    parseTransferPayload,
+    parseVaa,
+    postVaaSolanaWithRetry,
+    redeemAndUnwrapOnSolana,
+    redeemOnAlgorand,
+    redeemOnEth,
+    redeemOnEthNative,
+    redeemOnInjective,
+    redeemOnNear,
+    redeemOnSolana,
+    redeemOnSui,
+    redeemOnTerra,
+    redeemOnXpla,
+    TerraChainId,
+    uint8ArrayToHex,
 } from "@deltaswapio/deltaswap-sdk";
-import { completeTransferAndRegister } from "@deltaswapio/deltaswap-sdk/lib/esm/aptos/api/tokenBridge";
-import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
-import { calculateFee } from "@cosmjs/stargate";
-import { WalletStrategy } from "@injectivelabs/wallet-ts";
-import { Alert } from "@material-ui/lab";
-import { Wallet } from "@near-wallet-selector/core";
+import {completeTransferAndRegister} from "@deltaswapio/deltaswap-sdk/lib/esm/aptos/api/tokenBridge";
+import {SigningCosmWasmClient} from "@cosmjs/cosmwasm-stargate";
+import {calculateFee} from "@cosmjs/stargate";
+import {WalletStrategy} from "@injectivelabs/wallet-ts";
+import {Alert} from "@material-ui/lab";
+import {Wallet} from "@near-wallet-selector/core";
+import {useSigningCosmWasmClient as useSeiSigningCosmWasmClient, useWallet as useSeiWallet,} from "@sei-js/react";
+import {WalletContextState} from "@solana/wallet-adapter-react";
+import {Connection} from "@solana/web3.js";
+import {useWallet, WalletContextState as WalletContextStateSui,} from "@suiet/wallet-kit";
+import {ConnectedWallet, useConnectedWallet,} from "@terra-money/wallet-provider";
 import {
-  useSigningCosmWasmClient as useSeiSigningCosmWasmClient,
-  useWallet as useSeiWallet,
-} from "@sei-js/react";
-import { WalletContextState } from "@solana/wallet-adapter-react";
-import { Connection } from "@solana/web3.js";
-import {
-  WalletContextState as WalletContextStateSui,
-  useWallet,
-} from "@suiet/wallet-kit";
-import {
-  ConnectedWallet,
-  useConnectedWallet,
-} from "@terra-money/wallet-provider";
-import {
-  ConnectedWallet as XplaConnectedWallet,
-  useConnectedWallet as useXplaConnectedWallet,
+    ConnectedWallet as XplaConnectedWallet,
+    useConnectedWallet as useXplaConnectedWallet,
 } from "@xpla/wallet-provider";
 import algosdk from "algosdk";
-import { Types } from "aptos";
+import {Types} from "aptos";
 import axios from "axios";
-import { Signer } from "ethers";
-import { fromUint8Array } from "js-base64";
-import { useSnackbar } from "notistack";
-import { useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useAlgorandContext } from "../contexts/AlgorandWalletContext";
-import { useAptosContext } from "../contexts/AptosWalletContext";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { useInjectiveContext } from "../contexts/InjectiveWalletContext";
-import { useNearContext } from "../contexts/NearWalletContext";
-import { useSolanaWallet } from "../contexts/SolanaWalletContext";
+import {Signer} from "ethers";
+import {fromUint8Array} from "js-base64";
+import {useSnackbar} from "notistack";
+import {useCallback, useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useAlgorandContext} from "../contexts/AlgorandWalletContext";
+import {useAptosContext} from "../contexts/AptosWalletContext";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {useInjectiveContext} from "../contexts/InjectiveWalletContext";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {useSolanaWallet} from "../contexts/SolanaWalletContext";
+import {selectTerraFeeDenom, selectTransferIsRedeeming, selectTransferTargetChain,} from "../store/selectors";
+import {setIsRedeeming, setRedeemTx} from "../store/transferSlice";
+import {signSendAndConfirmAlgorand} from "../utils/algorand";
+import {getAptosClient, waitForSignAndSubmitTransaction,} from "../utils/aptos";
 import {
-  selectTerraFeeDenom,
-  selectTransferIsRedeeming,
-  selectTransferTargetChain,
-} from "../store/selectors";
-import { setIsRedeeming, setRedeemTx } from "../store/transferSlice";
-import { signSendAndConfirmAlgorand } from "../utils/algorand";
-import {
-  getAptosClient,
-  waitForSignAndSubmitTransaction,
-} from "../utils/aptos";
-import {
-  ACALA_RELAY_URL,
-  ALGORAND_BRIDGE_ID,
-  ALGORAND_HOST,
-  ALGORAND_TOKEN_BRIDGE_ID,
-  MAX_VAA_UPLOAD_RETRIES_SOLANA,
-  NEAR_TOKEN_BRIDGE_ACCOUNT,
-  SEI_TRANSLATER_TARGET,
-  SEI_TRANSLATOR,
-  SOLANA_HOST,
-  SOL_BRIDGE_ADDRESS,
-  SOL_TOKEN_BRIDGE_ADDRESS,
-  getBridgeAddressForChain,
-  getTokenBridgeAddressForChain,
+    ACALA_RELAY_URL,
+    ALGORAND_BRIDGE_ID,
+    ALGORAND_HOST,
+    ALGORAND_TOKEN_BRIDGE_ID,
+    getBridgeAddressForChain,
+    getTokenBridgeAddressForChain,
+    MAX_VAA_UPLOAD_RETRIES_SOLANA,
+    NEAR_TOKEN_BRIDGE_ACCOUNT,
+    SEI_TRANSLATER_TARGET,
+    SEI_TRANSLATOR,
+    SOL_BRIDGE_ADDRESS,
+    SOL_TOKEN_BRIDGE_ADDRESS,
+    SOLANA_HOST,
 } from "../utils/consts";
-import { broadcastInjectiveTx } from "../utils/injective";
-import {
-  makeNearAccount,
-  makeNearProvider,
-  signAndSendTransactions,
-} from "../utils/near";
+import {broadcastInjectiveTx} from "../utils/injective";
+import {makeNearAccount, makeNearProvider, signAndSendTransactions,} from "../utils/near";
 import parseError from "../utils/parseError";
-import { signSendAndConfirm } from "../utils/solana";
-import { getSuiProvider } from "../utils/sui";
-import { postWithFees } from "../utils/terra";
-import { postWithFeesXpla } from "../utils/xpla";
+import {signSendAndConfirm} from "../utils/solana";
+import {getSuiProvider} from "../utils/sui";
+import {postWithFees} from "../utils/terra";
+import {postWithFeesXpla} from "../utils/xpla";
 import useTransferSignedVAA from "./useTransferSignedVAA";
 
 async function algo(

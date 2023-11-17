@@ -1,6 +1,6 @@
-import { useLayoutEffect, useMemo, useState } from "react";
-import { DataWrapper } from "../store/helpers";
-import { CosmWasmClient, getSeiWasmClient } from "../utils/sei";
+import {useLayoutEffect, useMemo, useState} from "react";
+import {DataWrapper} from "../store/helpers";
+import {CosmWasmClient, getSeiWasmClient} from "../utils/sei";
 
 export type SeiMetadata = {
   symbol?: string;

@@ -1,29 +1,26 @@
-import { CHAIN_ID_SOLANA, isEVMChain } from "@deltaswapio/deltaswap-sdk";
-import { Button, makeStyles } from "@material-ui/core";
-import { VerifiedUser } from "@material-ui/icons";
-import { Alert } from "@material-ui/lab";
-import { useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import {CHAIN_ID_SOLANA, isEVMChain} from "@deltaswapio/deltaswap-sdk";
+import {Button, makeStyles} from "@material-ui/core";
+import {VerifiedUser} from "@material-ui/icons";
+import {Alert} from "@material-ui/lab";
+import {useCallback, useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
-import { incrementStep, setSourceChain } from "../../store/nftSlice";
+import {incrementStep, setSourceChain} from "../../store/nftSlice";
 import {
-  selectNFTIsSourceComplete,
-  selectNFTShouldLockFields,
-  selectNFTSourceBalanceString,
-  selectNFTSourceChain,
-  selectNFTSourceError,
+    selectNFTIsSourceComplete,
+    selectNFTShouldLockFields,
+    selectNFTSourceBalanceString,
+    selectNFTSourceChain,
+    selectNFTSourceError,
 } from "../../store/selectors";
-import {
-  CHAINS_WITH_NFT_SUPPORT,
-  getIsTransferDisabled,
-} from "../../utils/consts";
+import {CHAINS_WITH_NFT_SUPPORT, getIsTransferDisabled,} from "../../utils/consts";
 import ButtonWithLoader from "../ButtonWithLoader";
 import ChainSelect from "../ChainSelect";
 import KeyAndBalance from "../KeyAndBalance";
 import LowBalanceWarning from "../LowBalanceWarning";
 import StepDescription from "../StepDescription";
-import { TokenSelector } from "../TokenSelectors/SourceTokenSelector";
+import {TokenSelector} from "../TokenSelectors/SourceTokenSelector";
 import ChainWarningMessage from "../ChainWarningMessage";
 
 const useStyles = makeStyles((theme) => ({

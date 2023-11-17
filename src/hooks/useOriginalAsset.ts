@@ -1,68 +1,65 @@
 import {
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  CHAIN_ID_TERRA2,
-  CHAIN_ID_XPLA,
-  ChainId,
-  getForeignAssetSui,
-  getOriginalAssetAlgorand,
-  getOriginalAssetAptos,
-  getOriginalAssetCosmWasm,
-  getOriginalAssetEth,
-  getOriginalAssetInjective,
-  getOriginalAssetNear,
-  getOriginalAssetSol,
-  getOriginalAssetSui,
-  getTypeFromExternalAddress,
-  hexToNativeAssetString,
-  isEVMChain,
-  isTerraChain,
-  queryExternalId,
-  queryExternalIdInjective,
-  uint8ArrayToHex,
-  uint8ArrayToNative,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_TERRA2,
+    CHAIN_ID_XPLA,
+    ChainId,
+    getForeignAssetSui,
+    getOriginalAssetAlgorand,
+    getOriginalAssetAptos,
+    getOriginalAssetCosmWasm,
+    getOriginalAssetEth,
+    getOriginalAssetInjective,
+    getOriginalAssetNear,
+    getOriginalAssetSol,
+    getOriginalAssetSui,
+    getTypeFromExternalAddress,
+    hexToNativeAssetString,
+    isEVMChain,
+    isTerraChain,
+    queryExternalId,
+    queryExternalIdInjective,
+    uint8ArrayToHex,
+    uint8ArrayToNative,
 } from "@deltaswapio/deltaswap-sdk";
 import {
-  DeltaswapWrappedNFTInfo,
-  getOriginalAssetEth as getOriginalAssetEthNFT,
-  getOriginalAssetSol as getOriginalAssetSolNFT,
+    DeltaswapWrappedNFTInfo,
+    getOriginalAssetEth as getOriginalAssetEthNFT,
+    getOriginalAssetSol as getOriginalAssetSolNFT,
 } from "@deltaswapio/deltaswap-sdk/lib/esm/nft_bridge";
-import { Web3Provider } from "@ethersproject/providers";
-import { Connection } from "@solana/web3.js";
-import { LCDClient } from "@terra-money/terra.js";
-import { LCDClient as XplaLCDClient } from "@xpla/xpla.js";
-import { Algodv2 } from "algosdk";
-import { ethers } from "ethers";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import {Web3Provider} from "@ethersproject/providers";
+import {Connection} from "@solana/web3.js";
+import {LCDClient} from "@terra-money/terra.js";
+import {LCDClient as XplaLCDClient} from "@xpla/xpla.js";
+import {Algodv2} from "algosdk";
+import {ethers} from "ethers";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import {Provider, useEthereumProvider,} from "../contexts/EthereumProviderContext";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {DataWrapper} from "../store/helpers";
+import {getAptosClient} from "../utils/aptos";
 import {
-  Provider,
-  useEthereumProvider,
-} from "../contexts/EthereumProviderContext";
-import { useNearContext } from "../contexts/NearWalletContext";
-import { DataWrapper } from "../store/helpers";
-import { getAptosClient } from "../utils/aptos";
-import {
-  ALGORAND_HOST,
-  ALGORAND_TOKEN_BRIDGE_ID,
-  NATIVE_NEAR_PLACEHOLDER,
-  NATIVE_NEAR_WH_ADDRESS,
-  NEAR_TOKEN_BRIDGE_ACCOUNT,
-  SOLANA_HOST,
-  SOLANA_SYSTEM_PROGRAM_ADDRESS,
-  SOL_NFT_BRIDGE_ADDRESS,
-  SOL_TOKEN_BRIDGE_ADDRESS,
-  XPLA_LCD_CLIENT_CONFIG,
-  getNFTBridgeAddressForChain,
-  getTerraConfig,
-  getTokenBridgeAddressForChain,
+    ALGORAND_HOST,
+    ALGORAND_TOKEN_BRIDGE_ID,
+    getNFTBridgeAddressForChain,
+    getTerraConfig,
+    getTokenBridgeAddressForChain,
+    NATIVE_NEAR_PLACEHOLDER,
+    NATIVE_NEAR_WH_ADDRESS,
+    NEAR_TOKEN_BRIDGE_ACCOUNT,
+    SOL_NFT_BRIDGE_ADDRESS,
+    SOL_TOKEN_BRIDGE_ADDRESS,
+    SOLANA_HOST,
+    SOLANA_SYSTEM_PROGRAM_ADDRESS,
+    XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
-import { getInjectiveWasmClient } from "../utils/injective";
-import { lookupHash, makeNearAccount, makeNearProvider } from "../utils/near";
-import { getSuiProvider } from "../utils/sui";
+import {getInjectiveWasmClient} from "../utils/injective";
+import {lookupHash, makeNearAccount, makeNearProvider} from "../utils/near";
+import {getSuiProvider} from "../utils/sui";
 import useIsWalletReady from "./useIsWalletReady";
 
 export type OriginalAssetInfo = {

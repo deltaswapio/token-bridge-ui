@@ -1,6 +1,6 @@
-import { LCDClient } from "@xpla/xpla.js";
-import { MutableRefObject, useEffect, useMemo, useState } from "react";
-import { XPLA_LCD_CLIENT_CONFIG } from "../utils/consts";
+import {LCDClient} from "@xpla/xpla.js";
+import {MutableRefObject, useEffect, useMemo, useState} from "react";
+import {XPLA_LCD_CLIENT_CONFIG} from "../utils/consts";
 
 export interface XplaNativeBalances {
   [index: string]: string;

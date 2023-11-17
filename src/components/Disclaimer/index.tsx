@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
-    AppBar,
-    Box,
-    Button, Checkbox,
-    Container, DialogTitle, IconButton,
-    makeStyles,
-    MenuItem, Dialog,
-    Select,
-    Toolbar,
-    Typography, DialogContent, DialogContentText, DialogActions,
+    Button,
+    Checkbox,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
 } from "@material-ui/core";
-import {TextFormat} from "@material-ui/icons";
 
 const Disclaimer = () => {
     const [isOpen, setIsOpen] = useState(

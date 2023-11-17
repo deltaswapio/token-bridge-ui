@@ -1,9 +1,4 @@
-import {
-  createStyles,
-  IconButton,
-  makeStyles,
-  Tooltip,
-} from "@material-ui/core";
+import {createStyles, IconButton, makeStyles, Tooltip,} from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
 
 const useStyles = makeStyles(() =>

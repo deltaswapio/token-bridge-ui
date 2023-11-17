@@ -1,7 +1,7 @@
-import { LCDClient } from "@xpla/xpla.js";
-import { useLayoutEffect, useMemo, useState } from "react";
-import { DataWrapper } from "../store/helpers";
-import { XPLA_LCD_CLIENT_CONFIG } from "../utils/consts";
+import {LCDClient} from "@xpla/xpla.js";
+import {useLayoutEffect, useMemo, useState} from "react";
+import {DataWrapper} from "../store/helpers";
+import {XPLA_LCD_CLIENT_CONFIG} from "../utils/consts";
 
 export type XplaMetadata = {
   symbol?: string;

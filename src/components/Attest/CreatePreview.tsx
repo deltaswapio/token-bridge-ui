@@ -1,16 +1,13 @@
-import { Link, makeStyles, Typography } from "@material-ui/core";
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectAttestCreateTx,
-  selectAttestTargetChain,
-} from "../../store/selectors";
-import { reset } from "../../store/attestSlice";
+import {Link, makeStyles, Typography} from "@material-ui/core";
+import {useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {selectAttestCreateTx, selectAttestTargetChain,} from "../../store/selectors";
+import {reset} from "../../store/attestSlice";
 import ButtonWithLoader from "../ButtonWithLoader";
 import ShowTx from "../ShowTx";
-import { useHistory } from "react-router";
-import { getHowToAddToTokenListUrl } from "../../utils/consts";
-import { Alert } from "@material-ui/lab";
+import {useHistory} from "react-router";
+import {getHowToAddToTokenListUrl} from "../../utils/consts";
+import {Alert} from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   description: {

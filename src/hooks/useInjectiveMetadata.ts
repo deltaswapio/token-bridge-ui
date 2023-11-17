@@ -1,8 +1,8 @@
-import { parseSmartContractStateResponse } from "@deltaswapio/deltaswap-sdk";
-import { ChainGrpcWasmApi } from "@injectivelabs/sdk-ts";
-import { useLayoutEffect, useMemo, useState } from "react";
-import { DataWrapper } from "../store/helpers";
-import { getInjectiveWasmClient } from "../utils/injective";
+import {parseSmartContractStateResponse} from "@deltaswapio/deltaswap-sdk";
+import {ChainGrpcWasmApi} from "@injectivelabs/sdk-ts";
+import {useLayoutEffect, useMemo, useState} from "react";
+import {DataWrapper} from "../store/helpers";
+import {getInjectiveWasmClient} from "../utils/injective";
 
 export type InjectiveMetadata = {
   symbol?: string;

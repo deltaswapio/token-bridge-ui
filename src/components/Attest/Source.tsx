@@ -1,18 +1,14 @@
-import { makeStyles, TextField } from "@material-ui/core";
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {makeStyles, TextField} from "@material-ui/core";
+import {useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {incrementStep, setSourceAsset, setSourceChain,} from "../../store/attestSlice";
 import {
-  incrementStep,
-  setSourceAsset,
-  setSourceChain,
-} from "../../store/attestSlice";
-import {
-  selectAttestIsSourceComplete,
-  selectAttestShouldLockFields,
-  selectAttestSourceAsset,
-  selectAttestSourceChain,
+    selectAttestIsSourceComplete,
+    selectAttestShouldLockFields,
+    selectAttestSourceAsset,
+    selectAttestSourceChain,
 } from "../../store/selectors";
-import { CHAINS } from "../../utils/consts";
+import {CHAINS} from "../../utils/consts";
 import ButtonWithLoader from "../ButtonWithLoader";
 import ChainSelect from "../ChainSelect";
 import KeyAndBalance from "../KeyAndBalance";

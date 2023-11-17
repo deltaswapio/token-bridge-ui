@@ -1,34 +1,24 @@
 import {
-  ChainId,
-  CHAIN_ID_ETH,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_TERRA2,
-  isEVMChain,
-  nativeToHexString,
+    CHAIN_ID_ETH,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_TERRA2,
+    ChainId,
+    isEVMChain,
+    nativeToHexString,
 } from "@deltaswapio/deltaswap-sdk";
-import {
-  Card,
-  CircularProgress,
-  Container,
-  makeStyles,
-  MenuItem,
-  TextField,
-  Typography,
-} from "@material-ui/core";
+import {Card, CircularProgress, Container, makeStyles, MenuItem, TextField, Typography,} from "@material-ui/core";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import { useCallback, useMemo, useState } from "react";
-import useFetchForeignAsset, {
-  ForeignAssetInfo,
-} from "../hooks/useFetchForeignAsset";
+import {useCallback, useMemo, useState} from "react";
+import useFetchForeignAsset, {ForeignAssetInfo,} from "../hooks/useFetchForeignAsset";
 import useIsWalletReady from "../hooks/useIsWalletReady";
 import useMetadata from "../hooks/useMetadata";
-import useOriginalAsset, { OriginalAssetInfo } from "../hooks/useOriginalAsset";
-import { CHAINS, CHAINS_BY_ID } from "../utils/consts";
+import useOriginalAsset, {OriginalAssetInfo} from "../hooks/useOriginalAsset";
+import {CHAINS, CHAINS_BY_ID} from "../utils/consts";
 import HeaderText from "./HeaderText";
 import KeyAndBalance from "./KeyAndBalance";
 import SmartAddress from "./SmartAddress";
-import { RegisterNowButtonCore } from "./Transfer/RegisterNowButton";
+import {RegisterNowButtonCore} from "./Transfer/RegisterNowButton";
 
 const useStyles = makeStyles((theme) => ({
   flexBox: {

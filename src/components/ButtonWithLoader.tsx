@@ -1,10 +1,5 @@
-import {
-  Button,
-  CircularProgress,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
-import { ReactChild } from "react";
+import {Button, CircularProgress, makeStyles, Typography,} from "@material-ui/core";
+import {ReactChild} from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,13 +1,13 @@
-import { CHAIN_ID_SUI, isValidAptosType } from "@deltaswapio/deltaswap-sdk";
-import { formatUnits } from "@ethersproject/units";
-import { useCallback, useRef } from "react";
-import { createParsedTokenAccount } from "../../hooks/useGetSourceParsedTokenAccounts";
+import {CHAIN_ID_SUI, isValidAptosType} from "@deltaswapio/deltaswap-sdk";
+import {formatUnits} from "@ethersproject/units";
+import {useCallback, useRef} from "react";
+import {createParsedTokenAccount} from "../../hooks/useGetSourceParsedTokenAccounts";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
-import { DataWrapper } from "../../store/helpers";
-import { NFTParsedTokenAccount } from "../../store/nftSlice";
-import { ParsedTokenAccount } from "../../store/transferSlice";
-import { getSuiProvider } from "../../utils/sui";
-import TokenPicker, { BasicAccountRender } from "./TokenPicker";
+import {DataWrapper} from "../../store/helpers";
+import {NFTParsedTokenAccount} from "../../store/nftSlice";
+import {ParsedTokenAccount} from "../../store/transferSlice";
+import {getSuiProvider} from "../../utils/sui";
+import TokenPicker, {BasicAccountRender} from "./TokenPicker";
 
 type SuiTokenPickerProps = {
   value: ParsedTokenAccount | null;

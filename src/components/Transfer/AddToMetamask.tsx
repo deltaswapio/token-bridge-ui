@@ -1,19 +1,16 @@
-import { isEVMChain } from "@deltaswapio/deltaswap-sdk";
-import { Button, makeStyles } from "@material-ui/core";
+import {isEVMChain} from "@deltaswapio/deltaswap-sdk";
+import {Button, makeStyles} from "@material-ui/core";
 import detectEthereumProvider from "@metamask/detect-provider";
-import { useCallback } from "react";
-import { useSelector } from "react-redux";
-import { useEthereumProvider } from "../../contexts/EthereumProviderContext";
+import {useCallback} from "react";
+import {useSelector} from "react-redux";
+import {useEthereumProvider} from "../../contexts/EthereumProviderContext";
 import {
-  selectTransferSourceParsedTokenAccount,
-  selectTransferTargetAsset,
-  selectTransferTargetChain,
+    selectTransferSourceParsedTokenAccount,
+    selectTransferTargetAsset,
+    selectTransferTargetChain,
 } from "../../store/selectors";
-import { getEvmChainId } from "../../utils/consts";
-import {
-  ethTokenToParsedTokenAccount,
-  getEthereumToken,
-} from "../../utils/ethereum";
+import {getEvmChainId} from "../../utils/consts";
+import {ethTokenToParsedTokenAccount, getEthereumToken,} from "../../utils/ethereum";
 
 const useStyles = makeStyles((theme) => ({
   addButton: {

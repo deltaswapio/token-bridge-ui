@@ -1,9 +1,9 @@
-import { cosmos } from "@deltaswapio/deltaswap-sdk";
-import { base58, formatUnits } from "ethers/lib/utils";
-import { MutableRefObject, useEffect, useMemo, useState } from "react";
-import { NFTParsedTokenAccount } from "../store/nftSlice";
-import { SEI_DECIMALS, SEI_TRANSLATOR } from "../utils/consts";
-import { getSeiQueryClient, getSeiWasmClient } from "../utils/sei";
+import {cosmos} from "@deltaswapio/deltaswap-sdk";
+import {base58, formatUnits} from "ethers/lib/utils";
+import {MutableRefObject, useEffect, useMemo, useState} from "react";
+import {NFTParsedTokenAccount} from "../store/nftSlice";
+import {SEI_DECIMALS, SEI_TRANSLATOR} from "../utils/consts";
+import {getSeiQueryClient, getSeiWasmClient} from "../utils/sei";
 
 export default function useSeiNativeBalances(
   walletAddress?: string,

@@ -1,18 +1,18 @@
-import { WalletName, WalletReadyState } from "@manahippo/aptos-wallet-adapter";
+import {WalletName, WalletReadyState} from "@manahippo/aptos-wallet-adapter";
 import {
-  Dialog,
-  DialogTitle,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
+    Dialog,
+    DialogTitle,
+    Divider,
+    IconButton,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    makeStyles,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import { useCallback } from "react";
-import { useAptosContext } from "../contexts/AptosWalletContext";
+import {useCallback} from "react";
+import {useAptosContext} from "../contexts/AptosWalletContext";
 
 const useStyles = makeStyles((theme) => ({
   flexTitle: {

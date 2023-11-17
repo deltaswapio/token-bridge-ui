@@ -1,34 +1,24 @@
 import {
-  AccountState,
-  Network,
-  setupWalletSelector,
-  Wallet,
-  WalletSelector,
-  WalletSelectorState,
+    AccountState,
+    Network,
+    setupWalletSelector,
+    Wallet,
+    WalletSelector,
+    WalletSelectorState,
 } from "@near-wallet-selector/core";
-import { setupDefaultWallets } from "@near-wallet-selector/default-wallets";
-import { setupMathWallet } from "@near-wallet-selector/math-wallet";
-import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
-import {
-  setupModal,
-  WalletSelectorModal,
-} from "@near-wallet-selector/modal-ui";
+import {setupDefaultWallets} from "@near-wallet-selector/default-wallets";
+import {setupMathWallet} from "@near-wallet-selector/math-wallet";
+import {setupMeteorWallet} from "@near-wallet-selector/meteor-wallet";
+import {setupModal, WalletSelectorModal,} from "@near-wallet-selector/modal-ui";
 import "@near-wallet-selector/modal-ui/styles.css";
-import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
-import { setupNearWallet } from "@near-wallet-selector/near-wallet";
-import { setupNightly } from "@near-wallet-selector/nightly";
-import { setupSender } from "@near-wallet-selector/sender";
-import { KeyPair, WalletConnection } from "near-api-js";
-import React, {
-  ReactChildren,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-import { distinctUntilChanged, map, Subscription } from "rxjs";
-import { CLUSTER, NEAR_TOKEN_BRIDGE_ACCOUNT } from "../utils/consts";
+import {setupMyNearWallet} from "@near-wallet-selector/my-near-wallet";
+import {setupNearWallet} from "@near-wallet-selector/near-wallet";
+import {setupNightly} from "@near-wallet-selector/nightly";
+import {setupSender} from "@near-wallet-selector/sender";
+import {KeyPair, WalletConnection} from "near-api-js";
+import React, {ReactChildren, useCallback, useContext, useEffect, useMemo, useState,} from "react";
+import {distinctUntilChanged, map, Subscription} from "rxjs";
+import {CLUSTER, NEAR_TOKEN_BRIDGE_ACCOUNT} from "../utils/consts";
 
 // monkeypatch to allow for full permissions
 // https://github.com/near/near-api-js/blob/96785cb3db14be593b6e6d013b6870ba56a212a8/packages/near-api-js/src/wallet-account.ts#L177

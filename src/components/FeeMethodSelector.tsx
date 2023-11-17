@@ -1,37 +1,31 @@
 import {
-  CHAIN_ID_ACALA,
-  CHAIN_ID_KARURA,
-  CHAIN_ID_TERRA,
-  hexToNativeAssetString,
-  isEVMChain,
-  isTerraChain,
+    CHAIN_ID_ACALA,
+    CHAIN_ID_KARURA,
+    CHAIN_ID_TERRA,
+    hexToNativeAssetString,
+    isEVMChain,
+    isTerraChain,
 } from "@deltaswapio/deltaswap-sdk";
-import {
-  Card,
-  Checkbox,
-  Chip,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
+import {Card, Checkbox, Chip, makeStyles, Typography,} from "@material-ui/core";
 import clsx from "clsx";
-import { parseUnits } from "ethers/lib/utils";
-import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {parseUnits} from "ethers/lib/utils";
+import {useCallback, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import SmartAddress from "../components/SmartAddress";
-import { useAcalaRelayerInfo } from "../hooks/useAcalaRelayerInfo";
+import {useAcalaRelayerInfo} from "../hooks/useAcalaRelayerInfo";
 import useRelayerInfo from "../hooks/useRelayerInfo";
-import { GasEstimateSummary } from "../hooks/useTransactionFees";
+import {GasEstimateSummary} from "../hooks/useTransactionFees";
 import {
-  selectTransferAmount,
-  selectTransferOriginAsset,
-  selectTransferOriginChain,
-  selectTransferSourceChain,
-  selectTransferSourceParsedTokenAccount,
-  selectTransferTargetChain,
-  selectTransferUseRelayer,
+    selectTransferAmount,
+    selectTransferOriginAsset,
+    selectTransferOriginChain,
+    selectTransferSourceChain,
+    selectTransferSourceParsedTokenAccount,
+    selectTransferTargetChain,
+    selectTransferUseRelayer,
 } from "../store/selectors";
-import { setRelayerFee, setUseRelayer } from "../store/transferSlice";
-import { CHAINS_BY_ID, getDefaultNativeCurrencySymbol } from "../utils/consts";
+import {setRelayerFee, setUseRelayer} from "../store/transferSlice";
+import {CHAINS_BY_ID, getDefaultNativeCurrencySymbol} from "../utils/consts";
 
 const useStyles = makeStyles((theme) => ({
   feeSelectorContainer: {

@@ -1,62 +1,62 @@
 import {
-  CHAIN_ID_ACALA,
-  CHAIN_ID_AURORA,
-  CHAIN_ID_AVAX,
-  CHAIN_ID_BSC,
-  CHAIN_ID_ETH,
-  CHAIN_ID_FANTOM,
-  CHAIN_ID_KARURA,
-  CHAIN_ID_KLAYTN,
-  CHAIN_ID_NEON,
-  CHAIN_ID_OASIS,
-  CHAIN_ID_POLYGON,
-  CHAIN_ID_SEPOLIA,
-  CHAIN_ID_SOLANA,
-  isEVMChain,
-  isTerraChain,
-  WSOL_ADDRESS,
+    CHAIN_ID_ACALA,
+    CHAIN_ID_AURORA,
+    CHAIN_ID_AVAX,
+    CHAIN_ID_BSC,
+    CHAIN_ID_ETH,
+    CHAIN_ID_FANTOM,
+    CHAIN_ID_KARURA,
+    CHAIN_ID_KLAYTN,
+    CHAIN_ID_NEON,
+    CHAIN_ID_OASIS,
+    CHAIN_ID_POLYGON,
+    CHAIN_ID_SEPOLIA,
+    CHAIN_ID_SOLANA,
+    isEVMChain,
+    isTerraChain,
+    WSOL_ADDRESS,
 } from "@deltaswapio/deltaswap-sdk";
 import {
-  Button,
-  Checkbox,
-  CircularProgress,
-  FormControlLabel,
-  Link,
-  makeStyles,
-  Tooltip,
-  Typography,
+    Button,
+    Checkbox,
+    CircularProgress,
+    FormControlLabel,
+    Link,
+    makeStyles,
+    Tooltip,
+    Typography,
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {Alert} from "@material-ui/lab";
+import {useCallback, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import useGetIsTransferCompleted from "../../hooks/useGetIsTransferCompleted";
-import { useHandleRedeem } from "../../hooks/useHandleRedeem";
+import {useHandleRedeem} from "../../hooks/useHandleRedeem";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import {
-  selectTransferIsRecovery,
-  selectTransferTargetAsset,
-  selectTransferTargetChain,
-  selectTransferUseRelayer,
+    selectTransferIsRecovery,
+    selectTransferTargetAsset,
+    selectTransferTargetChain,
+    selectTransferUseRelayer,
 } from "../../store/selectors";
-import { reset } from "../../store/transferSlice";
+import {reset} from "../../store/transferSlice";
 import {
-  CHAINS_BY_ID,
-  getHowToAddTokensToWalletUrl,
-  WAVAX_ADDRESS,
-  WBNB_ADDRESS,
-  WETH_ADDRESS,
-  WETH_ADDRESS_SEPOLIA,
-  WETH_AURORA_ADDRESS,
-  WFTM_ADDRESS,
-  WKLAY_ADDRESS,
-  WMATIC_ADDRESS,
-  WNEON_ADDRESS,
-  WROSE_ADDRESS,
+    CHAINS_BY_ID,
+    getHowToAddTokensToWalletUrl,
+    WAVAX_ADDRESS,
+    WBNB_ADDRESS,
+    WETH_ADDRESS,
+    WETH_ADDRESS_SEPOLIA,
+    WETH_AURORA_ADDRESS,
+    WFTM_ADDRESS,
+    WKLAY_ADDRESS,
+    WMATIC_ADDRESS,
+    WNEON_ADDRESS,
+    WROSE_ADDRESS,
 } from "../../utils/consts";
 import ButtonWithLoader from "../ButtonWithLoader";
 import KeyAndBalance from "../KeyAndBalance";
 import SmartAddress from "../SmartAddress";
-import { SolanaCreateAssociatedAddressAlternate } from "../SolanaCreateAssociatedAddress";
+import {SolanaCreateAssociatedAddressAlternate} from "../SolanaCreateAssociatedAddress";
 import StepDescription from "../StepDescription";
 import TerraFeeDenomPicker from "../TerraFeeDenomPicker";
 import AddToMetamask from "./AddToMetamask";

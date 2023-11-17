@@ -1,17 +1,7 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Container,
-  makeStyles,
-  MenuItem,
-  Select,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
-import { useCallback } from "react";
-import { useLocation } from "react-router";
-import { Link, Redirect, Route, Switch } from "react-router-dom";
+import {AppBar, Box, Button, Container, makeStyles, MenuItem, Select, Toolbar, Typography,} from "@material-ui/core";
+import {useCallback} from "react";
+import {useLocation} from "react-router";
+import {Link, Redirect, Route, Switch} from "react-router-dom";
 import Attest from "./components/Attest";
 import Footer from "./components/Footer";
 import HeaderText from "./components/HeaderText";
@@ -24,7 +14,7 @@ import UnwrapNative from "./components/UnwrapNative";
 import USDC from "./components/USDC";
 import WithdrawTokensTerra from "./components/WithdrawTokensTerra";
 
-import { CLUSTER } from "./utils/consts";
+import {CLUSTER} from "./utils/consts";
 
 const useStyles = makeStyles((theme) => ({
   disclaimerText: {

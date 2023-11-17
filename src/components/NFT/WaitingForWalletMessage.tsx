@@ -1,15 +1,15 @@
-import { CHAIN_ID_SOLANA, isEVMChain } from "@deltaswapio/deltaswap-sdk";
-import { makeStyles, Typography } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import {CHAIN_ID_SOLANA, isEVMChain} from "@deltaswapio/deltaswap-sdk";
+import {makeStyles, Typography} from "@material-ui/core";
+import {useSelector} from "react-redux";
 import {
-  selectNFTIsRedeeming,
-  selectNFTIsSending,
-  selectNFTRedeemTx,
-  selectNFTSourceChain,
-  selectNFTTargetChain,
-  selectNFTTransferTx,
+    selectNFTIsRedeeming,
+    selectNFTIsSending,
+    selectNFTRedeemTx,
+    selectNFTSourceChain,
+    selectNFTTargetChain,
+    selectNFTTransferTx,
 } from "../../store/selectors";
-import { WAITING_FOR_WALLET_AND_CONF } from "../Transfer/WaitingForWalletMessage";
+import {WAITING_FOR_WALLET_AND_CONF} from "../Transfer/WaitingForWalletMessage";
 
 const useStyles = makeStyles((theme) => ({
   message: {

@@ -1,66 +1,59 @@
 import {
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  CHAIN_ID_XPLA,
-  ensureHexPrefix,
-  ethers_contracts,
-  isEVMChain,
-  isNativeDenomInjective,
-  isNativeDenomXpla,
-  isTerraChain,
-  parseSmartContractStateResponse,
-  terra,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_XPLA,
+    ensureHexPrefix,
+    ethers_contracts,
+    isEVMChain,
+    isNativeDenomInjective,
+    isNativeDenomXpla,
+    isTerraChain,
+    parseSmartContractStateResponse,
+    terra,
 } from "@deltaswapio/deltaswap-sdk";
-import { useWallet as useSeiWallet } from "@sei-js/react";
-import { Connection, PublicKey } from "@solana/web3.js";
-import { useWallet } from "@suiet/wallet-kit";
-import { LCDClient } from "@terra-money/terra.js";
-import { useConnectedWallet } from "@terra-money/wallet-provider";
-import { useConnectedWallet as useXplaConnectedWallet } from "@xpla/wallet-provider";
-import { LCDClient as XplaLCDClient } from "@xpla/xpla.js";
-import { Algodv2 } from "algosdk";
-import { formatUnits } from "ethers/lib/utils";
-import { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useAlgorandContext } from "../contexts/AlgorandWalletContext";
-import { useAptosContext } from "../contexts/AptosWalletContext";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { useInjectiveContext } from "../contexts/InjectiveWalletContext";
-import { useNearContext } from "../contexts/NearWalletContext";
-import { useSolanaWallet } from "../contexts/SolanaWalletContext";
+import {useWallet as useSeiWallet} from "@sei-js/react";
+import {Connection, PublicKey} from "@solana/web3.js";
+import {useWallet} from "@suiet/wallet-kit";
+import {LCDClient} from "@terra-money/terra.js";
+import {useConnectedWallet} from "@terra-money/wallet-provider";
+import {useConnectedWallet as useXplaConnectedWallet} from "@xpla/wallet-provider";
+import {LCDClient as XplaLCDClient} from "@xpla/xpla.js";
+import {Algodv2} from "algosdk";
+import {formatUnits} from "ethers/lib/utils";
+import {useEffect, useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useAlgorandContext} from "../contexts/AlgorandWalletContext";
+import {useAptosContext} from "../contexts/AptosWalletContext";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {useInjectiveContext} from "../contexts/InjectiveWalletContext";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {useSolanaWallet} from "../contexts/SolanaWalletContext";
+import {selectTransferTargetAsset, selectTransferTargetChain,} from "../store/selectors";
+import {setTargetParsedTokenAccount} from "../store/transferSlice";
+import {getAptosClient} from "../utils/aptos";
 import {
-  selectTransferTargetAsset,
-  selectTransferTargetChain,
-} from "../store/selectors";
-import { setTargetParsedTokenAccount } from "../store/transferSlice";
-import { getAptosClient } from "../utils/aptos";
-import {
-  ALGORAND_HOST,
-  NATIVE_NEAR_DECIMALS,
-  NATIVE_NEAR_PLACEHOLDER,
-  SOLANA_HOST,
-  XPLA_LCD_CLIENT_CONFIG,
-  getEvmChainId,
-  getTerraConfig,
+    ALGORAND_HOST,
+    getEvmChainId,
+    getTerraConfig,
+    NATIVE_NEAR_DECIMALS,
+    NATIVE_NEAR_PLACEHOLDER,
+    SOLANA_HOST,
+    XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
-import {
-  NATIVE_INJECTIVE_DECIMALS,
-  getInjectiveBankClient,
-  getInjectiveWasmClient,
-} from "../utils/injective";
-import { makeNearAccount } from "../utils/near";
-import { getSeiWasmClient } from "../utils/sei";
-import { getSuiProvider } from "../utils/sui";
-import { NATIVE_TERRA_DECIMALS } from "../utils/terra";
-import { NATIVE_XPLA_DECIMALS } from "../utils/xpla";
-import { createParsedTokenAccount } from "./useGetSourceParsedTokenAccounts";
+import {getInjectiveBankClient, getInjectiveWasmClient, NATIVE_INJECTIVE_DECIMALS,} from "../utils/injective";
+import {makeNearAccount} from "../utils/near";
+import {getSeiWasmClient} from "../utils/sei";
+import {getSuiProvider} from "../utils/sui";
+import {NATIVE_TERRA_DECIMALS} from "../utils/terra";
+import {NATIVE_XPLA_DECIMALS} from "../utils/xpla";
+import {createParsedTokenAccount} from "./useGetSourceParsedTokenAccounts";
 import useMetadata from "./useMetadata";
-import { fetchSingleMetadata } from "./useNearMetadata";
+import {fetchSingleMetadata} from "./useNearMetadata";
 
 function useGetTargetParsedTokenAccounts() {
   const dispatch = useDispatch();

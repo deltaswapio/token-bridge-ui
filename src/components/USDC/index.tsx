@@ -1,101 +1,84 @@
 import {
-  ChainId,
-  CHAIN_ID_AVAX,
-  CHAIN_ID_ETH,
-  getEmitterAddressEth,
-  getSignedVAAWithRetry,
-  isEVMChain,
-  keccak256,
-  parseSequenceFromLogEth,
-  parseVaa,
-  tryUint8ArrayToNative,
-  uint8ArrayToHex,
+    CHAIN_ID_AVAX,
+    CHAIN_ID_ETH,
+    ChainId,
+    getEmitterAddressEth,
+    getSignedVAAWithRetry,
+    isEVMChain,
+    keccak256,
+    parseSequenceFromLogEth,
+    parseVaa,
+    tryUint8ArrayToNative,
+    uint8ArrayToHex,
 } from "@deltaswapio/deltaswap-sdk";
 import {
-  Container,
-  FormControlLabel,
-  FormGroup,
-  makeStyles,
-  Slider,
-  Step,
-  StepLabel,
-  Stepper,
-  Switch,
-  Typography,
+    Container,
+    FormControlLabel,
+    FormGroup,
+    makeStyles,
+    Slider,
+    Step,
+    StepLabel,
+    Stepper,
+    Switch,
+    Typography,
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import axios, { AxiosResponse } from "axios";
-import { constants, Contract, ethers } from "ethers";
-import {
-  arrayify,
-  formatUnits,
-  hexlify,
-  hexZeroPad,
-  parseUnits,
-} from "ethers/lib/utils";
-import { useSnackbar } from "notistack";
-import { useCallback, useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { useDebounce } from "use-debounce";
-import { useEthereumProvider } from "../../contexts/EthereumProviderContext";
+import {Alert} from "@material-ui/lab";
+import axios, {AxiosResponse} from "axios";
+import {constants, Contract, ethers} from "ethers";
+import {arrayify, formatUnits, hexlify, hexZeroPad, parseUnits,} from "ethers/lib/utils";
+import {useSnackbar} from "notistack";
+import {useCallback, useEffect, useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
+import {useDebounce} from "use-debounce";
+import {useEthereumProvider} from "../../contexts/EthereumProviderContext";
 import useAllowance from "../../hooks/useAllowance";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import usdcLogo from "../../icons/usdc.svg";
 import wormholeLogo from "../../icons/wormhole.svg";
 import {
-  selectAllowanceError,
-  selectAmount,
-  selectBalance,
-  selectEstimatedSwapAmount,
-  selectIsRedeemComplete,
-  selectIsRedeeming,
-  selectIsSending,
-  selectMaxSwapAmount,
-  selectRelayerFee,
-  selectShouldApproveUnlimited,
-  selectShouldRelay,
-  selectSourceChain,
-  selectSourceTxConfirmed,
-  selectSourceTxHash,
-  selectTargetChain,
-  selectTargetTxHash,
-  selectToNativeAmount,
-  selectTransferInfo,
+    selectAllowanceError,
+    selectAmount,
+    selectBalance,
+    selectEstimatedSwapAmount,
+    selectIsRedeemComplete,
+    selectIsRedeeming,
+    selectIsSending,
+    selectMaxSwapAmount,
+    selectRelayerFee,
+    selectShouldApproveUnlimited,
+    selectShouldRelay,
+    selectSourceChain,
+    selectSourceTxConfirmed,
+    selectSourceTxHash,
+    selectTargetChain,
+    selectTargetTxHash,
+    selectToNativeAmount,
+    selectTransferInfo,
 } from "../../store/usdcSelectors";
 import {
-  setAllowanceError,
-  setAmount,
-  setBalance,
-  setEstimatedSwapAmount,
-  setIsRedeemComplete,
-  setIsRedeeming,
-  setIsSending,
-  setMaxSwapAmount,
-  setRelayerFee,
-  setShouldRelay,
-  setSourceChain,
-  setSourceTxConfirmed,
-  setSourceTxHash,
-  setTargetChain,
-  setTargetTxHash,
-  setToNativeAmount,
-  setTransferInfo,
+    setAllowanceError,
+    setAmount,
+    setBalance,
+    setEstimatedSwapAmount,
+    setIsRedeemComplete,
+    setIsRedeeming,
+    setIsSending,
+    setMaxSwapAmount,
+    setRelayerFee,
+    setShouldRelay,
+    setSourceChain,
+    setSourceTxConfirmed,
+    setSourceTxHash,
+    setTargetChain,
+    setTargetTxHash,
+    setToNativeAmount,
+    setTransferInfo,
 } from "../../store/usdcSlice";
-import {
-  CHAINS_BY_ID,
-  getBridgeAddressForChain,
-  getEvmChainId,
-  WORMHOLE_RPC_HOSTS,
-} from "../../utils/consts";
-import {
-  ethTokenToParsedTokenAccount,
-  getEthereumToken,
-} from "../../utils/ethereum";
-import {
-  EVM_RPC_MAP,
-  METAMASK_CHAIN_PARAMETERS,
-} from "../../utils/metaMaskChainParameters";
+import {CHAINS_BY_ID, getBridgeAddressForChain, getEvmChainId, WORMHOLE_RPC_HOSTS,} from "../../utils/consts";
+import {ethTokenToParsedTokenAccount, getEthereumToken,} from "../../utils/ethereum";
+import {EVM_RPC_MAP, METAMASK_CHAIN_PARAMETERS,} from "../../utils/metaMaskChainParameters";
 import parseError from "../../utils/parseError";
 import ButtonWithLoader from "../ButtonWithLoader";
 import ChainSelectArrow from "../ChainSelectArrow";

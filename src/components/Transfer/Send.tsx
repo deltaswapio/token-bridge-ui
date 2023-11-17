@@ -1,27 +1,27 @@
-import { isEVMChain, isTerraChain } from "@deltaswapio/deltaswap-sdk";
-import { Checkbox, FormControlLabel } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import { ethers } from "ethers";
-import { formatUnits, parseUnits } from "ethers/lib/utils";
-import { useCallback, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {isEVMChain, isTerraChain} from "@deltaswapio/deltaswap-sdk";
+import {Checkbox, FormControlLabel} from "@material-ui/core";
+import {Alert} from "@material-ui/lab";
+import {ethers} from "ethers";
+import {formatUnits, parseUnits} from "ethers/lib/utils";
+import {useCallback, useMemo, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import useAllowance from "../../hooks/useAllowance";
-import { useHandleTransfer } from "../../hooks/useHandleTransfer";
+import {useHandleTransfer} from "../../hooks/useHandleTransfer";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import {
-  selectSourceWalletAddress,
-  selectTransferAmount,
-  selectTransferIsSendComplete,
-  selectTransferIsVAAPending,
-  selectTransferRelayerFee,
-  selectTransferSourceAsset,
-  selectTransferSourceChain,
-  selectTransferSourceParsedTokenAccount,
-  selectTransferTargetError,
-  selectTransferTransferTx,
+    selectSourceWalletAddress,
+    selectTransferAmount,
+    selectTransferIsSendComplete,
+    selectTransferIsVAAPending,
+    selectTransferRelayerFee,
+    selectTransferSourceAsset,
+    selectTransferSourceChain,
+    selectTransferSourceParsedTokenAccount,
+    selectTransferTargetError,
+    selectTransferTransferTx,
 } from "../../store/selectors";
-import { reset } from "../../store/transferSlice";
-import { CHAINS_BY_ID } from "../../utils/consts";
+import {reset} from "../../store/transferSlice";
+import {CHAINS_BY_ID} from "../../utils/consts";
 import ButtonWithLoader from "../ButtonWithLoader";
 import KeyAndBalance from "../KeyAndBalance";
 import ShowTx from "../ShowTx";

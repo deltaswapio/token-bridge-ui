@@ -1,89 +1,81 @@
 import {
-  ChainId,
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_TERRA2,
-  CHAIN_ID_XPLA,
-  ensureHexPrefix,
-  getForeignAssetAlgorand,
-  getForeignAssetAptos,
-  getForeignAssetEth,
-  getForeignAssetInjective,
-  getForeignAssetNear,
-  getForeignAssetSolana,
-  getForeignAssetTerra,
-  getForeignAssetXpla,
-  getTypeFromExternalAddress,
-  hexToNativeAssetString,
-  hexToUint8Array,
-  isEVMChain,
-  isTerraChain,
-  queryExternalId,
-  queryExternalIdInjective,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SUI,
-  getForeignAssetSui,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_TERRA2,
+    CHAIN_ID_XPLA,
+    ChainId,
+    ensureHexPrefix,
+    getForeignAssetAlgorand,
+    getForeignAssetAptos,
+    getForeignAssetEth,
+    getForeignAssetInjective,
+    getForeignAssetNear,
+    getForeignAssetSolana,
+    getForeignAssetSui,
+    getForeignAssetTerra,
+    getForeignAssetXpla,
+    getTypeFromExternalAddress,
+    hexToNativeAssetString,
+    hexToUint8Array,
+    isEVMChain,
+    isTerraChain,
+    queryExternalId,
+    queryExternalIdInjective,
 } from "@deltaswapio/deltaswap-sdk";
 import {
-  getForeignAssetEth as getForeignAssetEthNFT,
-  getForeignAssetSol as getForeignAssetSolNFT,
+    getForeignAssetEth as getForeignAssetEthNFT,
+    getForeignAssetSol as getForeignAssetSolNFT,
 } from "@deltaswapio/deltaswap-sdk/lib/esm/nft_bridge";
-import { BigNumber } from "@ethersproject/bignumber";
-import { arrayify } from "@ethersproject/bytes";
-import { Connection } from "@solana/web3.js";
-import { LCDClient } from "@terra-money/terra.js";
+import {BigNumber} from "@ethersproject/bignumber";
+import {arrayify} from "@ethersproject/bytes";
+import {Connection} from "@solana/web3.js";
+import {LCDClient} from "@terra-money/terra.js";
 import algosdk from "algosdk";
-import { ethers } from "ethers";
-import { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { useNearContext } from "../contexts/NearWalletContext";
+import {ethers} from "ethers";
+import {useCallback, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {errorDataWrapper, fetchDataWrapper, receiveDataWrapper,} from "../store/helpers";
+import {setTargetAsset as setNFTTargetAsset} from "../store/nftSlice";
 import {
-  errorDataWrapper,
-  fetchDataWrapper,
-  receiveDataWrapper,
-} from "../store/helpers";
-import { setTargetAsset as setNFTTargetAsset } from "../store/nftSlice";
-import {
-  selectNFTIsSourceAssetWormholeWrapped,
-  selectNFTOriginAsset,
-  selectNFTOriginChain,
-  selectNFTOriginTokenId,
-  selectNFTTargetChain,
-  selectTransferIsSourceAssetWormholeWrapped,
-  selectTransferOriginAsset,
-  selectTransferOriginChain,
-  selectTransferTargetChain,
+    selectNFTIsSourceAssetWormholeWrapped,
+    selectNFTOriginAsset,
+    selectNFTOriginChain,
+    selectNFTOriginTokenId,
+    selectNFTTargetChain,
+    selectTransferIsSourceAssetWormholeWrapped,
+    selectTransferOriginAsset,
+    selectTransferOriginChain,
+    selectTransferTargetChain,
 } from "../store/selectors";
-import { setTargetAsset as setTransferTargetAsset } from "../store/transferSlice";
+import {setTargetAsset as setTransferTargetAsset} from "../store/transferSlice";
 import {
-  ALGORAND_HOST,
-  ALGORAND_TOKEN_BRIDGE_ID,
-  getEvmChainId,
-  getNFTBridgeAddressForChain,
-  getTokenBridgeAddressForChain,
-  SOLANA_HOST,
-  SOL_NFT_BRIDGE_ADDRESS,
-  SOL_TOKEN_BRIDGE_ADDRESS,
-  getTerraConfig,
-  XPLA_LCD_CLIENT_CONFIG,
-  NEAR_TOKEN_BRIDGE_ACCOUNT,
-  NATIVE_NEAR_WH_ADDRESS,
-  NATIVE_NEAR_PLACEHOLDER,
+    ALGORAND_HOST,
+    ALGORAND_TOKEN_BRIDGE_ID,
+    getEvmChainId,
+    getNFTBridgeAddressForChain,
+    getTerraConfig,
+    getTokenBridgeAddressForChain,
+    NATIVE_NEAR_PLACEHOLDER,
+    NATIVE_NEAR_WH_ADDRESS,
+    NEAR_TOKEN_BRIDGE_ACCOUNT,
+    SOL_NFT_BRIDGE_ADDRESS,
+    SOL_TOKEN_BRIDGE_ADDRESS,
+    SOLANA_HOST,
+    XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
-import { LCDClient as XplaLCDClient } from "@xpla/xpla.js";
-import { getAptosClient } from "../utils/aptos";
-import { getInjectiveWasmClient } from "../utils/injective";
-import { lookupHash, makeNearAccount, makeNearProvider } from "../utils/near";
-import {
-  getForeignAssetSei,
-  getSeiWasmClient,
-  queryExternalIdSei,
-} from "../utils/sei";
-import { getSuiProvider } from "../utils/sui";
+import {LCDClient as XplaLCDClient} from "@xpla/xpla.js";
+import {getAptosClient} from "../utils/aptos";
+import {getInjectiveWasmClient} from "../utils/injective";
+import {lookupHash, makeNearAccount, makeNearProvider} from "../utils/near";
+import {getForeignAssetSei, getSeiWasmClient, queryExternalIdSei,} from "../utils/sei";
+import {getSuiProvider} from "../utils/sui";
 
 function useFetchTargetAsset(nft?: boolean) {
   const dispatch = useDispatch();

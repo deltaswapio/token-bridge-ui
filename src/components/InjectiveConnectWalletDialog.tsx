@@ -1,22 +1,18 @@
 import {
-  Dialog,
-  DialogTitle,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
+    Dialog,
+    DialogTitle,
+    Divider,
+    IconButton,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    makeStyles,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import { Wallet } from "@injectivelabs/wallet-ts";
-import { useCallback } from "react";
-import {
-  InjectiveWalletInfo,
-  SUPPORTED_WALLETS,
-  useInjectiveContext,
-} from "../contexts/InjectiveWalletContext";
+import {Wallet} from "@injectivelabs/wallet-ts";
+import {useCallback} from "react";
+import {InjectiveWalletInfo, SUPPORTED_WALLETS, useInjectiveContext,} from "../contexts/InjectiveWalletContext";
 
 const useStyles = makeStyles((theme) => ({
   flexTitle: {

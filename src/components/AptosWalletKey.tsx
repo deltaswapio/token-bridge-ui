@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
-import { useAptosContext } from "../contexts/AptosWalletContext";
+import {useCallback, useState} from "react";
+import {useAptosContext} from "../contexts/AptosWalletContext";
 import AptosConnectWalletDialog from "./AptosConnectWalletDialog";
 import ToggleConnectedButton from "./ToggleConnectedButton";
 

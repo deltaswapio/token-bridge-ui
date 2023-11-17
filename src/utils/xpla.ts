@@ -1,12 +1,8 @@
-import { LCDClient, isTxError } from "@xpla/xpla.js";
-import { ConnectedWallet, TxResult } from "@xpla/wallet-provider";
+import {isTxError, LCDClient} from "@xpla/xpla.js";
+import {ConnectedWallet, TxResult} from "@xpla/wallet-provider";
 import axios from "axios";
-import {
-  XPLA_GAS_PRICES_URL,
-  XPLA_LCD_CLIENT_CONFIG,
-  XPLA_NATIVE_DENOM,
-} from "./consts";
-import { cosmos, isNativeDenomXpla } from "@deltaswapio/deltaswap-sdk";
+import {XPLA_GAS_PRICES_URL, XPLA_LCD_CLIENT_CONFIG, XPLA_NATIVE_DENOM,} from "./consts";
+import {cosmos, isNativeDenomXpla} from "@deltaswapio/deltaswap-sdk";
 
 export const NATIVE_XPLA_DECIMALS = 18;
 

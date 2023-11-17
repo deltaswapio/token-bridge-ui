@@ -1,125 +1,105 @@
 import {
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_KLAYTN,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  CHAIN_ID_XPLA,
-  ChainId,
-  TerraChainId,
-  attestFromAlgorand,
-  attestFromAptos,
-  attestFromEth,
-  attestFromInjective,
-  attestFromSolana,
-  attestFromSui,
-  attestFromTerra,
-  attestFromXpla,
-  attestNearFromNear,
-  attestTokenFromNear,
-  getEmitterAddressAlgorand,
-  getEmitterAddressEth,
-  getEmitterAddressInjective,
-  getEmitterAddressNear,
-  getEmitterAddressSolana,
-  getEmitterAddressTerra,
-  getEmitterAddressXpla,
-  getSignedVAAWithRetry,
-  isEVMChain,
-  isTerraChain,
-  parseSequenceFromLogAlgorand,
-  parseSequenceFromLogEth,
-  parseSequenceFromLogInjective,
-  parseSequenceFromLogNear,
-  parseSequenceFromLogSolana,
-  parseSequenceFromLogTerra,
-  parseSequenceFromLogXpla,
-  uint8ArrayToHex,
+    attestFromAlgorand,
+    attestFromAptos,
+    attestFromEth,
+    attestFromInjective,
+    attestFromSolana,
+    attestFromSui,
+    attestFromTerra,
+    attestFromXpla,
+    attestNearFromNear,
+    attestTokenFromNear,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_KLAYTN,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_XPLA,
+    ChainId,
+    getEmitterAddressAlgorand,
+    getEmitterAddressEth,
+    getEmitterAddressInjective,
+    getEmitterAddressNear,
+    getEmitterAddressSolana,
+    getEmitterAddressTerra,
+    getEmitterAddressXpla,
+    getSignedVAAWithRetry,
+    isEVMChain,
+    isTerraChain,
+    parseSequenceFromLogAlgorand,
+    parseSequenceFromLogEth,
+    parseSequenceFromLogInjective,
+    parseSequenceFromLogNear,
+    parseSequenceFromLogSolana,
+    parseSequenceFromLogTerra,
+    parseSequenceFromLogXpla,
+    TerraChainId,
+    uint8ArrayToHex,
 } from "@deltaswapio/deltaswap-sdk";
-import { getOriginalPackageId } from "@deltaswapio/deltaswap-sdk/lib/cjs/sui";
-import { getEmitterAddressAndSequenceFromResponseSui } from "@deltaswapio/deltaswap-sdk/lib/esm/sui";
-import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
-import { calculateFee } from "@cosmjs/stargate";
-import { WalletStrategy } from "@injectivelabs/wallet-ts";
-import { Alert } from "@material-ui/lab";
-import { Wallet } from "@near-wallet-selector/core";
-import {
-  useSigningCosmWasmClient as useSeiSigningCosmWasmClient,
-  useWallet as useSeiWallet,
-} from "@sei-js/react";
-import { WalletContextState } from "@solana/wallet-adapter-react";
-import { Connection, PublicKey } from "@solana/web3.js";
-import {
-  WalletContextState as WalletContextStateSui,
-  useWallet,
-} from "@suiet/wallet-kit";
-import { ConnectedWallet } from "@terra-money/wallet-types";
-import {useConnectedWallet,
-} from "@terra-money/wallet-provider";
-import {
-  ConnectedWallet as XplaConnectedWallet } from "@xpla/wallet-types"
-import {  useConnectedWallet as useXplaConnectedWallet,
-} from "@xpla/wallet-provider";
+import {getOriginalPackageId} from "@deltaswapio/deltaswap-sdk/lib/cjs/sui";
+import {getEmitterAddressAndSequenceFromResponseSui} from "@deltaswapio/deltaswap-sdk/lib/esm/sui";
+import {SigningCosmWasmClient} from "@cosmjs/cosmwasm-stargate";
+import {calculateFee} from "@cosmjs/stargate";
+import {WalletStrategy} from "@injectivelabs/wallet-ts";
+import {Alert} from "@material-ui/lab";
+import {Wallet} from "@near-wallet-selector/core";
+import {useSigningCosmWasmClient as useSeiSigningCosmWasmClient, useWallet as useSeiWallet,} from "@sei-js/react";
+import {WalletContextState} from "@solana/wallet-adapter-react";
+import {Connection, PublicKey} from "@solana/web3.js";
+import {useWallet, WalletContextState as WalletContextStateSui,} from "@suiet/wallet-kit";
+import {ConnectedWallet} from "@terra-money/wallet-types";
+import {useConnectedWallet,} from "@terra-money/wallet-provider";
+import {ConnectedWallet as XplaConnectedWallet} from "@xpla/wallet-types"
+import {useConnectedWallet as useXplaConnectedWallet,} from "@xpla/wallet-provider";
 import algosdk from "algosdk";
-import { Types } from "aptos";
-import { Signer } from "ethers";
-import { useSnackbar } from "notistack";
-import { useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useAlgorandContext } from "../contexts/AlgorandWalletContext";
-import { useAptosContext } from "../contexts/AptosWalletContext";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { useInjectiveContext } from "../contexts/InjectiveWalletContext";
-import { useNearContext } from "../contexts/NearWalletContext";
-import { useSolanaWallet } from "../contexts/SolanaWalletContext";
+import {Types} from "aptos";
+import {Signer} from "ethers";
+import {useSnackbar} from "notistack";
+import {useCallback, useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useAlgorandContext} from "../contexts/AlgorandWalletContext";
+import {useAptosContext} from "../contexts/AptosWalletContext";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {useInjectiveContext} from "../contexts/InjectiveWalletContext";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {useSolanaWallet} from "../contexts/SolanaWalletContext";
+import {setAttestTx, setIsSending, setSignedVAAHex,} from "../store/attestSlice";
 import {
-  setAttestTx,
-  setIsSending,
-  setSignedVAAHex,
-} from "../store/attestSlice";
-import {
-  selectAttestIsSendComplete,
-  selectAttestIsSending,
-  selectAttestIsTargetComplete,
-  selectAttestSourceAsset,
-  selectAttestSourceChain,
-  selectTerraFeeDenom,
+    selectAttestIsSendComplete,
+    selectAttestIsSending,
+    selectAttestIsTargetComplete,
+    selectAttestSourceAsset,
+    selectAttestSourceChain,
+    selectTerraFeeDenom,
 } from "../store/selectors";
-import { signSendAndConfirmAlgorand } from "../utils/algorand";
+import {signSendAndConfirmAlgorand} from "../utils/algorand";
+import {getAptosClient, getEmitterAddressAndSequenceFromResult, waitForSignAndSubmitTransaction,} from "../utils/aptos";
 import {
-  getAptosClient,
-  getEmitterAddressAndSequenceFromResult,
-  waitForSignAndSubmitTransaction,
-} from "../utils/aptos";
-import {
-  ALGORAND_BRIDGE_ID,
-  ALGORAND_HOST,
-  ALGORAND_TOKEN_BRIDGE_ID,
-  NATIVE_NEAR_PLACEHOLDER,
-  NEAR_CORE_BRIDGE_ACCOUNT,
-  NEAR_TOKEN_BRIDGE_ACCOUNT,
-  SOLANA_HOST,
-  SOL_BRIDGE_ADDRESS,
-  SOL_TOKEN_BRIDGE_ADDRESS,
-  WORMHOLE_RPC_HOSTS,
-  getBridgeAddressForChain,
-  getTokenBridgeAddressForChain, getFeesEvm,
+    ALGORAND_BRIDGE_ID,
+    ALGORAND_HOST,
+    ALGORAND_TOKEN_BRIDGE_ID,
+    getBridgeAddressForChain,
+    getFeesEvm,
+    getTokenBridgeAddressForChain,
+    NATIVE_NEAR_PLACEHOLDER,
+    NEAR_CORE_BRIDGE_ACCOUNT,
+    NEAR_TOKEN_BRIDGE_ACCOUNT,
+    SOL_BRIDGE_ADDRESS,
+    SOL_TOKEN_BRIDGE_ADDRESS,
+    SOLANA_HOST,
+    WORMHOLE_RPC_HOSTS,
 } from "../utils/consts";
-import { broadcastInjectiveTx } from "../utils/injective";
-import {
-  makeNearAccount,
-  makeNearProvider,
-  signAndSendTransactions,
-} from "../utils/near";
+import {broadcastInjectiveTx} from "../utils/injective";
+import {makeNearAccount, makeNearProvider, signAndSendTransactions,} from "../utils/near";
 import parseError from "../utils/parseError";
-import { signSendAndConfirm } from "../utils/solana";
-import { getSuiProvider } from "../utils/sui";
-import { postWithFees, waitForTerraExecution } from "../utils/terra";
-import { postWithFeesXpla, waitForXplaExecution } from "../utils/xpla";
-import { attestFromSeiMsg, parseSequenceFromLogSei } from "../utils/sei";
+import {signSendAndConfirm} from "../utils/solana";
+import {getSuiProvider} from "../utils/sui";
+import {postWithFees, waitForTerraExecution} from "../utils/terra";
+import {postWithFeesXpla, waitForXplaExecution} from "../utils/xpla";
+import {attestFromSeiMsg, parseSequenceFromLogSei} from "../utils/sei";
 
 async function algo(
   dispatch: any,

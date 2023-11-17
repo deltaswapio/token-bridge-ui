@@ -1,20 +1,10 @@
-import {
-  ChainId,
-  CHAIN_ID_ETH,
-  CHAIN_ID_PLANQ, CHAIN_ID_BSC,
-} from "@deltaswapio/deltaswap-sdk";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { StateSafeWormholeWrappedInfo } from "../hooks/useCheckIfWormholeWrapped";
-import { ForeignAssetInfo } from "../hooks/useFetchForeignAsset";
-import { AcalaRelayerInfo } from "../hooks/useAcalaRelayerInfo";
-import {
-  DataWrapper,
-  errorDataWrapper,
-  fetchDataWrapper,
-  getEmptyDataWrapper,
-  receiveDataWrapper,
-} from "./helpers";
-import {getDecimals, getDefaultNativeCurrencySymbol, getEvmChainId, getFeesEvm} from "../utils/consts";
+import {CHAIN_ID_BSC, CHAIN_ID_PLANQ, ChainId,} from "@deltaswapio/deltaswap-sdk";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {StateSafeWormholeWrappedInfo} from "../hooks/useCheckIfWormholeWrapped";
+import {ForeignAssetInfo} from "../hooks/useFetchForeignAsset";
+import {AcalaRelayerInfo} from "../hooks/useAcalaRelayerInfo";
+import {DataWrapper, errorDataWrapper, fetchDataWrapper, getEmptyDataWrapper, receiveDataWrapper,} from "./helpers";
+import {getDecimals, getDefaultNativeCurrencySymbol, getFeesEvm} from "../utils/consts";
 
 const LAST_STEP = 3;
 

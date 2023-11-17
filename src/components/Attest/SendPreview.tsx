@@ -1,9 +1,6 @@
-import { makeStyles, Typography } from "@material-ui/core";
-import { useSelector } from "react-redux";
-import {
-  selectAttestSourceChain,
-  selectAttestAttestTx,
-} from "../../store/selectors";
+import {makeStyles, Typography} from "@material-ui/core";
+import {useSelector} from "react-redux";
+import {selectAttestAttestTx, selectAttestSourceChain,} from "../../store/selectors";
 import ShowTx from "../ShowTx";
 
 const useStyles = makeStyles((theme) => ({

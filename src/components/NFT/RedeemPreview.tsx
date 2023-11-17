@@ -1,8 +1,8 @@
-import { makeStyles, Typography } from "@material-ui/core";
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectNFTRedeemTx, selectNFTTargetChain } from "../../store/selectors";
-import { reset } from "../../store/nftSlice";
+import {makeStyles, Typography} from "@material-ui/core";
+import {useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {selectNFTRedeemTx, selectNFTTargetChain} from "../../store/selectors";
+import {reset} from "../../store/nftSlice";
 import ButtonWithLoader from "../ButtonWithLoader";
 import ShowTx from "../ShowTx";
 

@@ -1,14 +1,10 @@
-import { isTerraChain } from "@deltaswapio/deltaswap-sdk";
-import { CircularProgress, makeStyles } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import {isTerraChain} from "@deltaswapio/deltaswap-sdk";
+import {CircularProgress, makeStyles} from "@material-ui/core";
+import {useSelector} from "react-redux";
 import useFetchForeignAsset from "../../hooks/useFetchForeignAsset";
-import { useHandleCreateWrapped } from "../../hooks/useHandleCreateWrapped";
+import {useHandleCreateWrapped} from "../../hooks/useHandleCreateWrapped";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
-import {
-  selectAttestSourceAsset,
-  selectAttestSourceChain,
-  selectAttestTargetChain,
-} from "../../store/selectors";
+import {selectAttestSourceAsset, selectAttestSourceChain, selectAttestTargetChain,} from "../../store/selectors";
 import ButtonWithLoader from "../ButtonWithLoader";
 import KeyAndBalance from "../KeyAndBalance";
 import TerraFeeDenomPicker from "../TerraFeeDenomPicker";

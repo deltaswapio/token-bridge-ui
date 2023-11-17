@@ -1,11 +1,8 @@
-import { ChainId, isEVMChain } from "@deltaswapio/deltaswap-sdk";
-import { ethers } from "ethers";
-import { useEffect, useMemo, useState } from "react";
-import {
-  Provider,
-  useEthereumProvider,
-} from "../contexts/EthereumProviderContext";
-import { DataWrapper } from "../store/helpers";
+import {ChainId, isEVMChain} from "@deltaswapio/deltaswap-sdk";
+import {ethers} from "ethers";
+import {useEffect, useMemo, useState} from "react";
+import {Provider, useEthereumProvider,} from "../contexts/EthereumProviderContext";
+import {DataWrapper} from "../store/helpers";
 import useIsWalletReady from "./useIsWalletReady";
 
 export type EvmMetadata = {

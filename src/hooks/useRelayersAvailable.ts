@@ -1,16 +1,12 @@
-import { ChainId } from "@deltaswapio/deltaswap-sdk";
-import { Dispatch } from "@reduxjs/toolkit";
+import {ChainId} from "@deltaswapio/deltaswap-sdk";
+import {Dispatch} from "@reduxjs/toolkit";
 import axios from "axios";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { DataWrapper } from "../store/helpers";
-import { selectRelayerTokenInfo } from "../store/selectors";
-import {
-  errorRelayerTokenInfo,
-  fetchRelayerTokenInfo,
-  receiveRelayerTokenInfo,
-} from "../store/tokenSlice";
-import { RELAYER_INFO_URL } from "../utils/consts";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {DataWrapper} from "../store/helpers";
+import {selectRelayerTokenInfo} from "../store/selectors";
+import {errorRelayerTokenInfo, fetchRelayerTokenInfo, receiveRelayerTokenInfo,} from "../store/tokenSlice";
+import {RELAYER_INFO_URL} from "../utils/consts";
 
 export type RelayToken = {
   chainId?: ChainId;

@@ -1,118 +1,107 @@
 import {
-  CHAIN_ID_ACALA,
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_KARURA,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  CHAIN_ID_TERRA2,
-  CHAIN_ID_XPLA,
-  ChainId,
-  TerraChainId,
-  getEmitterAddressAlgorand,
-  getEmitterAddressEth,
-  getEmitterAddressInjective,
-  getEmitterAddressNear,
-  getEmitterAddressSolana,
-  getEmitterAddressTerra,
-  getEmitterAddressXpla,
-  getForeignAssetSui,
-  hexToNativeAssetString,
-  hexToNativeString,
-  hexToUint8Array,
-  isEVMChain,
-  isTerraChain,
-  parseNFTPayload,
-  parseSequenceFromLogAlgorand,
-  parseSequenceFromLogEth,
-  parseSequenceFromLogInjective,
-  parseSequenceFromLogNear,
-  parseSequenceFromLogSolana,
-  parseSequenceFromLogTerra,
-  parseSequenceFromLogXpla,
-  parseTransferPayload,
-  parseVaa,
-  queryExternalId,
-  queryExternalIdInjective,
-  tryHexToNativeStringNear,
-  uint8ArrayToHex,
+    CHAIN_ID_ACALA,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_KARURA,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_TERRA2,
+    CHAIN_ID_XPLA,
+    ChainId,
+    getEmitterAddressAlgorand,
+    getEmitterAddressEth,
+    getEmitterAddressInjective,
+    getEmitterAddressNear,
+    getEmitterAddressSolana,
+    getEmitterAddressTerra,
+    getEmitterAddressXpla,
+    getForeignAssetSui,
+    hexToNativeAssetString,
+    hexToNativeString,
+    hexToUint8Array,
+    isEVMChain,
+    isTerraChain,
+    parseNFTPayload,
+    parseSequenceFromLogAlgorand,
+    parseSequenceFromLogEth,
+    parseSequenceFromLogInjective,
+    parseSequenceFromLogNear,
+    parseSequenceFromLogSolana,
+    parseSequenceFromLogTerra,
+    parseSequenceFromLogXpla,
+    parseTransferPayload,
+    parseVaa,
+    queryExternalId,
+    queryExternalIdInjective,
+    TerraChainId,
+    tryHexToNativeStringNear,
+    uint8ArrayToHex,
 } from "@deltaswapio/deltaswap-sdk";
-import { getOriginalPackageId } from "@deltaswapio/deltaswap-sdk/lib/cjs/sui";
-import { getEmitterAddressAndSequenceFromResponseSui } from "@deltaswapio/deltaswap-sdk/lib/esm/sui";
+import {getOriginalPackageId} from "@deltaswapio/deltaswap-sdk/lib/cjs/sui";
+import {getEmitterAddressAndSequenceFromResponseSui} from "@deltaswapio/deltaswap-sdk/lib/esm/sui";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Card,
-  CircularProgress,
-  Container,
-  Divider,
-  MenuItem,
-  TextField,
-  Typography,
-  makeStyles,
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Box,
+    Card,
+    CircularProgress,
+    Container,
+    Divider,
+    makeStyles,
+    MenuItem,
+    TextField,
+    Typography,
 } from "@material-ui/core";
-import { ExpandMore } from "@material-ui/icons";
-import { Alert } from "@material-ui/lab";
-import { Connection } from "@solana/web3.js";
-import { LCDClient } from "@terra-money/terra.js";
-import { LCDClient as XplaLCDClient } from "@xpla/xpla.js";
+import {ExpandMore} from "@material-ui/icons";
+import {Alert} from "@material-ui/lab";
+import {Connection} from "@solana/web3.js";
+import {LCDClient} from "@terra-money/terra.js";
+import {LCDClient as XplaLCDClient} from "@xpla/xpla.js";
 import algosdk from "algosdk";
-import { Types } from "aptos";
+import {Types} from "aptos";
 import axios from "axios";
-import { ethers } from "ethers";
-import { base58 } from "ethers/lib/utils";
-import { useSnackbar } from "notistack";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { useNearContext } from "../contexts/NearWalletContext";
-import { useAcalaRelayerInfo } from "../hooks/useAcalaRelayerInfo";
+import {ethers} from "ethers";
+import {base58} from "ethers/lib/utils";
+import {useSnackbar} from "notistack";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import {useDispatch} from "react-redux";
+import {useHistory, useLocation} from "react-router";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {useAcalaRelayerInfo} from "../hooks/useAcalaRelayerInfo";
 import useIsWalletReady from "../hooks/useIsWalletReady";
-import useRelayersAvailable, { Relayer } from "../hooks/useRelayersAvailable";
-import { setRecoveryVaa as setRecoveryNFTVaa } from "../store/nftSlice";
-import { setRecoveryVaa } from "../store/transferSlice";
+import useRelayersAvailable, {Relayer} from "../hooks/useRelayersAvailable";
+import {setRecoveryVaa as setRecoveryNFTVaa} from "../store/nftSlice";
+import {setRecoveryVaa} from "../store/transferSlice";
+import {getAptosClient, getEmitterAddressAndSequenceFromResult,} from "../utils/aptos";
 import {
-  getAptosClient,
-  getEmitterAddressAndSequenceFromResult,
-} from "../utils/aptos";
-import {
-  ALGORAND_HOST,
-  ALGORAND_TOKEN_BRIDGE_ID,
-  CHAINS,
-  CHAINS_BY_ID,
-  CHAINS_WITH_NFT_SUPPORT,
-  NEAR_TOKEN_BRIDGE_ACCOUNT,
-  RELAY_URL_EXTENSION,
-  SOLANA_HOST,
-  SOL_NFT_BRIDGE_ADDRESS,
-  SOL_TOKEN_BRIDGE_ADDRESS,
-  WORMHOLE_RPC_HOSTS,
-  XPLA_LCD_CLIENT_CONFIG,
-  getBridgeAddressForChain,
-  getNFTBridgeAddressForChain,
-  getTerraConfig,
-  getTokenBridgeAddressForChain,
+    ALGORAND_HOST,
+    ALGORAND_TOKEN_BRIDGE_ID,
+    CHAINS,
+    CHAINS_BY_ID,
+    CHAINS_WITH_NFT_SUPPORT,
+    getBridgeAddressForChain,
+    getNFTBridgeAddressForChain,
+    getTerraConfig,
+    getTokenBridgeAddressForChain,
+    NEAR_TOKEN_BRIDGE_ACCOUNT,
+    RELAY_URL_EXTENSION,
+    SOL_NFT_BRIDGE_ADDRESS,
+    SOL_TOKEN_BRIDGE_ADDRESS,
+    SOLANA_HOST,
+    WORMHOLE_RPC_HOSTS,
+    XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
-import { getSignedVAAWithRetry } from "../utils/getSignedVAAWithRetry";
-import {
-  getInjectiveTxClient,
-  getInjectiveWasmClient,
-} from "../utils/injective";
-import { makeNearProvider } from "../utils/near";
+import {getSignedVAAWithRetry} from "../utils/getSignedVAAWithRetry";
+import {getInjectiveTxClient, getInjectiveWasmClient,} from "../utils/injective";
+import {makeNearProvider} from "../utils/near";
 import parseError from "../utils/parseError";
-import {
-  getSeiQueryClient,
-  getSeiWasmClient,
-  parseSequenceFromLogSei,
-  queryExternalIdSei,
-} from "../utils/sei";
-import { getSuiProvider } from "../utils/sui";
+import {getSeiQueryClient, getSeiWasmClient, parseSequenceFromLogSei, queryExternalIdSei,} from "../utils/sei";
+import {getSuiProvider} from "../utils/sui";
 import ButtonWithLoader from "./ButtonWithLoader";
 import ChainSelect from "./ChainSelect";
 import KeyAndBalance from "./KeyAndBalance";

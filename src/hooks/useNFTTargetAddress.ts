@@ -1,7 +1,7 @@
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { selectNFTTargetAddressHex } from "../store/selectors";
-import { hexToUint8Array } from "@deltaswapio/deltaswap-sdk";
+import {useMemo} from "react";
+import {useSelector} from "react-redux";
+import {selectNFTTargetAddressHex} from "../store/selectors";
+import {hexToUint8Array} from "@deltaswapio/deltaswap-sdk";
 
 export default function useNFTTargetAddressHex() {
   const targetAddressHex = useSelector(selectNFTTargetAddressHex);

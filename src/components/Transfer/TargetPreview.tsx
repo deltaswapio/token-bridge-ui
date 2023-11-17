@@ -1,7 +1,7 @@
-import { makeStyles, Typography } from "@material-ui/core";
-import { CHAINS_BY_ID } from "../../utils/consts";
+import {makeStyles, Typography} from "@material-ui/core";
+import {CHAINS_BY_ID} from "../../utils/consts";
 import SmartAddress from "../SmartAddress";
-import { useTargetInfo } from "./Target";
+import {useTargetInfo} from "./Target";
 
 const useStyles = makeStyles((theme) => ({
   description: {

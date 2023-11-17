@@ -1,17 +1,11 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { BigNumber, ethers } from "ethers";
-import React, {
-  ReactChildren,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import {BigNumber, ethers} from "ethers";
+import React, {ReactChildren, useCallback, useContext, useEffect, useMemo, useState,} from "react";
 import metamaskIcon from "../icons/metamask-fox.svg";
 import walletconnectIcon from "../icons/walletconnect.svg";
-import { EVM_RPC_MAP } from "../utils/metaMaskChainParameters";
+import {EVM_RPC_MAP} from "../utils/metaMaskChainParameters";
+
 const CacheSubprovider = require("web3-provider-engine/subproviders/cache");
 
 export type Provider = ethers.providers.Web3Provider | undefined;

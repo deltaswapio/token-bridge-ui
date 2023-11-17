@@ -1,4 +1,4 @@
-import { Button, makeStyles, Typography } from "@material-ui/core";
+import {Button, makeStyles, Typography} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   footer: {

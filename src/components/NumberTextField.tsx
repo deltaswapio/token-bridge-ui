@@ -1,9 +1,4 @@
-import {
-  Button,
-  InputAdornment,
-  TextField,
-  TextFieldProps,
-} from "@material-ui/core";
+import {Button, InputAdornment, TextField, TextFieldProps,} from "@material-ui/core";
 
 export default function NumberTextField({
   onMaxClick,

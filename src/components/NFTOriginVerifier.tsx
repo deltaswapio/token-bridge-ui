@@ -1,53 +1,48 @@
 import {
-  ChainId,
-  CHAIN_ID_AURORA,
-  CHAIN_ID_AVAX,
-  CHAIN_ID_BSC,
-  CHAIN_ID_ETH,
-  CHAIN_ID_FANTOM,
-  CHAIN_ID_OASIS,
-  CHAIN_ID_POLYGON,
-  CHAIN_ID_SOLANA,
-  hexToNativeAssetString,
-  isEVMChain,
-  uint8ArrayToHex,
+    CHAIN_ID_AURORA,
+    CHAIN_ID_AVAX,
+    CHAIN_ID_BSC,
+    CHAIN_ID_ETH,
+    CHAIN_ID_FANTOM,
+    CHAIN_ID_OASIS,
+    CHAIN_ID_POLYGON,
+    CHAIN_ID_SOLANA,
+    ChainId,
+    hexToNativeAssetString,
+    isEVMChain,
+    uint8ArrayToHex,
 } from "@deltaswapio/deltaswap-sdk";
 import {
-  getOriginalAssetEth,
-  getOriginalAssetSol,
-  DeltaswapWrappedNFTInfo,
+    DeltaswapWrappedNFTInfo,
+    getOriginalAssetEth,
+    getOriginalAssetSol,
 } from "@deltaswapio/deltaswap-sdk/lib/esm/nft_bridge";
 import {
-  Button,
-  Card,
-  CircularProgress,
-  Container,
-  makeStyles,
-  MenuItem,
-  TextField,
-  Typography,
+    Button,
+    Card,
+    CircularProgress,
+    Container,
+    makeStyles,
+    MenuItem,
+    TextField,
+    Typography,
 } from "@material-ui/core";
-import { Launch } from "@material-ui/icons";
-import { Alert } from "@material-ui/lab";
-import { Connection } from "@solana/web3.js";
-import { useCallback, useEffect, useState } from "react";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
+import {Launch} from "@material-ui/icons";
+import {Alert} from "@material-ui/lab";
+import {Connection} from "@solana/web3.js";
+import {useCallback, useEffect, useState} from "react";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
 import useIsWalletReady from "../hooks/useIsWalletReady";
-import { getMetaplexData } from "../hooks/useMetaplexData";
-import { NFTParsedTokenAccount } from "../store/nftSlice";
+import {getMetaplexData} from "../hooks/useMetaplexData";
+import {NFTParsedTokenAccount} from "../store/nftSlice";
 import {
-  CHAINS_BY_ID,
-  CHAINS_WITH_NFT_SUPPORT,
-  getNFTBridgeAddressForChain,
-  SOLANA_HOST,
-  SOL_NFT_BRIDGE_ADDRESS,
+    CHAINS_BY_ID,
+    CHAINS_WITH_NFT_SUPPORT,
+    getNFTBridgeAddressForChain,
+    SOL_NFT_BRIDGE_ADDRESS,
+    SOLANA_HOST,
 } from "../utils/consts";
-import {
-  ethNFTToNFTParsedTokenAccount,
-  getEthereumNFT,
-  isNFT,
-  isValidEthereumAddress,
-} from "../utils/ethereum";
+import {ethNFTToNFTParsedTokenAccount, getEthereumNFT, isNFT, isValidEthereumAddress,} from "../utils/ethereum";
 import HeaderText from "./HeaderText";
 import KeyAndBalance from "./KeyAndBalance";
 import NFTViewer from "./TokenSelectors/NFTViewer";

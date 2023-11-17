@@ -1,57 +1,57 @@
 import {
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  CHAIN_ID_TERRA2,
-  CHAIN_ID_XPLA,
-  ChainId,
-  getEmitterAddressNear,
-  getForeignAssetAlgorand,
-  getForeignAssetAptos,
-  getForeignAssetEth,
-  getForeignAssetInjective,
-  getForeignAssetNear,
-  getForeignAssetSolana,
-  getForeignAssetSui,
-  getForeignAssetTerra,
-  getForeignAssetXpla,
-  hexToUint8Array,
-  isEVMChain,
-  isTerraChain,
-  nativeToHexString,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_TERRA2,
+    CHAIN_ID_XPLA,
+    ChainId,
+    getEmitterAddressNear,
+    getForeignAssetAlgorand,
+    getForeignAssetAptos,
+    getForeignAssetEth,
+    getForeignAssetInjective,
+    getForeignAssetNear,
+    getForeignAssetSolana,
+    getForeignAssetSui,
+    getForeignAssetTerra,
+    getForeignAssetXpla,
+    hexToUint8Array,
+    isEVMChain,
+    isTerraChain,
+    nativeToHexString,
 } from "@deltaswapio/deltaswap-sdk";
-import { buildTokenId } from "@deltaswapio/deltaswap-sdk/lib/esm/cosmwasm/address";
-import { Connection } from "@solana/web3.js";
-import { LCDClient } from "@terra-money/terra.js";
-import { LCDClient as XplaLCDClient } from "@xpla/xpla.js";
-import { Algodv2 } from "algosdk";
-import { ethers } from "ethers";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { useNearContext } from "../contexts/NearWalletContext";
-import { DataWrapper } from "../store/helpers";
-import { getAptosClient } from "../utils/aptos";
+import {buildTokenId} from "@deltaswapio/deltaswap-sdk/lib/esm/cosmwasm/address";
+import {Connection} from "@solana/web3.js";
+import {LCDClient} from "@terra-money/terra.js";
+import {LCDClient as XplaLCDClient} from "@xpla/xpla.js";
+import {Algodv2} from "algosdk";
+import {ethers} from "ethers";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {DataWrapper} from "../store/helpers";
+import {getAptosClient} from "../utils/aptos";
 import {
-  ALGORAND_HOST,
-  ALGORAND_TOKEN_BRIDGE_ID,
-  NATIVE_NEAR_PLACEHOLDER,
-  NATIVE_NEAR_WH_ADDRESS,
-  NEAR_TOKEN_BRIDGE_ACCOUNT,
-  SOLANA_HOST,
-  SOL_TOKEN_BRIDGE_ADDRESS,
-  XPLA_LCD_CLIENT_CONFIG,
-  getEvmChainId,
-  getTerraConfig,
-  getTokenBridgeAddressForChain,
+    ALGORAND_HOST,
+    ALGORAND_TOKEN_BRIDGE_ID,
+    getEvmChainId,
+    getTerraConfig,
+    getTokenBridgeAddressForChain,
+    NATIVE_NEAR_PLACEHOLDER,
+    NATIVE_NEAR_WH_ADDRESS,
+    NEAR_TOKEN_BRIDGE_ACCOUNT,
+    SOL_TOKEN_BRIDGE_ADDRESS,
+    SOLANA_HOST,
+    XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
-import { getInjectiveWasmClient } from "../utils/injective";
-import { makeNearProvider } from "../utils/near";
-import { getForeignAssetSei, getSeiWasmClient } from "../utils/sei";
-import { getSuiProvider } from "../utils/sui";
+import {getInjectiveWasmClient} from "../utils/injective";
+import {makeNearProvider} from "../utils/near";
+import {getForeignAssetSei, getSeiWasmClient} from "../utils/sei";
+import {getSuiProvider} from "../utils/sui";
 import useIsWalletReady from "./useIsWalletReady";
 
 export type ForeignAssetInfo = {

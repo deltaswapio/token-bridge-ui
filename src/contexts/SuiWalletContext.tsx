@@ -1,5 +1,5 @@
-import { WalletProvider } from "@suiet/wallet-kit";
-import { ReactChildren } from "react";
+import {WalletProvider} from "@suiet/wallet-kit";
+import {ReactChildren} from "react";
 
 // export const useSuiContext = () => {
 //   const [accounts, setAccounts] = useState<string[]>([]);

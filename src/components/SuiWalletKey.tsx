@@ -1,7 +1,7 @@
-import { useCallback, useState } from "react";
+import {useCallback, useState} from "react";
 import SuiConnectWalletDialog from "./SuiConnectWalletDialog";
 import ToggleConnectedButton from "./ToggleConnectedButton";
-import { useWallet } from "@suiet/wallet-kit";
+import {useWallet} from "@suiet/wallet-kit";
 
 const SuiWalletKey = () => {
   const { connected, address, disconnect } = useWallet();

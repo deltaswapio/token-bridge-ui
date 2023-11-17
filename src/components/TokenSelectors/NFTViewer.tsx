@@ -1,25 +1,17 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardMedia,
-  makeStyles,
-  Tooltip,
-  Typography,
-} from "@material-ui/core";
+import {Avatar, Card, CardContent, CardMedia, makeStyles, Tooltip, Typography,} from "@material-ui/core";
 import axios from "axios";
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
-import { NFTParsedTokenAccount } from "../../store/nftSlice";
+import {useCallback, useEffect, useLayoutEffect, useState} from "react";
+import {NFTParsedTokenAccount} from "../../store/nftSlice";
 import clsx from "clsx";
 import {
-  ChainId,
-  CHAIN_ID_AVAX,
-  CHAIN_ID_BSC,
-  CHAIN_ID_ETH,
-  CHAIN_ID_POLYGON,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_OASIS,
-  CHAIN_ID_FANTOM,
+    CHAIN_ID_AVAX,
+    CHAIN_ID_BSC,
+    CHAIN_ID_ETH,
+    CHAIN_ID_FANTOM,
+    CHAIN_ID_OASIS,
+    CHAIN_ID_POLYGON,
+    CHAIN_ID_SOLANA,
+    ChainId,
 } from "@deltaswapio/deltaswap-sdk";
 import SmartAddress from "../SmartAddress";
 import avaxIcon from "../../icons/avax.svg";

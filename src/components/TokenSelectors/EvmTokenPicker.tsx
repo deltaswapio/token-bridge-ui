@@ -1,23 +1,20 @@
-import { ChainId, ethers_contracts } from "@deltaswapio/deltaswap-sdk";
-import { useCallback } from "react";
-import { useSelector } from "react-redux";
-import { useEthereumProvider } from "../../contexts/EthereumProviderContext";
+import {ChainId, ethers_contracts} from "@deltaswapio/deltaswap-sdk";
+import {useCallback} from "react";
+import {useSelector} from "react-redux";
+import {useEthereumProvider} from "../../contexts/EthereumProviderContext";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
-import { DataWrapper } from "../../store/helpers";
-import { NFTParsedTokenAccount } from "../../store/nftSlice";
+import {DataWrapper} from "../../store/helpers";
+import {NFTParsedTokenAccount} from "../../store/nftSlice";
+import {selectNFTSourceParsedTokenAccount, selectTransferSourceParsedTokenAccount,} from "../../store/selectors";
+import {ParsedTokenAccount} from "../../store/transferSlice";
 import {
-  selectNFTSourceParsedTokenAccount,
-  selectTransferSourceParsedTokenAccount,
-} from "../../store/selectors";
-import { ParsedTokenAccount } from "../../store/transferSlice";
-import {
-  ethNFTToNFTParsedTokenAccount,
-  ethTokenToParsedTokenAccount,
-  getEthereumNFT,
-  getEthereumToken,
-  isValidEthereumAddress,
+    ethNFTToNFTParsedTokenAccount,
+    ethTokenToParsedTokenAccount,
+    getEthereumNFT,
+    getEthereumToken,
+    isValidEthereumAddress,
 } from "../../utils/ethereum";
-import TokenPicker, { BasicAccountRender } from "./TokenPicker";
+import TokenPicker, {BasicAccountRender} from "./TokenPicker";
 
 type EthereumSourceTokenSelectorProps = {
   value: ParsedTokenAccount | null;

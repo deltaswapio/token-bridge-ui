@@ -1,17 +1,11 @@
-import {
-  approveEth,
-  ChainId,
-  CHAIN_ID_KLAYTN,
-  getAllowanceEth,
-  isEVMChain,
-} from "@deltaswapio/deltaswap-sdk";
-import { BigNumber } from "ethers";
-import { useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { selectTransferIsApproving } from "../store/selectors";
-import { setIsApproving } from "../store/transferSlice";
-import { getTokenBridgeAddressForChain } from "../utils/consts";
+import {approveEth, CHAIN_ID_KLAYTN, ChainId, getAllowanceEth, isEVMChain,} from "@deltaswapio/deltaswap-sdk";
+import {BigNumber} from "ethers";
+import {useEffect, useMemo, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {selectTransferIsApproving} from "../store/selectors";
+import {setIsApproving} from "../store/transferSlice";
+import {getTokenBridgeAddressForChain} from "../utils/consts";
 
 export default function useAllowance(
   chainId: ChainId,

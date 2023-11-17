@@ -1,13 +1,6 @@
-import {
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
-  MenuItem,
-  OutlinedTextFieldProps,
-  TextField,
-} from "@material-ui/core";
+import {ListItemIcon, ListItemText, makeStyles, MenuItem, OutlinedTextFieldProps, TextField,} from "@material-ui/core";
 import clsx from "clsx";
-import { ChainInfo } from "../utils/consts";
+import {ChainInfo} from "../utils/consts";
 
 const useStyles = makeStyles((theme) => ({
   select: {

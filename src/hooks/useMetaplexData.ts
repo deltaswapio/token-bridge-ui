@@ -1,13 +1,9 @@
-import { Connection } from "@solana/web3.js";
-import { useLayoutEffect, useMemo, useState } from "react";
-import { DataWrapper } from "../store/helpers";
-import { SOLANA_HOST } from "../utils/consts";
-import {
-  decodeMetadata,
-  getMetadataAddress,
-  Metadata,
-} from "../utils/metaplex";
-import { getMultipleAccountsRPC } from "../utils/solana";
+import {Connection} from "@solana/web3.js";
+import {useLayoutEffect, useMemo, useState} from "react";
+import {DataWrapper} from "../store/helpers";
+import {SOLANA_HOST} from "../utils/consts";
+import {decodeMetadata, getMetadataAddress, Metadata,} from "../utils/metaplex";
+import {getMultipleAccountsRPC} from "../utils/solana";
 
 export const getMetaplexData = async (mintAddresses: string[]) => {
   const promises = [];

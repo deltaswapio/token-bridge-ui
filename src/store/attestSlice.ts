@@ -1,10 +1,6 @@
-import {
-  ChainId,
-  CHAIN_ID_ETH,
-  CHAIN_ID_SOLANA,
-} from "@deltaswapio/deltaswap-sdk";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Transaction } from "./transferSlice";
+import {CHAIN_ID_ETH, CHAIN_ID_SOLANA, ChainId,} from "@deltaswapio/deltaswap-sdk";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {Transaction} from "./transferSlice";
 
 const LAST_STEP = 3;
 

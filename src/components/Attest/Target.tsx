@@ -1,17 +1,17 @@
-import { isEVMChain } from "@deltaswapio/deltaswap-sdk";
-import { makeStyles, Typography } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import { useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { GasEstimateSummary } from "../../hooks/useTransactionFees";
-import { incrementStep, setTargetChain } from "../../store/attestSlice";
+import {isEVMChain} from "@deltaswapio/deltaswap-sdk";
+import {makeStyles, Typography} from "@material-ui/core";
+import {Alert} from "@material-ui/lab";
+import {useCallback, useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {GasEstimateSummary} from "../../hooks/useTransactionFees";
+import {incrementStep, setTargetChain} from "../../store/attestSlice";
 import {
-  selectAttestIsTargetComplete,
-  selectAttestShouldLockFields,
-  selectAttestSourceChain,
-  selectAttestTargetChain,
+    selectAttestIsTargetComplete,
+    selectAttestShouldLockFields,
+    selectAttestSourceChain,
+    selectAttestTargetChain,
 } from "../../store/selectors";
-import { CHAINS, CHAINS_BY_ID } from "../../utils/consts";
+import {CHAINS, CHAINS_BY_ID} from "../../utils/consts";
 import ButtonWithLoader from "../ButtonWithLoader";
 import ChainSelect from "../ChainSelect";
 import KeyAndBalance from "../KeyAndBalance";

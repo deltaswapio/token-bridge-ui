@@ -1,26 +1,26 @@
 import {
-  ChainId,
-  CHAIN_ID_ACALA,
-  CHAIN_ID_ARBITRUM,
-  CHAIN_ID_AURORA,
-  CHAIN_ID_BASE,
-  CHAIN_ID_CELO,
-  CHAIN_ID_FANTOM,
-  CHAIN_ID_KARURA,
-  CHAIN_ID_KLAYTN,
-  CHAIN_ID_MOONBEAM,
-  CHAIN_ID_OASIS,
-  CHAIN_ID_OPTIMISM,
-  CHAIN_ID_POLYGON,
-  CHAIN_ID_SOLANA,
-  isEVMChain,
+    CHAIN_ID_ACALA,
+    CHAIN_ID_ARBITRUM,
+    CHAIN_ID_AURORA,
+    CHAIN_ID_BASE,
+    CHAIN_ID_CELO,
+    CHAIN_ID_FANTOM,
+    CHAIN_ID_KARURA,
+    CHAIN_ID_KLAYTN,
+    CHAIN_ID_MOONBEAM,
+    CHAIN_ID_OASIS,
+    CHAIN_ID_OPTIMISM,
+    CHAIN_ID_POLYGON,
+    CHAIN_ID_SOLANA,
+    ChainId,
+    isEVMChain,
 } from "@deltaswapio/deltaswap-sdk";
-import { LinearProgress, makeStyles, Typography } from "@material-ui/core";
-import { Connection } from "@solana/web3.js";
-import { useEffect, useState } from "react";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { Transaction } from "../store/transferSlice";
-import { CHAINS_BY_ID, CLUSTER, SOLANA_HOST } from "../utils/consts";
+import {LinearProgress, makeStyles, Typography} from "@material-ui/core";
+import {Connection} from "@solana/web3.js";
+import {useEffect, useState} from "react";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {Transaction} from "../store/transferSlice";
+import {CHAINS_BY_ID, CLUSTER, SOLANA_HOST} from "../utils/consts";
 
 const useStyles = makeStyles((theme) => ({
   root: {

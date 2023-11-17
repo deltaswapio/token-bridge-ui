@@ -1,15 +1,11 @@
-import { Dispatch } from "@reduxjs/toolkit";
+import {Dispatch} from "@reduxjs/toolkit";
 import axios from "axios";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { DataWrapper } from "../store/helpers";
-import { selectTerraTokenMap } from "../store/selectors";
-import {
-  errorTerraTokenMap,
-  fetchTerraTokenMap,
-  receiveTerraTokenMap,
-} from "../store/tokenSlice";
-import { TERRA_TOKEN_METADATA_URL } from "../utils/consts";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {DataWrapper} from "../store/helpers";
+import {selectTerraTokenMap} from "../store/selectors";
+import {errorTerraTokenMap, fetchTerraTokenMap, receiveTerraTokenMap,} from "../store/tokenSlice";
+import {TERRA_TOKEN_METADATA_URL} from "../utils/consts";
 
 export type TerraTokenMetadata = {
   protocol: string;

@@ -1,29 +1,19 @@
-import { ChainId } from "@deltaswapio/deltaswap-sdk";
-import {
-  Container,
-  Step,
-  StepButton,
-  StepContent,
-  Stepper,
-} from "@material-ui/core";
-import { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import {ChainId} from "@deltaswapio/deltaswap-sdk";
+import {Container, Step, StepButton, StepContent, Stepper,} from "@material-ui/core";
+import {useEffect, useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation} from "react-router";
 import useCheckIfWormholeWrapped from "../../hooks/useCheckIfWormholeWrapped";
 import useFetchTargetAsset from "../../hooks/useFetchTargetAsset";
 import {
-  selectTransferActiveStep,
-  selectTransferIsRedeemComplete,
-  selectTransferIsRedeeming,
-  selectTransferIsSendComplete,
-  selectTransferIsSending,
+    selectTransferActiveStep,
+    selectTransferIsRedeemComplete,
+    selectTransferIsRedeeming,
+    selectTransferIsSendComplete,
+    selectTransferIsSending,
 } from "../../store/selectors";
-import {
-  setSourceChain,
-  setStep,
-  setTargetChain,
-} from "../../store/transferSlice";
-import { CHAINS_BY_ID } from "../../utils/consts";
+import {setSourceChain, setStep, setTargetChain,} from "../../store/transferSlice";
+import {CHAINS_BY_ID} from "../../utils/consts";
 import Redeem from "./Redeem";
 import RedeemPreview from "./RedeemPreview";
 import Send from "./Send";

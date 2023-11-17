@@ -1,43 +1,43 @@
 import {
-  ChainId,
-  CHAIN_ID_ACALA,
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_ARBITRUM,
-  CHAIN_ID_AURORA,
-  CHAIN_ID_AVAX,
-  CHAIN_ID_BASE,
-  CHAIN_ID_BSC,
-  CHAIN_ID_CELO,
-  CHAIN_ID_ETH,
-  CHAIN_ID_FANTOM,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_KARURA,
-  CHAIN_ID_KLAYTN,
-  CHAIN_ID_MOONBEAM,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_NEON,
-  CHAIN_ID_OASIS,
-  CHAIN_ID_OPTIMISM,
-  CHAIN_ID_PLANQ,
-  CHAIN_ID_POLYGON,
-  CHAIN_ID_SEPOLIA,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  CHAIN_ID_TERRA,
-  CHAIN_ID_TERRA2,
-  CHAIN_ID_XPLA,
-  coalesceChainName,
-  CONTRACTS,
-  isEVMChain,
-  isTerraChain,
-  TerraChainId,
-  CHAIN_ID_SEI,
-  cosmos,
+    CHAIN_ID_ACALA,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_ARBITRUM,
+    CHAIN_ID_AURORA,
+    CHAIN_ID_AVAX,
+    CHAIN_ID_BASE,
+    CHAIN_ID_BSC,
+    CHAIN_ID_CELO,
+    CHAIN_ID_ETH,
+    CHAIN_ID_FANTOM,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_KARURA,
+    CHAIN_ID_KLAYTN,
+    CHAIN_ID_MOONBEAM,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_NEON,
+    CHAIN_ID_OASIS,
+    CHAIN_ID_OPTIMISM,
+    CHAIN_ID_PLANQ,
+    CHAIN_ID_POLYGON,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SEPOLIA,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_TERRA,
+    CHAIN_ID_TERRA2,
+    CHAIN_ID_XPLA,
+    ChainId,
+    coalesceChainName,
+    CONTRACTS,
+    cosmos,
+    isEVMChain,
+    isTerraChain,
+    TerraChainId,
 } from "@deltaswapio/deltaswap-sdk";
-import { clusterApiUrl } from "@solana/web3.js";
-import { getAddress } from "ethers/lib/utils";
-import { CHAIN_CONFIG_MAP } from "../config";
+import {clusterApiUrl} from "@solana/web3.js";
+import {getAddress} from "ethers/lib/utils";
+import {CHAIN_CONFIG_MAP} from "../config";
 import acalaIcon from "../icons/acala.svg";
 import algorandIcon from "../icons/algorand.svg";
 import aptosIcon from "../icons/aptos.svg";
@@ -64,12 +64,12 @@ import terraIcon from "../icons/terra.svg";
 import terra2Icon from "../icons/terra2.svg";
 import xplaIcon from "../icons/xpla.svg";
 import injectiveIcon from "../icons/injective.svg";
-import { AptosNetwork } from "./aptos";
-import { getNetworkInfo, Network } from "@injectivelabs/networks";
+import {AptosNetwork} from "./aptos";
+import {getNetworkInfo, Network} from "@injectivelabs/networks";
 import nearIcon from "../icons/near.svg";
-import { ConnectConfig, keyStores } from "near-api-js";
-import { ChainConfiguration } from "@sei-js/react";
-import { testnetConnection, localnetConnection } from "@mysten/sui.js";
+import {ConnectConfig, keyStores} from "near-api-js";
+import {ChainConfiguration} from "@sei-js/react";
+import {localnetConnection, testnetConnection} from "@mysten/sui.js";
 
 export type Cluster = "devnet" | "testnet" | "mainnet";
 const urlParams = new URLSearchParams(window.location.search);

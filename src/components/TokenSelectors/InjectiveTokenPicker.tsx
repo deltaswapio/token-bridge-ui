@@ -1,23 +1,19 @@
-import {
-  CHAIN_ID_INJECTIVE,
-  isNativeDenomInjective,
-  parseSmartContractStateResponse,
-} from "@deltaswapio/deltaswap-sdk";
-import { formatUnits } from "@ethersproject/units";
-import { useCallback, useMemo, useRef } from "react";
-import { createParsedTokenAccount } from "../../hooks/useGetSourceParsedTokenAccounts";
+import {CHAIN_ID_INJECTIVE, isNativeDenomInjective, parseSmartContractStateResponse,} from "@deltaswapio/deltaswap-sdk";
+import {formatUnits} from "@ethersproject/units";
+import {useCallback, useMemo, useRef} from "react";
+import {createParsedTokenAccount} from "../../hooks/useGetSourceParsedTokenAccounts";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import useInjectiveNativeBalances from "../../hooks/useInjectiveNativeBalances";
-import { DataWrapper } from "../../store/helpers";
-import { NFTParsedTokenAccount } from "../../store/nftSlice";
-import { ParsedTokenAccount } from "../../store/transferSlice";
-import TokenPicker, { BasicAccountRender } from "./TokenPicker";
+import {DataWrapper} from "../../store/helpers";
+import {NFTParsedTokenAccount} from "../../store/nftSlice";
+import {ParsedTokenAccount} from "../../store/transferSlice";
+import TokenPicker, {BasicAccountRender} from "./TokenPicker";
 import {
-  formatNativeDenom,
-  getInjectiveWasmClient,
-  INJECTIVE_NATIVE_DENOM,
-  isValidInjectiveAddress,
-  NATIVE_INJECTIVE_DECIMALS,
+    formatNativeDenom,
+    getInjectiveWasmClient,
+    INJECTIVE_NATIVE_DENOM,
+    isValidInjectiveAddress,
+    NATIVE_INJECTIVE_DECIMALS,
 } from "../../utils/injective";
 import injectiveIcon from "../../icons/injective.svg";
 

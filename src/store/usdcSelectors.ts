@@ -1,4 +1,4 @@
-import { RootState } from ".";
+import {RootState} from ".";
 
 export const selectSourceChain = (state: RootState) => state.usdc.sourceChain;
 

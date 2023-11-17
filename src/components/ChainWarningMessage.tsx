@@ -1,8 +1,8 @@
-import { ChainId } from "@deltaswapio/deltaswap-sdk";
-import { Link, makeStyles, Typography } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import { useMemo } from "react";
-import { CHAIN_CONFIG_MAP } from "../config";
+import {ChainId} from "@deltaswapio/deltaswap-sdk";
+import {Link, makeStyles, Typography} from "@material-ui/core";
+import {Alert} from "@material-ui/lab";
+import {useMemo} from "react";
+import {CHAIN_CONFIG_MAP} from "../config";
 
 const useStyles = makeStyles((theme) => ({
   alert: {

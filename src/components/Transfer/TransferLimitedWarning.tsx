@@ -1,10 +1,7 @@
-import { makeStyles } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import { IsTransferLimitedResult } from "../../hooks/useIsTransferLimited";
-import {
-  CHAINS_BY_ID,
-  USD_NUMBER_FORMATTER as USD_FORMATTER,
-} from "../../utils/consts";
+import {makeStyles} from "@material-ui/core";
+import {Alert} from "@material-ui/lab";
+import {IsTransferLimitedResult} from "../../hooks/useIsTransferLimited";
+import {CHAINS_BY_ID, USD_NUMBER_FORMATTER as USD_FORMATTER,} from "../../utils/consts";
 
 const useStyles = makeStyles((theme) => ({
   alert: {

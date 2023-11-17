@@ -1,44 +1,45 @@
 import {
-    ChainId,
+    CHAIN_ID_ACALA,
     CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_ARBITRUM,
     CHAIN_ID_AURORA,
     CHAIN_ID_AVAX,
+    CHAIN_ID_BASE,
     CHAIN_ID_BSC,
     CHAIN_ID_CELO,
     CHAIN_ID_ETH,
     CHAIN_ID_FANTOM,
-    CHAIN_ID_KLAYTN,
-    CHAIN_ID_KARURA,
-    CHAIN_ID_MOONBEAM,
-    CHAIN_ID_OASIS,
-    CHAIN_ID_POLYGON,
-    CHAIN_ID_SOLANA,
-    CHAIN_ID_ACALA,
-    isTerraChain,
-    CHAIN_ID_TERRA2,
-    TerraChainId,
-    CHAIN_ID_XPLA,
-    CHAIN_ID_APTOS,
-    isValidAptosType,
-    CHAIN_ID_ARBITRUM,
     CHAIN_ID_INJECTIVE,
-    terra,
+    CHAIN_ID_KARURA,
+    CHAIN_ID_KLAYTN,
+    CHAIN_ID_MOONBEAM,
     CHAIN_ID_NEAR,
-    CHAIN_ID_BASE,
+    CHAIN_ID_OASIS,
     CHAIN_ID_OPTIMISM,
+    CHAIN_ID_PLANQ,
+    CHAIN_ID_POLYGON,
     CHAIN_ID_SEPOLIA,
-    CHAIN_ID_SUI, CHAIN_ID_PLANQ,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_TERRA2,
+    CHAIN_ID_XPLA,
+    ChainId,
+    isTerraChain,
+    isValidAptosType,
+    terra,
+    TerraChainId,
 } from "@deltaswapio/deltaswap-sdk";
-import { Button, makeStyles, Tooltip, Typography } from "@material-ui/core";
-import { FileCopy, OpenInNew } from "@material-ui/icons";
-import { withStyles } from "@material-ui/styles";
+import {Button, makeStyles, Tooltip, Typography} from "@material-ui/core";
+import {FileCopy, OpenInNew} from "@material-ui/icons";
+import {withStyles} from "@material-ui/styles";
 import clsx from "clsx";
-import { ReactChild } from "react";
+import {ReactChild} from "react";
 import useCopyToClipboard from "../hooks/useCopyToClipboard";
-import { ParsedTokenAccount } from "../store/transferSlice";
-import { CLUSTER, getExplorerName } from "../utils/consts";
-import { shortenAddress } from "../utils/solana";
-import { formatNativeDenom } from "../utils/terra";
+import {ParsedTokenAccount} from "../store/transferSlice";
+import {CLUSTER, getExplorerName} from "../utils/consts";
+import {shortenAddress} from "../utils/solana";
+import {formatNativeDenom} from "../utils/terra";
 
 const useStyles = makeStyles((theme) => ({
   mainTypog: {

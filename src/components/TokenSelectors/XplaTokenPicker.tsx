@@ -1,21 +1,16 @@
-import { CHAIN_ID_XPLA, isNativeDenomXpla } from "@deltaswapio/deltaswap-sdk";
-import { formatUnits } from "@ethersproject/units";
-import { useCallback, useMemo, useRef } from "react";
-import { createParsedTokenAccount } from "../../hooks/useGetSourceParsedTokenAccounts";
+import {CHAIN_ID_XPLA, isNativeDenomXpla} from "@deltaswapio/deltaswap-sdk";
+import {formatUnits} from "@ethersproject/units";
+import {useCallback, useMemo, useRef} from "react";
+import {createParsedTokenAccount} from "../../hooks/useGetSourceParsedTokenAccounts";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import useXplaNativeBalances from "../../hooks/useXplaNativeBalances";
-import { DataWrapper } from "../../store/helpers";
-import { NFTParsedTokenAccount } from "../../store/nftSlice";
-import { ParsedTokenAccount } from "../../store/transferSlice";
-import { XPLA_NATIVE_DENOM, XPLA_LCD_CLIENT_CONFIG } from "../../utils/consts";
-import {
-  formatNativeDenom,
-  isValidXplaAddress,
-  NATIVE_XPLA_DECIMALS,
-  XPLA_NATIVE_TOKEN_ICON,
-} from "../../utils/xpla";
-import TokenPicker, { BasicAccountRender } from "./TokenPicker";
-import { LCDClient } from "@xpla/xpla.js";
+import {DataWrapper} from "../../store/helpers";
+import {NFTParsedTokenAccount} from "../../store/nftSlice";
+import {ParsedTokenAccount} from "../../store/transferSlice";
+import {XPLA_LCD_CLIENT_CONFIG, XPLA_NATIVE_DENOM} from "../../utils/consts";
+import {formatNativeDenom, isValidXplaAddress, NATIVE_XPLA_DECIMALS, XPLA_NATIVE_TOKEN_ICON,} from "../../utils/xpla";
+import TokenPicker, {BasicAccountRender} from "./TokenPicker";
+import {LCDClient} from "@xpla/xpla.js";
 
 type XplaTokenPickerProps = {
   value: ParsedTokenAccount | null;

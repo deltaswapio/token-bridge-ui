@@ -1,53 +1,49 @@
 import {
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  CHAIN_ID_XPLA,
-  getIsTransferCompletedAlgorand,
-  getIsTransferCompletedAptos,
-  getIsTransferCompletedEth,
-  getIsTransferCompletedInjective,
-  getIsTransferCompletedNear,
-  getIsTransferCompletedSolana,
-  getIsTransferCompletedSui,
-  getIsTransferCompletedTerra,
-  getIsTransferCompletedXpla,
-  isEVMChain,
-  isTerraChain,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_XPLA,
+    getIsTransferCompletedAlgorand,
+    getIsTransferCompletedAptos,
+    getIsTransferCompletedEth,
+    getIsTransferCompletedInjective,
+    getIsTransferCompletedNear,
+    getIsTransferCompletedSolana,
+    getIsTransferCompletedSui,
+    getIsTransferCompletedTerra,
+    getIsTransferCompletedXpla,
+    isEVMChain,
+    isTerraChain,
 } from "@deltaswapio/deltaswap-sdk";
-import { Connection } from "@solana/web3.js";
-import { LCDClient } from "@terra-money/terra.js";
-import { LCDClient as XplaLCDClient } from "@xpla/xpla.js";
+import {Connection} from "@solana/web3.js";
+import {LCDClient} from "@terra-money/terra.js";
+import {LCDClient as XplaLCDClient} from "@xpla/xpla.js";
 import algosdk from "algosdk";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { useNearContext } from "../contexts/NearWalletContext";
+import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {selectTransferIsRecovery, selectTransferTargetAddressHex, selectTransferTargetChain,} from "../store/selectors";
+import {getAptosClient} from "../utils/aptos";
 import {
-  selectTransferIsRecovery,
-  selectTransferTargetAddressHex,
-  selectTransferTargetChain,
-} from "../store/selectors";
-import { getAptosClient } from "../utils/aptos";
-import {
-  ALGORAND_HOST,
-  ALGORAND_TOKEN_BRIDGE_ID,
-  NEAR_TOKEN_BRIDGE_ACCOUNT,
-  SOLANA_HOST,
-  XPLA_LCD_CLIENT_CONFIG,
-  getEvmChainId,
-  getTerraConfig,
-  getTerraGasPricesUrl,
-  getTokenBridgeAddressForChain,
+    ALGORAND_HOST,
+    ALGORAND_TOKEN_BRIDGE_ID,
+    getEvmChainId,
+    getTerraConfig,
+    getTerraGasPricesUrl,
+    getTokenBridgeAddressForChain,
+    NEAR_TOKEN_BRIDGE_ACCOUNT,
+    SOLANA_HOST,
+    XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
-import { getInjectiveWasmClient } from "../utils/injective";
-import { makeNearProvider } from "../utils/near";
-import { getIsTransferCompletedSei, getSeiWasmClient } from "../utils/sei";
-import { getSuiProvider } from "../utils/sui";
+import {getInjectiveWasmClient} from "../utils/injective";
+import {makeNearProvider} from "../utils/near";
+import {getIsTransferCompletedSei, getSeiWasmClient} from "../utils/sei";
+import {getSuiProvider} from "../utils/sui";
 import useIsWalletReady from "./useIsWalletReady";
 import useTransferSignedVAA from "./useTransferSignedVAA";
 

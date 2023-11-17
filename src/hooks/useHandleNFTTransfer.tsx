@@ -1,57 +1,50 @@
 import {
-  ChainId,
-  CHAIN_ID_KLAYTN,
-  CHAIN_ID_SOLANA,
-  getEmitterAddressEth,
-  getEmitterAddressSolana,
-  getSignedVAAWithRetry,
-  hexToUint8Array,
-  isEVMChain,
-  parseSequenceFromLogEth,
-  parseSequenceFromLogSolana,
-  uint8ArrayToHex,
+    CHAIN_ID_KLAYTN,
+    CHAIN_ID_SOLANA,
+    ChainId,
+    getEmitterAddressEth,
+    getEmitterAddressSolana,
+    getSignedVAAWithRetry,
+    hexToUint8Array,
+    isEVMChain,
+    parseSequenceFromLogEth,
+    parseSequenceFromLogSolana,
+    uint8ArrayToHex,
 } from "@deltaswapio/deltaswap-sdk";
+import {transferFromEth, transferFromSolana,} from "@deltaswapio/deltaswap-sdk/lib/esm/nft_bridge";
+import {Alert} from "@material-ui/lab";
+import {WalletContextState} from "@solana/wallet-adapter-react";
+import {Connection} from "@solana/web3.js";
+import {BigNumber, Signer} from "ethers";
+import {arrayify, zeroPad} from "ethers/lib/utils";
+import {useSnackbar} from "notistack";
+import {useCallback, useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {useSolanaWallet} from "../contexts/SolanaWalletContext";
+import {setIsSending, setSignedVAAHex, setTransferTx,} from "../store/nftSlice";
 import {
-  transferFromEth,
-  transferFromSolana,
-} from "@deltaswapio/deltaswap-sdk/lib/esm/nft_bridge";
-import { Alert } from "@material-ui/lab";
-import { WalletContextState } from "@solana/wallet-adapter-react";
-import { Connection } from "@solana/web3.js";
-import { BigNumber, Signer } from "ethers";
-import { arrayify, zeroPad } from "ethers/lib/utils";
-import { useSnackbar } from "notistack";
-import { useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { useSolanaWallet } from "../contexts/SolanaWalletContext";
-import {
-  setIsSending,
-  setSignedVAAHex,
-  setTransferTx,
-} from "../store/nftSlice";
-import {
-  selectNFTIsSendComplete,
-  selectNFTIsSending,
-  selectNFTIsTargetComplete,
-  selectNFTOriginAsset,
-  selectNFTOriginChain,
-  selectNFTOriginTokenId,
-  selectNFTSourceAsset,
-  selectNFTSourceChain,
-  selectNFTSourceParsedTokenAccount,
-  selectNFTTargetChain,
+    selectNFTIsSendComplete,
+    selectNFTIsSending,
+    selectNFTIsTargetComplete,
+    selectNFTOriginAsset,
+    selectNFTOriginChain,
+    selectNFTOriginTokenId,
+    selectNFTSourceAsset,
+    selectNFTSourceChain,
+    selectNFTSourceParsedTokenAccount,
+    selectNFTTargetChain,
 } from "../store/selectors";
 import {
-  getBridgeAddressForChain,
-  getNFTBridgeAddressForChain,
-  SOLANA_HOST,
-  SOL_BRIDGE_ADDRESS,
-  SOL_NFT_BRIDGE_ADDRESS,
-  WORMHOLE_RPC_HOSTS,
+    getBridgeAddressForChain,
+    getNFTBridgeAddressForChain,
+    SOL_BRIDGE_ADDRESS,
+    SOL_NFT_BRIDGE_ADDRESS,
+    SOLANA_HOST,
+    WORMHOLE_RPC_HOSTS,
 } from "../utils/consts";
 import parseError from "../utils/parseError";
-import { signSendAndConfirm } from "../utils/solana";
+import {signSendAndConfirm} from "../utils/solana";
 import useNFTTargetAddressHex from "./useNFTTargetAddress";
 
 async function evm(

@@ -1,13 +1,6 @@
-import {
-  createContext,
-  ReactChildren,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
-import { Wallet, WalletStrategy } from "@injectivelabs/wallet-ts";
-import { ChainId } from "@injectivelabs/ts-types";
+import {createContext, ReactChildren, useCallback, useContext, useMemo, useState,} from "react";
+import {Wallet, WalletStrategy} from "@injectivelabs/wallet-ts";
+import {ChainId} from "@injectivelabs/ts-types";
 import keplrIcon from "../icons/keplr.svg";
 
 interface IInjectiveProviderContext {

@@ -1,14 +1,14 @@
-import { makeStyles, Typography } from "@material-ui/core";
+import {makeStyles, Typography} from "@material-ui/core";
 import numeral from "numeral";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import {
-  selectSourceWalletAddress,
-  selectTransferAmount,
-  selectTransferRelayerFee,
-  selectTransferSourceChain,
-  selectTransferSourceParsedTokenAccount,
+    selectSourceWalletAddress,
+    selectTransferAmount,
+    selectTransferRelayerFee,
+    selectTransferSourceChain,
+    selectTransferSourceParsedTokenAccount,
 } from "../../store/selectors";
-import { CHAINS_BY_ID } from "../../utils/consts";
+import {CHAINS_BY_ID} from "../../utils/consts";
 import SmartAddress from "../SmartAddress";
 
 const useStyles = makeStyles((theme) => ({

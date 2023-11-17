@@ -1,18 +1,18 @@
-import { useCallback, useMemo } from "react";
+import {useCallback, useMemo} from "react";
 import {
-  Dialog,
-  DialogTitle,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
+    Dialog,
+    DialogTitle,
+    Divider,
+    IconButton,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    makeStyles,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import { WalletName, WalletReadyState } from "@solana/wallet-adapter-base";
-import { useWallet, Wallet } from "@solana/wallet-adapter-react";
+import {WalletName, WalletReadyState} from "@solana/wallet-adapter-base";
+import {useWallet, Wallet} from "@solana/wallet-adapter-react";
 
 const useStyles = makeStyles((theme) => ({
   flexTitle: {

@@ -1,10 +1,5 @@
-import {
-  ChainId,
-  ChainName,
-  getGovernorIsVAAEnqueued,
-  getSignedVAA,
-} from "@deltaswapio/deltaswap-sdk";
-import { WORMHOLE_RPC_HOSTS } from "./consts";
+import {ChainId, ChainName, getGovernorIsVAAEnqueued, getSignedVAA,} from "@deltaswapio/deltaswap-sdk";
+import {WORMHOLE_RPC_HOSTS} from "./consts";
 
 export interface GetSignedVAAWithRetryResult {
   vaaBytes: Uint8Array | undefined;

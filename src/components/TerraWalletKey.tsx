@@ -1,5 +1,5 @@
-import { useConnectedWallet, useWallet } from "@terra-money/wallet-provider";
-import { useCallback, useState } from "react";
+import {useConnectedWallet, useWallet} from "@terra-money/wallet-provider";
+import {useCallback, useState} from "react";
 import TerraConnectWalletDialog from "./TerraConnectWalletDialog";
 import ToggleConnectedButton from "./ToggleConnectedButton";
 

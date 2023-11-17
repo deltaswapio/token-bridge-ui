@@ -1,11 +1,11 @@
-import { Wallet } from "@near-wallet-selector/core/lib/wallet";
-import { Account, connect } from "near-api-js";
-import { FunctionCallOptions } from "near-api-js/lib/account";
+import {Wallet} from "@near-wallet-selector/core/lib/wallet";
+import {Account, connect} from "near-api-js";
+import {FunctionCallOptions} from "near-api-js/lib/account";
 import {
-  FinalExecutionOutcome,
-  JsonRpcProvider,
+    FinalExecutionOutcome,
+    JsonRpcProvider,
 } from "@deltaswapio/deltaswap-sdk/node_modules/near-api-js/lib/providers"; //from "near-api-js/lib/providers";
-import { getNearConnectionConfig } from "./consts";
+import {getNearConnectionConfig} from "./consts";
 
 export const makeNearAccount = async (senderAddr: string) =>
   await (await connect(getNearConnectionConfig())).account(senderAddr);

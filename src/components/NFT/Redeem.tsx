@@ -1,8 +1,8 @@
-import { isTerraChain } from "@deltaswapio/deltaswap-sdk";
-import { useSelector } from "react-redux";
-import { useHandleNFTRedeem } from "../../hooks/useHandleNFTRedeem";
+import {isTerraChain} from "@deltaswapio/deltaswap-sdk";
+import {useSelector} from "react-redux";
+import {useHandleNFTRedeem} from "../../hooks/useHandleNFTRedeem";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
-import { selectNFTTargetChain } from "../../store/selectors";
+import {selectNFTTargetChain} from "../../store/selectors";
 import ButtonWithLoader from "../ButtonWithLoader";
 import KeyAndBalance from "../KeyAndBalance";
 import StepDescription from "../StepDescription";

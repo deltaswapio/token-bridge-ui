@@ -1,20 +1,17 @@
-import { CHAIN_ID_APTOS, isValidAptosType } from "@deltaswapio/deltaswap-sdk";
-import { formatUnits } from "@ethersproject/units";
-import { useCallback, useMemo, useRef } from "react";
-import { AptosCoinResourceReturn } from "../../hooks/useAptosMetadata";
+import {CHAIN_ID_APTOS, isValidAptosType} from "@deltaswapio/deltaswap-sdk";
+import {formatUnits} from "@ethersproject/units";
+import {useCallback, useMemo, useRef} from "react";
+import {AptosCoinResourceReturn} from "../../hooks/useAptosMetadata";
 import useAptosNativeBalance from "../../hooks/useAptosNativeBalance";
-import { createParsedTokenAccount } from "../../hooks/useGetSourceParsedTokenAccounts";
+import {createParsedTokenAccount} from "../../hooks/useGetSourceParsedTokenAccounts";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import aptosIcon from "../../icons/aptos.svg";
-import { DataWrapper } from "../../store/helpers";
-import { NFTParsedTokenAccount } from "../../store/nftSlice";
-import { ParsedTokenAccount } from "../../store/transferSlice";
-import { getAptosClient } from "../../utils/aptos";
-import {
-  APTOS_NATIVE_DECIMALS,
-  APTOS_NATIVE_TOKEN_KEY,
-} from "../../utils/consts";
-import TokenPicker, { BasicAccountRender } from "./TokenPicker";
+import {DataWrapper} from "../../store/helpers";
+import {NFTParsedTokenAccount} from "../../store/nftSlice";
+import {ParsedTokenAccount} from "../../store/transferSlice";
+import {getAptosClient} from "../../utils/aptos";
+import {APTOS_NATIVE_DECIMALS, APTOS_NATIVE_TOKEN_KEY,} from "../../utils/consts";
+import TokenPicker, {BasicAccountRender} from "./TokenPicker";
 
 type AptosTokenPickerProps = {
   value: ParsedTokenAccount | null;

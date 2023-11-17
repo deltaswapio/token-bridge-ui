@@ -1,10 +1,7 @@
-import { ethers_contracts } from "@deltaswapio/deltaswap-sdk";
-import { ethers } from "ethers";
-import { arrayify, formatUnits } from "ethers/lib/utils";
-import {
-  createNFTParsedTokenAccount,
-  createParsedTokenAccount,
-} from "../hooks/useGetSourceParsedTokenAccounts";
+import {ethers_contracts} from "@deltaswapio/deltaswap-sdk";
+import {ethers} from "ethers";
+import {arrayify, formatUnits} from "ethers/lib/utils";
+import {createNFTParsedTokenAccount, createParsedTokenAccount,} from "../hooks/useGetSourceParsedTokenAccounts";
 
 //This is a valuable intermediate step to the parsed token account, as the token has metadata information on it.
 export async function getEthereumToken(

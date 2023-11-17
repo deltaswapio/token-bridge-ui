@@ -1,5 +1,5 @@
-import { MutableRefObject, useEffect, useMemo, useState } from "react";
-import { getInjectiveBankClient } from "../utils/injective";
+import {MutableRefObject, useEffect, useMemo, useState} from "react";
+import {getInjectiveBankClient} from "../utils/injective";
 
 export interface InjectiveNativeBalances {
   [index: string]: string;

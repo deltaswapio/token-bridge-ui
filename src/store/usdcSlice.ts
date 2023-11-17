@@ -1,6 +1,6 @@
-import { ChainId, CHAIN_ID_AVAX, CHAIN_ID_ETH } from "@deltaswapio/deltaswap-sdk";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ParsedTokenAccount } from "./transferSlice";
+import {CHAIN_ID_AVAX, CHAIN_ID_ETH, ChainId} from "@deltaswapio/deltaswap-sdk";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {ParsedTokenAccount} from "./transferSlice";
 
 export interface USDCTransferInfo {
   vaaHex: string | null;

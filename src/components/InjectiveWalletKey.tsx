@@ -1,5 +1,5 @@
-import { useState, useCallback } from "react";
-import { useInjectiveContext } from "../contexts/InjectiveWalletContext";
+import {useCallback, useState} from "react";
+import {useInjectiveContext} from "../contexts/InjectiveWalletContext";
 import InjectiveConnectWalletDialog from "./InjectiveConnectWalletDialog";
 import ToggleConnectedButton from "./ToggleConnectedButton";
 

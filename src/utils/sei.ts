@@ -1,23 +1,23 @@
 import {
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_SEI,
-  CHAIN_ID_TERRA,
-  CHAIN_ID_XPLA,
-  ChainId,
-  ChainName,
-  CosmWasmChainId,
-  CosmWasmChainName,
-  DeltaswapWrappedInfo,
-  coalesceChainId,
-  coalesceCosmWasmChainId,
-  hexToUint8Array,
-  isTerraChain,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_SEI,
+    CHAIN_ID_TERRA,
+    CHAIN_ID_XPLA,
+    ChainId,
+    ChainName,
+    coalesceChainId,
+    coalesceCosmWasmChainId,
+    CosmWasmChainId,
+    CosmWasmChainName,
+    DeltaswapWrappedInfo,
+    hexToUint8Array,
+    isTerraChain,
 } from "@deltaswapio/deltaswap-sdk";
-import { isNativeDenom } from "@deltaswapio/deltaswap-sdk/lib/esm/terra";
-import { getCosmWasmClient, getQueryClient } from "@sei-js/core";
-import { keccak256 } from "ethers/lib/utils";
-import { fromUint8Array } from "js-base64";
-import { SEI_CHAIN_CONFIGURATION } from "./consts";
+import {isNativeDenom} from "@deltaswapio/deltaswap-sdk/lib/esm/terra";
+import {getCosmWasmClient, getQueryClient} from "@sei-js/core";
+import {keccak256} from "ethers/lib/utils";
+import {fromUint8Array} from "js-base64";
+import {SEI_CHAIN_CONFIGURATION} from "./consts";
 
 export const getSeiWasmClient = () =>
   getCosmWasmClient(SEI_CHAIN_CONFIGURATION.rpcUrl);

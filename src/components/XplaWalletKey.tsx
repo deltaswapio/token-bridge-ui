@@ -1,5 +1,5 @@
-import { useConnectedWallet, useWallet } from "@xpla/wallet-provider";
-import { useCallback, useState } from "react";
+import {useConnectedWallet, useWallet} from "@xpla/wallet-provider";
+import {useCallback, useState} from "react";
 import XplaConnectWalletDialog from "./XplaConnectWalletDialog";
 import ToggleConnectedButton from "./ToggleConnectedButton";
 

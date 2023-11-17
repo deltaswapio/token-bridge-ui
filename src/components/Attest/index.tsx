@@ -1,20 +1,14 @@
+import {Container, Step, StepButton, StepContent, Stepper,} from "@material-ui/core";
+import {Alert} from "@material-ui/lab";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setStep} from "../../store/attestSlice";
 import {
-  Container,
-  Step,
-  StepButton,
-  StepContent,
-  Stepper,
-} from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setStep } from "../../store/attestSlice";
-import {
-  selectAttestActiveStep,
-  selectAttestIsCreateComplete,
-  selectAttestIsCreating,
-  selectAttestIsSendComplete,
-  selectAttestIsSending,
+    selectAttestActiveStep,
+    selectAttestIsCreateComplete,
+    selectAttestIsCreating,
+    selectAttestIsSendComplete,
+    selectAttestIsSending,
 } from "../../store/selectors";
 import HeaderText from "../HeaderText";
 import Create from "./Create";

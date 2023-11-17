@@ -1,9 +1,9 @@
-import { Account } from "near-api-js";
-import { useEffect, useMemo, useState } from "react";
-import { useNearContext } from "../contexts/NearWalletContext";
-import { DataWrapper } from "../store/helpers";
-import { makeNearAccount } from "../utils/near";
-import { AlgoMetadata } from "./useAlgoMetadata";
+import {Account} from "near-api-js";
+import {useEffect, useMemo, useState} from "react";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {DataWrapper} from "../store/helpers";
+import {makeNearAccount} from "../utils/near";
+import {AlgoMetadata} from "./useAlgoMetadata";
 
 export const fetchSingleMetadata = async (
   address: string,

@@ -1,5 +1,5 @@
-import { NetworkInfo, WalletProvider } from "@xpla/wallet-provider";
-import { ReactChildren } from "react";
+import {NetworkInfo, WalletProvider} from "@xpla/wallet-provider";
+import {ReactChildren} from "react";
 
 const testnet: NetworkInfo = {
   name: "testnet",

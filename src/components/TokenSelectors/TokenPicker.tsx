@@ -1,28 +1,28 @@
-import { ChainId } from "@deltaswapio/deltaswap-sdk";
+import {ChainId} from "@deltaswapio/deltaswap-sdk";
 import {
-  Button,
-  CircularProgress,
-  createStyles,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  List,
-  ListItem,
-  makeStyles,
-  TextField,
-  Tooltip,
-  Typography,
+    Button,
+    CircularProgress,
+    createStyles,
+    Dialog,
+    DialogContent,
+    DialogTitle,
+    IconButton,
+    List,
+    ListItem,
+    makeStyles,
+    TextField,
+    Tooltip,
+    Typography,
 } from "@material-ui/core";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import RefreshIcon from "@material-ui/icons/Refresh";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import { NFTParsedTokenAccount } from "../../store/nftSlice";
-import { selectTransferTargetChain } from "../../store/selectors";
-import { balancePretty } from "../../utils/balancePretty";
-import { getIsTokenTransferDisabled } from "../../utils/consts";
-import { shortenAddress } from "../../utils/solana";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import {useSelector} from "react-redux";
+import {NFTParsedTokenAccount} from "../../store/nftSlice";
+import {selectTransferTargetChain} from "../../store/selectors";
+import {balancePretty} from "../../utils/balancePretty";
+import {getIsTokenTransferDisabled} from "../../utils/consts";
+import {shortenAddress} from "../../utils/solana";
 import NFTViewer from "./NFTViewer";
 
 const useStyles = makeStyles((theme) =>

@@ -1,30 +1,25 @@
-import { Button } from "@material-ui/core";
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import {Button} from "@material-ui/core";
+import {useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
+import {setSourceAsset, setSourceChain, setStep, setTargetChain,} from "../../store/attestSlice";
 import {
-  setSourceAsset,
-  setSourceChain,
-  setStep,
-  setTargetChain,
-} from "../../store/attestSlice";
-import {
-  selectAttestSignedVAAHex,
-  selectTransferOriginAsset,
-  selectTransferOriginChain,
-  selectTransferSourceAsset,
-  selectTransferTargetChain,
+    selectAttestSignedVAAHex,
+    selectTransferOriginAsset,
+    selectTransferOriginChain,
+    selectTransferSourceAsset,
+    selectTransferTargetChain,
 } from "../../store/selectors";
 import {
-  ChainId,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_TERRA2,
-  CHAIN_ID_XPLA,
-  hexToNativeAssetString,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SUI,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SUI,
+    CHAIN_ID_TERRA2,
+    CHAIN_ID_XPLA,
+    ChainId,
+    hexToNativeAssetString,
 } from "@deltaswapio/deltaswap-sdk";
 
 export function RegisterNowButtonCore({

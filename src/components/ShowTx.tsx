@@ -1,34 +1,35 @@
 import {
-    ChainId,
+    CHAIN_ID_ACALA,
     CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_ARBITRUM,
     CHAIN_ID_AURORA,
     CHAIN_ID_AVAX,
+    CHAIN_ID_BASE,
     CHAIN_ID_BSC,
     CHAIN_ID_CELO,
     CHAIN_ID_ETH,
     CHAIN_ID_FANTOM,
-    CHAIN_ID_KLAYTN,
+    CHAIN_ID_INJECTIVE,
     CHAIN_ID_KARURA,
-    CHAIN_ID_NEAR,
+    CHAIN_ID_KLAYTN,
     CHAIN_ID_MOONBEAM,
+    CHAIN_ID_NEAR,
     CHAIN_ID_OASIS,
+    CHAIN_ID_OPTIMISM,
+    CHAIN_ID_PLANQ,
     CHAIN_ID_POLYGON,
+    CHAIN_ID_SEPOLIA,
     CHAIN_ID_SOLANA,
-    CHAIN_ID_ACALA,
-    isTerraChain,
+    CHAIN_ID_SUI,
     CHAIN_ID_TERRA2,
     CHAIN_ID_XPLA,
-    CHAIN_ID_APTOS,
-    CHAIN_ID_ARBITRUM,
-    CHAIN_ID_INJECTIVE,
-    CHAIN_ID_BASE,
-    CHAIN_ID_OPTIMISM,
-    CHAIN_ID_SEPOLIA,
-    CHAIN_ID_SUI, CHAIN_ID_PLANQ,
+    ChainId,
+    isTerraChain,
 } from "@deltaswapio/deltaswap-sdk";
-import { Button, makeStyles, Typography } from "@material-ui/core";
-import { Transaction } from "../store/transferSlice";
-import { CLUSTER, getExplorerName } from "../utils/consts";
+import {Button, makeStyles, Typography} from "@material-ui/core";
+import {Transaction} from "../store/transferSlice";
+import {CLUSTER, getExplorerName} from "../utils/consts";
 
 const useStyles = makeStyles((theme) => ({
   tx: {

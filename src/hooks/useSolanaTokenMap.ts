@@ -1,15 +1,11 @@
-import { Dispatch } from "@reduxjs/toolkit";
-import { ENV, TokenInfo, TokenListProvider } from "@solana/spl-token-registry";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { DataWrapper } from "../store/helpers";
-import { selectSolanaTokenMap } from "../store/selectors";
-import {
-  errorSolanaTokenMap,
-  fetchSolanaTokenMap,
-  receiveSolanaTokenMap,
-} from "../store/tokenSlice";
-import { CLUSTER } from "../utils/consts";
+import {Dispatch} from "@reduxjs/toolkit";
+import {ENV, TokenInfo, TokenListProvider} from "@solana/spl-token-registry";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {DataWrapper} from "../store/helpers";
+import {selectSolanaTokenMap} from "../store/selectors";
+import {errorSolanaTokenMap, fetchSolanaTokenMap, receiveSolanaTokenMap,} from "../store/tokenSlice";
+import {CLUSTER} from "../utils/consts";
 
 const environment = CLUSTER === "testnet" ? ENV.Testnet : ENV.MainnetBeta;
 

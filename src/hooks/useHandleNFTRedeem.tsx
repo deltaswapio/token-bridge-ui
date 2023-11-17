@@ -1,48 +1,48 @@
 import {
-  ChainId,
-  CHAIN_ID_ACALA,
-  CHAIN_ID_KARURA,
-  CHAIN_ID_KLAYTN,
-  CHAIN_ID_SOLANA,
-  getClaimAddressSolana,
-  hexToUint8Array,
-  isEVMChain,
-  parseNFTPayload,
-  parseVaa,
-  postVaaSolanaWithRetry,
+    CHAIN_ID_ACALA,
+    CHAIN_ID_KARURA,
+    CHAIN_ID_KLAYTN,
+    CHAIN_ID_SOLANA,
+    ChainId,
+    getClaimAddressSolana,
+    hexToUint8Array,
+    isEVMChain,
+    parseNFTPayload,
+    parseVaa,
+    postVaaSolanaWithRetry,
 } from "@deltaswapio/deltaswap-sdk";
 import {
-  createMetaOnSolana,
-  getForeignAssetSol,
-  isNFTVAASolanaNative,
-  redeemOnEth,
-  redeemOnSolana,
+    createMetaOnSolana,
+    getForeignAssetSol,
+    isNFTVAASolanaNative,
+    redeemOnEth,
+    redeemOnSolana,
 } from "@deltaswapio/deltaswap-sdk/lib/esm/nft_bridge";
-import { arrayify } from "@ethersproject/bytes";
-import { Alert } from "@material-ui/lab";
-import { WalletContextState } from "@solana/wallet-adapter-react";
-import { Connection } from "@solana/web3.js";
-import { Signer } from "ethers";
-import { useSnackbar } from "notistack";
-import { useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { useSolanaWallet } from "../contexts/SolanaWalletContext";
-import { setIsRedeeming, setRedeemTx } from "../store/nftSlice";
-import { selectNFTIsRedeeming, selectNFTTargetChain } from "../store/selectors";
+import {arrayify} from "@ethersproject/bytes";
+import {Alert} from "@material-ui/lab";
+import {WalletContextState} from "@solana/wallet-adapter-react";
+import {Connection} from "@solana/web3.js";
+import {Signer} from "ethers";
+import {useSnackbar} from "notistack";
+import {useCallback, useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {useSolanaWallet} from "../contexts/SolanaWalletContext";
+import {setIsRedeeming, setRedeemTx} from "../store/nftSlice";
+import {selectNFTIsRedeeming, selectNFTTargetChain} from "../store/selectors";
 import {
-  ACALA_HOST,
-  getNFTBridgeAddressForChain,
-  KARURA_HOST,
-  MAX_VAA_UPLOAD_RETRIES_SOLANA,
-  SOLANA_HOST,
-  SOL_BRIDGE_ADDRESS,
-  SOL_NFT_BRIDGE_ADDRESS,
+    ACALA_HOST,
+    getNFTBridgeAddressForChain,
+    KARURA_HOST,
+    MAX_VAA_UPLOAD_RETRIES_SOLANA,
+    SOL_BRIDGE_ADDRESS,
+    SOL_NFT_BRIDGE_ADDRESS,
+    SOLANA_HOST,
 } from "../utils/consts";
-import { getKaruraGasParams } from "../utils/karura";
-import { getMetadataAddress } from "../utils/metaplex";
+import {getKaruraGasParams} from "../utils/karura";
+import {getMetadataAddress} from "../utils/metaplex";
 import parseError from "../utils/parseError";
-import { signSendAndConfirm } from "../utils/solana";
+import {signSendAndConfirm} from "../utils/solana";
 import useNFTSignedVAA from "./useNFTSignedVAA";
 
 async function evm(

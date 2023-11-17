@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TERRA_DEFAULT_FEE_DENOM } from "../utils/consts";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {TERRA_DEFAULT_FEE_DENOM} from "../utils/consts";
 
 export interface FeeSliceState {
   terraFeeDenom: string;

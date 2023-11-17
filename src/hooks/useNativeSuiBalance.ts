@@ -1,5 +1,5 @@
-import { MutableRefObject, useEffect, useMemo, useState } from "react";
-import { getSuiProvider } from "../utils/sui";
+import {MutableRefObject, useEffect, useMemo, useState} from "react";
+import {getSuiProvider} from "../utils/sui";
 
 export default function useSuiNativeBalance(
   address?: string,

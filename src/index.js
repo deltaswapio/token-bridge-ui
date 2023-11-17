@@ -1,23 +1,21 @@
-import { CssBaseline } from "@material-ui/core";
-import { ThemeProvider } from "@material-ui/core/styles";
-import { SnackbarProvider } from "notistack";
+import {CssBaseline} from "@material-ui/core";
+import {ThemeProvider} from "@material-ui/core/styles";
+import {SnackbarProvider} from "notistack";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { HashRouter } from "react-router-dom";
+import {Provider} from "react-redux";
+import {HashRouter} from "react-router-dom";
 import App from "./App";
 import ErrorBoundary from "./ErrorBoundary";
-import { AlgorandContextProvider } from "./contexts/AlgorandWalletContext";
+import {AlgorandContextProvider} from "./contexts/AlgorandWalletContext";
 import AptosWalletProvider from "./contexts/AptosWalletContext";
-import { EthereumProviderProvider } from "./contexts/EthereumProviderContext";
+import {EthereumProviderProvider} from "./contexts/EthereumProviderContext";
 import InjectiveWalletProvider from "./contexts/InjectiveWalletContext";
-import { NearContextProvider } from "./contexts/NearWalletContext";
-import { SolanaWalletProvider } from "./contexts/SolanaWalletContext.tsx";
+import {SolanaWalletProvider} from "./contexts/SolanaWalletContext.tsx";
 import SuiWalletProvider from "./contexts/SuiWalletContext";
-import { TerraWalletProvider } from "./contexts/TerraWalletContext.tsx";
+import {TerraWalletProvider} from "./contexts/TerraWalletContext.tsx";
 import XplaWalletProvider from "./contexts/XplaWalletContext";
-import { theme } from "./muiTheme";
-import { store } from "./store";
-import { SEI_CHAIN_CONFIGURATION } from "./utils/consts";
+import {theme} from "./muiTheme";
+import {store} from "./store";
 import Disclaimer from "./components/Disclaimer";
 
 ReactDOM.render(

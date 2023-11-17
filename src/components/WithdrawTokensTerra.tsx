@@ -1,34 +1,19 @@
 // TODO: need to add select chain bar
-import { useCallback, useState } from "react";
-import { MsgExecuteContract } from "@terra-money/terra.js";
-import {
-  ConnectedWallet,
-  useConnectedWallet,
-} from "@terra-money/wallet-provider";
-import {
-  getTokenBridgeAddressForChain,
-  SUPPORTED_TERRA_TOKENS,
-} from "../utils/consts";
+import {useCallback, useState} from "react";
+import {MsgExecuteContract} from "@terra-money/terra.js";
+import {ConnectedWallet, useConnectedWallet,} from "@terra-money/wallet-provider";
+import {getTokenBridgeAddressForChain, SUPPORTED_TERRA_TOKENS,} from "../utils/consts";
 import TerraWalletKey from "./TerraWalletKey";
-import {
-  Container,
-  FormControl,
-  InputLabel,
-  makeStyles,
-  MenuItem,
-  Paper,
-  Select,
-  Typography,
-} from "@material-ui/core";
-import { postWithFees, waitForTerraExecution } from "../utils/terra";
+import {Container, FormControl, InputLabel, makeStyles, MenuItem, Paper, Select, Typography,} from "@material-ui/core";
+import {postWithFees, waitForTerraExecution} from "../utils/terra";
 import ButtonWithLoader from "./ButtonWithLoader";
-import { useSnackbar } from "notistack";
-import { Alert } from "@material-ui/lab";
-import { useSelector } from "react-redux";
-import { selectTerraFeeDenom } from "../store/selectors";
+import {useSnackbar} from "notistack";
+import {Alert} from "@material-ui/lab";
+import {useSelector} from "react-redux";
+import {selectTerraFeeDenom} from "../store/selectors";
 import TerraFeeDenomPicker from "./TerraFeeDenomPicker";
 import HeaderText from "./HeaderText";
-import { CHAIN_ID_TERRA } from "@deltaswapio/deltaswap-sdk";
+import {CHAIN_ID_TERRA} from "@deltaswapio/deltaswap-sdk";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {

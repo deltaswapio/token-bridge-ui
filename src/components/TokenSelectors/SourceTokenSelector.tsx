@@ -1,34 +1,34 @@
 import {
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  CHAIN_ID_XPLA,
-  isEVMChain,
-  isTerraChain,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_XPLA,
+    isEVMChain,
+    isTerraChain,
 } from "@deltaswapio/deltaswap-sdk";
-import { TextField, Typography } from "@material-ui/core";
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {TextField, Typography} from "@material-ui/core";
+import {useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import useGetSourceParsedTokens from "../../hooks/useGetSourceParsedTokenAccounts";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import {
-  setSourceParsedTokenAccount as setNFTSourceParsedTokenAccount,
-  setSourceWalletAddress as setNFTSourceWalletAddress,
+    setSourceParsedTokenAccount as setNFTSourceParsedTokenAccount,
+    setSourceWalletAddress as setNFTSourceWalletAddress,
 } from "../../store/nftSlice";
 import {
-  selectNFTSourceChain,
-  selectNFTSourceParsedTokenAccount,
-  selectTransferSourceChain,
-  selectTransferSourceParsedTokenAccount,
+    selectNFTSourceChain,
+    selectNFTSourceParsedTokenAccount,
+    selectTransferSourceChain,
+    selectTransferSourceParsedTokenAccount,
 } from "../../store/selectors";
 import {
-  ParsedTokenAccount,
-  setSourceParsedTokenAccount as setTransferSourceParsedTokenAccount,
-  setSourceWalletAddress as setTransferSourceWalletAddress,
+    ParsedTokenAccount,
+    setSourceParsedTokenAccount as setTransferSourceParsedTokenAccount,
+    setSourceWalletAddress as setTransferSourceWalletAddress,
 } from "../../store/transferSlice";
 import AlgoTokenPicker from "./AlgoTokenPicker";
 import AptosTokenPicker from "./AptosTokenPicker";

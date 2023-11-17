@@ -1,8 +1,8 @@
-import { ensureHexPrefix } from "@deltaswapio/deltaswap-sdk";
-import { AptosClient } from "aptos";
-import { useEffect, useMemo, useState } from "react";
-import { DataWrapper } from "../store/helpers";
-import { getAptosClient } from "../utils/aptos";
+import {ensureHexPrefix} from "@deltaswapio/deltaswap-sdk";
+import {AptosClient} from "aptos";
+import {useEffect, useMemo, useState} from "react";
+import {DataWrapper} from "../store/helpers";
+import {getAptosClient} from "../utils/aptos";
 
 export type AptosMetadata = {
   symbol?: string;

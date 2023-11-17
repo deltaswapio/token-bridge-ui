@@ -1,4 +1,4 @@
-import { useAlgorandContext } from "../contexts/AlgorandWalletContext";
+import {useAlgorandContext} from "../contexts/AlgorandWalletContext";
 import ToggleConnectedButton from "./ToggleConnectedButton";
 
 const AlgorandWalletKey = () => {

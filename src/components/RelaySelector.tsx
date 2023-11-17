@@ -1,12 +1,6 @@
-import {
-  CircularProgress,
-  makeStyles,
-  MenuItem,
-  TextField,
-  Typography,
-} from "@material-ui/core";
-import { useCallback } from "react";
-import useRelayersAvailable, { Relayer } from "../hooks/useRelayersAvailable";
+import {CircularProgress, makeStyles, MenuItem, TextField, Typography,} from "@material-ui/core";
+import {useCallback} from "react";
+import useRelayersAvailable, {Relayer} from "../hooks/useRelayersAvailable";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {

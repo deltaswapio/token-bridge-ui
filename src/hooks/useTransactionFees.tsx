@@ -1,29 +1,25 @@
 import {
-  ChainId,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_TERRA,
-  isEVMChain,
-  isTerraChain,
-  TerraChainId,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_TERRA,
+    ChainId,
+    isEVMChain,
+    isTerraChain,
+    TerraChainId,
 } from "@deltaswapio/deltaswap-sdk";
-import { Provider } from "@ethersproject/abstract-provider";
-import { formatUnits } from "@ethersproject/units";
-import { Typography } from "@material-ui/core";
-import { LocalGasStation } from "@material-ui/icons";
-import { Connection, PublicKey } from "@solana/web3.js";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import {
-  getDefaultNativeCurrencySymbol,
-  SOLANA_HOST,
-  getTerraConfig,
-} from "../utils/consts";
-import { getMultipleAccountsRPC } from "../utils/solana";
-import { NATIVE_TERRA_DECIMALS } from "../utils/terra";
+import {Provider} from "@ethersproject/abstract-provider";
+import {formatUnits} from "@ethersproject/units";
+import {Typography} from "@material-ui/core";
+import {LocalGasStation} from "@material-ui/icons";
+import {Connection, PublicKey} from "@solana/web3.js";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {getDefaultNativeCurrencySymbol, getTerraConfig, SOLANA_HOST,} from "../utils/consts";
+import {getMultipleAccountsRPC} from "../utils/solana";
+import {NATIVE_TERRA_DECIMALS} from "../utils/terra";
 import useIsWalletReady from "./useIsWalletReady";
-import { LCDClient } from "@terra-money/terra.js";
-import { setGasPrice } from "../store/transferSlice";
-import { useDispatch } from "react-redux";
+import {LCDClient} from "@terra-money/terra.js";
+import {setGasPrice} from "../store/transferSlice";
+import {useDispatch} from "react-redux";
 
 export type GasEstimate = {
   currentGasPrice: string;

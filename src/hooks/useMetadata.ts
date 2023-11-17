@@ -1,36 +1,34 @@
 import {
-  ChainId,
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_TERRA2,
-  CHAIN_ID_XPLA,
-  isEVMChain,
-  isTerraChain,
-  TerraChainId,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SUI,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_TERRA2,
+    CHAIN_ID_XPLA,
+    ChainId,
+    isEVMChain,
+    isTerraChain,
+    TerraChainId,
 } from "@deltaswapio/deltaswap-sdk";
-import { TokenInfo } from "@solana/spl-token-registry";
-import { useMemo } from "react";
-import { DataWrapper, getEmptyDataWrapper } from "../store/helpers";
-import { Metadata } from "../utils/metaplex";
-import useAlgoMetadata, { AlgoMetadata } from "./useAlgoMetadata";
-import useAptosMetadata, { AptosMetadata } from "./useAptosMetadata";
-import useEvmMetadata, { EvmMetadata } from "./useEvmMetadata";
-import useInjectiveMetadata, {
-  InjectiveMetadata,
-} from "./useInjectiveMetadata";
+import {TokenInfo} from "@solana/spl-token-registry";
+import {useMemo} from "react";
+import {DataWrapper, getEmptyDataWrapper} from "../store/helpers";
+import {Metadata} from "../utils/metaplex";
+import useAlgoMetadata, {AlgoMetadata} from "./useAlgoMetadata";
+import useAptosMetadata, {AptosMetadata} from "./useAptosMetadata";
+import useEvmMetadata, {EvmMetadata} from "./useEvmMetadata";
+import useInjectiveMetadata, {InjectiveMetadata,} from "./useInjectiveMetadata";
 import useMetaplexData from "./useMetaplexData";
 import useNearMetadata from "./useNearMetadata";
 import useSolanaTokenMap from "./useSolanaTokenMap";
-import useTerraMetadata, { TerraMetadata } from "./useTerraMetadata";
-import useTerraTokenMap, { TerraTokenMap } from "./useTerraTokenMap";
-import useXplaMetadata, { XplaMetadata } from "./useXplaMetadata";
-import useSeiMetadata, { SeiMetadata } from "./useSeiMetadata";
-import useSuiMetadata, { SuiMetadata } from "./useSuiMetadata";
+import useTerraMetadata, {TerraMetadata} from "./useTerraMetadata";
+import useTerraTokenMap, {TerraTokenMap} from "./useTerraTokenMap";
+import useXplaMetadata, {XplaMetadata} from "./useXplaMetadata";
+import useSeiMetadata, {SeiMetadata} from "./useSeiMetadata";
+import useSuiMetadata, {SuiMetadata} from "./useSuiMetadata";
 
 export type GenericMetadata = {
   symbol?: string;

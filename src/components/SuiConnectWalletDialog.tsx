@@ -1,16 +1,16 @@
 import {
-  Dialog,
-  DialogTitle,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
+    Dialog,
+    DialogTitle,
+    IconButton,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    makeStyles,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import { useWallet } from "@suiet/wallet-kit";
-import { useCallback } from "react";
+import {useWallet} from "@suiet/wallet-kit";
+import {useCallback} from "react";
 
 const useStyles = makeStyles((theme) => ({
   flexTitle: {

@@ -1,14 +1,14 @@
-import { CHAIN_ID_SOLANA } from "@deltaswapio/deltaswap-sdk";
-import { makeStyles, Typography } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import {CHAIN_ID_SOLANA} from "@deltaswapio/deltaswap-sdk";
+import {makeStyles, Typography} from "@material-ui/core";
+import {useSelector} from "react-redux";
 import {
-  selectAttestAttestTx,
-  selectAttestCreateTx,
-  selectAttestIsCreating,
-  selectAttestIsSending,
-  selectAttestTargetChain,
+    selectAttestAttestTx,
+    selectAttestCreateTx,
+    selectAttestIsCreating,
+    selectAttestIsSending,
+    selectAttestTargetChain,
 } from "../../store/selectors";
-import { WAITING_FOR_WALLET_AND_CONF } from "../Transfer/WaitingForWalletMessage";
+import {WAITING_FOR_WALLET_AND_CONF} from "../Transfer/WaitingForWalletMessage";
 
 const useStyles = makeStyles((theme) => ({
   message: {

@@ -1,20 +1,10 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Typography,
-} from "@material-ui/core";
-import { ArrowDownward } from "@material-ui/icons";
-import { useSelector } from "react-redux";
-import {
-  selectTransferSourceChain,
-  selectTransferSourceParsedTokenAccount,
-} from "../../store/selectors";
-import { CHAINS_BY_ID } from "../../utils/consts";
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography,} from "@material-ui/core";
+import {ArrowDownward} from "@material-ui/icons";
+import {useSelector} from "react-redux";
+import {selectTransferSourceChain, selectTransferSourceParsedTokenAccount,} from "../../store/selectors";
+import {CHAINS_BY_ID} from "../../utils/consts";
 import SmartAddress from "../SmartAddress";
-import { useTargetInfo } from "./Target";
+import {useTargetInfo} from "./Target";
 
 function SendConfirmationContent({
   open,

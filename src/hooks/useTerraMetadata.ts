@@ -1,8 +1,8 @@
-import { TerraChainId } from "@deltaswapio/deltaswap-sdk";
-import { LCDClient } from "@terra-money/terra.js";
-import { useLayoutEffect, useMemo, useState } from "react";
-import { DataWrapper } from "../store/helpers";
-import { getTerraConfig } from "../utils/consts";
+import {TerraChainId} from "@deltaswapio/deltaswap-sdk";
+import {LCDClient} from "@terra-money/terra.js";
+import {useLayoutEffect, useMemo, useState} from "react";
+import {DataWrapper} from "../store/helpers";
+import {getTerraConfig} from "../utils/consts";
 
 export type TerraMetadata = {
   symbol?: string;

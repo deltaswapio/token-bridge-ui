@@ -1,7 +1,7 @@
-import { ChainId, CHAIN_ID_POLYGON, isEVMChain } from "@deltaswapio/deltaswap-sdk";
-import { makeStyles, Typography } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import { POLYGON_TERRA_WRAPPED_TOKENS } from "../../utils/consts";
+import {CHAIN_ID_POLYGON, ChainId, isEVMChain} from "@deltaswapio/deltaswap-sdk";
+import {makeStyles, Typography} from "@material-ui/core";
+import {Alert} from "@material-ui/lab";
+import {POLYGON_TERRA_WRAPPED_TOKENS} from "../../utils/consts";
 
 const useStyles = makeStyles((theme) => ({
   container: {

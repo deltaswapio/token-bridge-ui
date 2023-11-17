@@ -1,14 +1,14 @@
-import { CHAIN_ID_NEAR } from "@deltaswapio/deltaswap-sdk";
-import { formatUnits } from "ethers/lib/utils";
-import { useCallback } from "react";
-import { createParsedTokenAccount } from "../../hooks/useGetSourceParsedTokenAccounts";
+import {CHAIN_ID_NEAR} from "@deltaswapio/deltaswap-sdk";
+import {formatUnits} from "ethers/lib/utils";
+import {useCallback} from "react";
+import {createParsedTokenAccount} from "../../hooks/useGetSourceParsedTokenAccounts";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
-import { fetchSingleMetadata } from "../../hooks/useNearMetadata";
-import { DataWrapper } from "../../store/helpers";
-import { NFTParsedTokenAccount } from "../../store/nftSlice";
-import { ParsedTokenAccount } from "../../store/transferSlice";
-import { makeNearAccount } from "../../utils/near";
-import TokenPicker, { BasicAccountRender } from "./TokenPicker";
+import {fetchSingleMetadata} from "../../hooks/useNearMetadata";
+import {DataWrapper} from "../../store/helpers";
+import {NFTParsedTokenAccount} from "../../store/nftSlice";
+import {ParsedTokenAccount} from "../../store/transferSlice";
+import {makeNearAccount} from "../../utils/near";
+import TokenPicker, {BasicAccountRender} from "./TokenPicker";
 
 type NearTokenPickerProps = {
   value: ParsedTokenAccount | null;

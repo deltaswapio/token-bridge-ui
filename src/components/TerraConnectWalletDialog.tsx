@@ -1,17 +1,17 @@
 import {
-  Dialog,
-  DialogTitle,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
+    Dialog,
+    DialogTitle,
+    Divider,
+    IconButton,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    makeStyles,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import { ConnectType, useWallet } from "@terra-money/wallet-provider";
-import { useCallback } from "react";
+import {ConnectType, useWallet} from "@terra-money/wallet-provider";
+import {useCallback} from "react";
 
 const useStyles = makeStyles((theme) => ({
   flexTitle: {

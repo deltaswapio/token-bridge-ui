@@ -1,21 +1,16 @@
-import { ChainId, terra, TerraChainId } from "@deltaswapio/deltaswap-sdk";
-import { formatUnits } from "@ethersproject/units";
-import { LCDClient } from "@terra-money/terra.js";
-import { useCallback, useMemo, useRef } from "react";
-import { createParsedTokenAccount } from "../../hooks/useGetSourceParsedTokenAccounts";
+import {ChainId, terra, TerraChainId} from "@deltaswapio/deltaswap-sdk";
+import {formatUnits} from "@ethersproject/units";
+import {LCDClient} from "@terra-money/terra.js";
+import {useCallback, useMemo, useRef} from "react";
+import {createParsedTokenAccount} from "../../hooks/useGetSourceParsedTokenAccounts";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import useTerraNativeBalances from "../../hooks/useTerraNativeBalances";
-import { DataWrapper } from "../../store/helpers";
-import { NFTParsedTokenAccount } from "../../store/nftSlice";
-import { ParsedTokenAccount } from "../../store/transferSlice";
-import { SUPPORTED_TERRA_TOKENS, getTerraConfig } from "../../utils/consts";
-import {
-  formatNativeDenom,
-  getNativeTerraIcon,
-  isValidTerraAddress,
-  NATIVE_TERRA_DECIMALS,
-} from "../../utils/terra";
-import TokenPicker, { BasicAccountRender } from "./TokenPicker";
+import {DataWrapper} from "../../store/helpers";
+import {NFTParsedTokenAccount} from "../../store/nftSlice";
+import {ParsedTokenAccount} from "../../store/transferSlice";
+import {getTerraConfig, SUPPORTED_TERRA_TOKENS} from "../../utils/consts";
+import {formatNativeDenom, getNativeTerraIcon, isValidTerraAddress, NATIVE_TERRA_DECIMALS,} from "../../utils/terra";
+import TokenPicker, {BasicAccountRender} from "./TokenPicker";
 
 type TerraTokenPickerProps = {
   value: ParsedTokenAccount | null;

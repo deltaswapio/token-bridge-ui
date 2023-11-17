@@ -1,26 +1,22 @@
-import {
-  ChainId,
-  CHAIN_ID_ACALA,
-  CHAIN_ID_KARURA,
-} from "@deltaswapio/deltaswap-sdk";
+import {CHAIN_ID_ACALA, CHAIN_ID_KARURA, ChainId,} from "@deltaswapio/deltaswap-sdk";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {
-  DataWrapper,
-  errorDataWrapper,
-  fetchDataWrapper,
-  getEmptyDataWrapper,
-  receiveDataWrapper,
+    DataWrapper,
+    errorDataWrapper,
+    fetchDataWrapper,
+    getEmptyDataWrapper,
+    receiveDataWrapper,
 } from "../store/helpers";
-import { selectAcalaRelayerInfo } from "../store/selectors";
+import {selectAcalaRelayerInfo} from "../store/selectors";
 import {
-  errorAcalaRelayerInfo,
-  fetchAcalaRelayerInfo,
-  receiveAcalaRelayerInfo,
-  setAcalaRelayerInfo,
+    errorAcalaRelayerInfo,
+    fetchAcalaRelayerInfo,
+    receiveAcalaRelayerInfo,
+    setAcalaRelayerInfo,
 } from "../store/transferSlice";
-import { ACALA_RELAYER_URL, ACALA_SHOULD_RELAY_URL } from "../utils/consts";
+import {ACALA_RELAYER_URL, ACALA_SHOULD_RELAY_URL} from "../utils/consts";
 
 export interface AcalaRelayerInfo {
   shouldRelay: boolean;

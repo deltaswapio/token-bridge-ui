@@ -1,14 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TokenInfo } from "@solana/spl-token-registry";
-import { RelayerTokenInfo } from "../hooks/useRelayersAvailable";
-import { TerraTokenMap } from "../hooks/useTerraTokenMap";
-import {
-  DataWrapper,
-  errorDataWrapper,
-  fetchDataWrapper,
-  getEmptyDataWrapper,
-  receiveDataWrapper,
-} from "./helpers";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {TokenInfo} from "@solana/spl-token-registry";
+import {RelayerTokenInfo} from "../hooks/useRelayersAvailable";
+import {TerraTokenMap} from "../hooks/useTerraTokenMap";
+import {DataWrapper, errorDataWrapper, fetchDataWrapper, getEmptyDataWrapper, receiveDataWrapper,} from "./helpers";
 
 export interface TokenMetadataState {
   solanaTokenMap: DataWrapper<TokenInfo[]>;

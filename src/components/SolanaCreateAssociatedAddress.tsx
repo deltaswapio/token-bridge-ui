@@ -1,31 +1,27 @@
 import {
-  ChainId,
-  CHAIN_ID_SOLANA,
-  getForeignAssetSolana,
-  hexToNativeAssetString,
-  hexToNativeString,
-  hexToUint8Array,
+    CHAIN_ID_SOLANA,
+    ChainId,
+    getForeignAssetSolana,
+    hexToNativeAssetString,
+    hexToNativeString,
+    hexToUint8Array,
 } from "@deltaswapio/deltaswap-sdk";
-import { Button, Typography } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+import {Button, Typography} from "@material-ui/core";
+import {Alert} from "@material-ui/lab";
+import {ASSOCIATED_TOKEN_PROGRAM_ID, Token, TOKEN_PROGRAM_ID,} from "@solana/spl-token";
+import {Connection, PublicKey, Transaction} from "@solana/web3.js";
+import {useSnackbar} from "notistack";
+import {useCallback, useEffect, useMemo, useState} from "react";
+import {useSelector} from "react-redux";
+import {useSolanaWallet} from "../contexts/SolanaWalletContext";
 import {
-  ASSOCIATED_TOKEN_PROGRAM_ID,
-  Token,
-  TOKEN_PROGRAM_ID,
-} from "@solana/spl-token";
-import { Connection, PublicKey, Transaction } from "@solana/web3.js";
-import { useSnackbar } from "notistack";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import { useSolanaWallet } from "../contexts/SolanaWalletContext";
-import {
-  selectTransferOriginAsset,
-  selectTransferOriginChain,
-  selectTransferTargetAddressHex,
+    selectTransferOriginAsset,
+    selectTransferOriginChain,
+    selectTransferTargetAddressHex,
 } from "../store/selectors";
-import { SOLANA_HOST, SOL_TOKEN_BRIDGE_ADDRESS } from "../utils/consts";
+import {SOL_TOKEN_BRIDGE_ADDRESS, SOLANA_HOST} from "../utils/consts";
 import parseError from "../utils/parseError";
-import { signSendAndConfirm } from "../utils/solana";
+import {signSendAndConfirm} from "../utils/solana";
 import ButtonWithLoader from "./ButtonWithLoader";
 import SmartAddress from "./SmartAddress";
 

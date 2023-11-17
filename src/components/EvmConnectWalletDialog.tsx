@@ -1,23 +1,19 @@
-import { ChainId } from "@deltaswapio/deltaswap-sdk";
+import {ChainId} from "@deltaswapio/deltaswap-sdk";
 import {
-  Dialog,
-  DialogTitle,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
+    Dialog,
+    DialogTitle,
+    IconButton,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    makeStyles,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import { useCallback } from "react";
-import {
-  Connection,
-  ConnectType,
-  useEthereumProvider,
-} from "../contexts/EthereumProviderContext";
-import { getEvmChainId } from "../utils/consts";
-import { EVM_RPC_MAP } from "../utils/metaMaskChainParameters";
+import {useCallback} from "react";
+import {Connection, ConnectType, useEthereumProvider,} from "../contexts/EthereumProviderContext";
+import {getEvmChainId} from "../utils/consts";
+import {EVM_RPC_MAP} from "../utils/metaMaskChainParameters";
 
 const useStyles = makeStyles((theme) => ({
   flexTitle: {

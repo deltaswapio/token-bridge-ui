@@ -1,7 +1,7 @@
-import { Algodv2 } from "algosdk";
-import { useEffect, useMemo, useState } from "react";
-import { DataWrapper } from "../store/helpers";
-import { ALGORAND_HOST, ALGO_DECIMALS } from "../utils/consts";
+import {Algodv2} from "algosdk";
+import {useEffect, useMemo, useState} from "react";
+import {DataWrapper} from "../store/helpers";
+import {ALGO_DECIMALS, ALGORAND_HOST} from "../utils/consts";
 
 export type AlgoMetadata = {
   symbol?: string;

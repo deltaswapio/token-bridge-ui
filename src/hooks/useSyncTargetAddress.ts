@@ -1,50 +1,46 @@
 import {
-  cosmos,
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_XPLA,
-  isEVMChain,
-  isTerraChain,
-  uint8ArrayToHex,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SUI,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_XPLA,
+    cosmos,
+    isEVMChain,
+    isTerraChain,
+    uint8ArrayToHex,
 } from "@deltaswapio/deltaswap-sdk";
-import { arrayify, zeroPad } from "@ethersproject/bytes";
+import {arrayify, zeroPad} from "@ethersproject/bytes";
+import {ASSOCIATED_TOKEN_PROGRAM_ID, Token, TOKEN_PROGRAM_ID,} from "@solana/spl-token";
+import {PublicKey} from "@solana/web3.js";
+import {useWallet as useSeiWallet} from "@sei-js/react";
+import {useConnectedWallet} from "@terra-money/wallet-provider";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useAlgorandContext} from "../contexts/AlgorandWalletContext";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
+import {useSolanaWallet} from "../contexts/SolanaWalletContext";
+import {setTargetAddressHex as setNFTTargetAddressHex} from "../store/nftSlice";
 import {
-  ASSOCIATED_TOKEN_PROGRAM_ID,
-  Token,
-  TOKEN_PROGRAM_ID,
-} from "@solana/spl-token";
-import { PublicKey } from "@solana/web3.js";
-import { useWallet as useSeiWallet } from "@sei-js/react";
-import { useConnectedWallet } from "@terra-money/wallet-provider";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useAlgorandContext } from "../contexts/AlgorandWalletContext";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
-import { useSolanaWallet } from "../contexts/SolanaWalletContext";
-import { setTargetAddressHex as setNFTTargetAddressHex } from "../store/nftSlice";
-import {
-  selectNFTTargetAsset,
-  selectNFTTargetChain,
-  selectTransferTargetAsset,
-  selectTransferTargetChain,
-  selectTransferTargetParsedTokenAccount,
+    selectNFTTargetAsset,
+    selectNFTTargetChain,
+    selectTransferTargetAsset,
+    selectTransferTargetChain,
+    selectTransferTargetParsedTokenAccount,
 } from "../store/selectors";
-import { setTargetAddressHex as setTransferTargetAddressHex } from "../store/transferSlice";
-import { decodeAddress } from "algosdk";
-import { useConnectedWallet as useXplaConnectedWallet } from "@xpla/wallet-provider";
-import { useAptosContext } from "../contexts/AptosWalletContext";
-import { useInjectiveContext } from "../contexts/InjectiveWalletContext";
-import { useNearContext } from "../contexts/NearWalletContext";
-import { makeNearAccount, signAndSendTransactions } from "../utils/near";
-import { NEAR_TOKEN_BRIDGE_ACCOUNT } from "../utils/consts";
-import { getTransactionLastResult } from "near-api-js/lib/providers";
+import {setTargetAddressHex as setTransferTargetAddressHex} from "../store/transferSlice";
+import {decodeAddress} from "algosdk";
+import {useConnectedWallet as useXplaConnectedWallet} from "@xpla/wallet-provider";
+import {useAptosContext} from "../contexts/AptosWalletContext";
+import {useInjectiveContext} from "../contexts/InjectiveWalletContext";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {makeNearAccount, signAndSendTransactions} from "../utils/near";
+import {NEAR_TOKEN_BRIDGE_ACCOUNT} from "../utils/consts";
+import {getTransactionLastResult} from "near-api-js/lib/providers";
 import BN from "bn.js";
-import { useWallet } from "@suiet/wallet-kit";
+import {useWallet} from "@suiet/wallet-kit";
 
 function useSyncTargetAddress(shouldFire: boolean, nft?: boolean) {
   const dispatch = useDispatch();

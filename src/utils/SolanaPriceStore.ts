@@ -1,5 +1,5 @@
-import { MARKETS } from "@project-serum/serum";
-import { Connection, PublicKey } from "@solana/web3.js";
+import {MARKETS} from "@project-serum/serum";
+import {Connection, PublicKey} from "@solana/web3.js";
 
 export interface Markets {
   [coin: string]: {

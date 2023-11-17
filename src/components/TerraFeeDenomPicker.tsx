@@ -1,18 +1,12 @@
-import {
-  MenuItem,
-  makeStyles,
-  TextField,
-  Typography,
-  ListItemIcon,
-} from "@material-ui/core";
-import { useConnectedWallet } from "@terra-money/wallet-provider";
-import { useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setTerraFeeDenom } from "../store/feeSlice";
-import { selectTerraFeeDenom } from "../store/selectors";
+import {ListItemIcon, makeStyles, MenuItem, TextField, Typography,} from "@material-ui/core";
+import {useConnectedWallet} from "@terra-money/wallet-provider";
+import {useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setTerraFeeDenom} from "../store/feeSlice";
+import {selectTerraFeeDenom} from "../store/selectors";
 import useTerraNativeBalances from "../hooks/useTerraNativeBalances";
-import { formatNativeDenom, getNativeTerraIcon } from "../utils/terra";
-import { TerraChainId } from "@deltaswapio/deltaswap-sdk";
+import {formatNativeDenom, getNativeTerraIcon} from "../utils/terra";
+import {TerraChainId} from "@deltaswapio/deltaswap-sdk";
 
 const useStyles = makeStyles((theme) => ({
   feePickerContainer: {

@@ -1,7 +1,7 @@
-import { PublicKey, AccountInfo } from "@solana/web3.js";
+import {AccountInfo, PublicKey} from "@solana/web3.js";
 import BN from "bn.js";
-import { deserializeUnchecked } from "borsh";
-import { BinaryReader, BinaryWriter } from "borsh";
+import {BinaryReader, BinaryWriter, deserializeUnchecked} from "borsh";
+
 const base58: any = require("bs58");
 
 // eslint-disable-next-line

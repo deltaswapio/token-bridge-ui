@@ -1,13 +1,13 @@
-import { CHAIN_ID_SOLANA } from "@deltaswapio/deltaswap-sdk";
-import { makeStyles, Typography } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import {CHAIN_ID_SOLANA} from "@deltaswapio/deltaswap-sdk";
+import {makeStyles, Typography} from "@material-ui/core";
+import {useSelector} from "react-redux";
 import {
-  selectTransferIsApproving,
-  selectTransferIsRedeeming,
-  selectTransferIsSending,
-  selectTransferRedeemTx,
-  selectTransferTargetChain,
-  selectTransferTransferTx,
+    selectTransferIsApproving,
+    selectTransferIsRedeeming,
+    selectTransferIsSending,
+    selectTransferRedeemTx,
+    selectTransferTargetChain,
+    selectTransferTransferTx,
 } from "../../store/selectors";
 
 const useStyles = makeStyles((theme) => ({

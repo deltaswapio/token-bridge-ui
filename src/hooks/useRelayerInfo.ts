@@ -1,21 +1,14 @@
-import {
-  ChainId,
-  CHAIN_ID_ETH,
-  hexToNativeAssetString,
-} from "@deltaswapio/deltaswap-sdk";
+import {CHAIN_ID_ETH, ChainId, hexToNativeAssetString,} from "@deltaswapio/deltaswap-sdk";
 import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import { DataWrapper } from "../store/helpers";
-import {
-  selectTransferGasPrice,
-  selectTransferSourceParsedTokenAccount,
-} from "../store/selectors";
-import { getCoinGeckoURL, RELAYER_COMPARE_ASSET } from "../utils/consts";
+import {useEffect, useMemo, useState} from "react";
+import {useSelector} from "react-redux";
+import {DataWrapper} from "../store/helpers";
+import {selectTransferGasPrice, selectTransferSourceParsedTokenAccount,} from "../store/selectors";
+import {getCoinGeckoURL, RELAYER_COMPARE_ASSET} from "../utils/consts";
 import useRelayersAvailable, {
-  FeeScheduleEntryFlat,
-  FeeScheduleEntryPercent,
-  RelayerTokenInfo,
+    FeeScheduleEntryFlat,
+    FeeScheduleEntryPercent,
+    RelayerTokenInfo,
 } from "./useRelayersAvailable";
 
 export function getRelayAssetInfo(

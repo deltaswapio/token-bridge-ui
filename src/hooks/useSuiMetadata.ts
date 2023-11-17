@@ -1,7 +1,7 @@
-import { JsonRpcProvider } from "@mysten/sui.js";
-import { useLayoutEffect, useMemo, useState } from "react";
-import { DataWrapper } from "../store/helpers";
-import { getSuiProvider } from "../utils/sui";
+import {JsonRpcProvider} from "@mysten/sui.js";
+import {useLayoutEffect, useMemo, useState} from "react";
+import {DataWrapper} from "../store/helpers";
+import {getSuiProvider} from "../utils/sui";
 
 export type SuiMetadata = {
   symbol?: string;

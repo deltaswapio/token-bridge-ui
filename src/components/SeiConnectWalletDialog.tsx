@@ -1,16 +1,7 @@
-import {
-  Dialog,
-  DialogTitle,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  makeStyles,
-} from "@material-ui/core";
+import {Dialog, DialogTitle, IconButton, ListItem, ListItemText, makeStyles,} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import {useWallet, WalletConnectButton} from "@sei-js/react";
-import { useCallback } from "react";
+import {useCallback} from "react";
 
 const useStyles = makeStyles((theme) => ({
   flexTitle: {

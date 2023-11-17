@@ -1,22 +1,22 @@
-import { CHAIN_ID_SOLANA, isTerraChain } from "@deltaswapio/deltaswap-sdk";
-import { Alert } from "@material-ui/lab";
-import { Link, makeStyles } from "@material-ui/core";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { useHandleAttest } from "../../hooks/useHandleAttest";
+import {CHAIN_ID_SOLANA, isTerraChain} from "@deltaswapio/deltaswap-sdk";
+import {Alert} from "@material-ui/lab";
+import {Link, makeStyles} from "@material-ui/core";
+import {useMemo} from "react";
+import {useSelector} from "react-redux";
+import {useHandleAttest} from "../../hooks/useHandleAttest";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import useMetaplexData from "../../hooks/useMetaplexData";
 import {
-  selectAttestAttestTx,
-  selectAttestIsSendComplete,
-  selectAttestSourceAsset,
-  selectAttestSourceChain,
+    selectAttestAttestTx,
+    selectAttestIsSendComplete,
+    selectAttestSourceAsset,
+    selectAttestSourceChain,
 } from "../../store/selectors";
 import ButtonWithLoader from "../ButtonWithLoader";
 import KeyAndBalance from "../KeyAndBalance";
 import TransactionProgress from "../TransactionProgress";
 import WaitingForWalletMessage from "./WaitingForWalletMessage";
-import { SOLANA_TOKEN_METADATA_PROGRAM_URL } from "../../utils/consts";
+import {SOLANA_TOKEN_METADATA_PROGRAM_URL} from "../../utils/consts";
 import TerraFeeDenomPicker from "../TerraFeeDenomPicker";
 
 const useStyles = makeStyles((theme) => ({

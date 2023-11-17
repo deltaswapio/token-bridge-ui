@@ -1,9 +1,6 @@
-import { makeStyles, Typography } from "@material-ui/core";
-import { useSelector } from "react-redux";
-import {
-  selectNFTSourceChain,
-  selectNFTTransferTx,
-} from "../../store/selectors";
+import {makeStyles, Typography} from "@material-ui/core";
+import {useSelector} from "react-redux";
+import {selectNFTSourceChain, selectNFTTransferTx,} from "../../store/selectors";
 import ShowTx from "../ShowTx";
 
 const useStyles = makeStyles((theme) => ({

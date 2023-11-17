@@ -1,5 +1,5 @@
-import { Button, makeStyles, Tooltip } from "@material-ui/core";
-import { LinkOff } from "@material-ui/icons";
+import {Button, makeStyles, Tooltip} from "@material-ui/core";
+import {LinkOff} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   button: {

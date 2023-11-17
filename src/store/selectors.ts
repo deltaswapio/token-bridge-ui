@@ -1,12 +1,7 @@
-import {
-  CHAIN_ID_ACALA,
-  CHAIN_ID_KARURA,
-  CHAIN_ID_SOLANA,
-  isEVMChain,
-} from "@deltaswapio/deltaswap-sdk";
-import { ethers } from "ethers";
-import { parseUnits } from "ethers/lib/utils";
-import { RootState } from ".";
+import {CHAIN_ID_ACALA, CHAIN_ID_KARURA, CHAIN_ID_SOLANA, isEVMChain,} from "@deltaswapio/deltaswap-sdk";
+import {ethers} from "ethers";
+import {parseUnits} from "ethers/lib/utils";
+import {RootState} from ".";
 
 /*
  * Attest

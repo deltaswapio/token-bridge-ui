@@ -1,11 +1,11 @@
-import { ChainId, isTerraChain } from "@deltaswapio/deltaswap-sdk";
-import { makeStyles, Typography } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import { useSelector } from "react-redux";
+import {ChainId, isTerraChain} from "@deltaswapio/deltaswap-sdk";
+import {makeStyles, Typography} from "@material-ui/core";
+import {Alert} from "@material-ui/lab";
+import {useSelector} from "react-redux";
 import useIsWalletReady from "../hooks/useIsWalletReady";
 import useTransactionFees from "../hooks/useTransactionFees";
-import { selectTransferUseRelayer } from "../store/selectors";
-import { getDefaultNativeCurrencySymbol } from "../utils/consts";
+import {selectTransferUseRelayer} from "../store/selectors";
+import {getDefaultNativeCurrencySymbol} from "../utils/consts";
 
 const useStyles = makeStyles((theme) => ({
   alert: {

@@ -1,14 +1,14 @@
 import axios from "axios";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import {useEffect, useMemo, useRef, useState} from "react";
+import {useSelector} from "react-redux";
 import {
-  selectTransferAmount,
-  selectTransferOriginAsset,
-  selectTransferOriginChain,
-  selectTransferSourceChain,
+    selectTransferAmount,
+    selectTransferOriginAsset,
+    selectTransferOriginChain,
+    selectTransferSourceChain,
 } from "../store/selectors";
-import { WORMHOLE_RPC_HOSTS } from "../utils/consts";
-import { ChainId } from "@deltaswapio/deltaswap-sdk";
+import {WORMHOLE_RPC_HOSTS} from "../utils/consts";
+import {ChainId} from "@deltaswapio/deltaswap-sdk";
 
 const REMAINING_NOTIONAL_TOLERANCE = 0.98;
 interface TokenListEntry {

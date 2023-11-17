@@ -1,12 +1,7 @@
-import { cosmos, isNativeDenomInjective } from "@deltaswapio/deltaswap-sdk";
-import {
-  ChainGrpcBankApi,
-  ChainGrpcWasmApi,
-  Msgs,
-  TxGrpcClient,
-} from "@injectivelabs/sdk-ts";
-import { MsgBroadcaster, WalletStrategy } from "@injectivelabs/wallet-ts";
-import { INJECTIVE_NETWORK, INJECTIVE_NETWORK_INFO } from "./consts";
+import {cosmos, isNativeDenomInjective} from "@deltaswapio/deltaswap-sdk";
+import {ChainGrpcBankApi, ChainGrpcWasmApi, Msgs, TxGrpcClient,} from "@injectivelabs/sdk-ts";
+import {MsgBroadcaster, WalletStrategy} from "@injectivelabs/wallet-ts";
+import {INJECTIVE_NETWORK, INJECTIVE_NETWORK_INFO} from "./consts";
 
 export const NATIVE_INJECTIVE_DECIMALS = 18;
 

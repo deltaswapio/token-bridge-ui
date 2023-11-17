@@ -1,4 +1,4 @@
-import { createTheme, responsiveFontSizes } from "@material-ui/core";
+import {createTheme, responsiveFontSizes} from "@material-ui/core";
 
 export const theme = responsiveFontSizes(
   createTheme({

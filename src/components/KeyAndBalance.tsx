@@ -1,15 +1,15 @@
 import {
-  ChainId,
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  CHAIN_ID_XPLA,
-  isEVMChain,
-  isTerraChain,
-  CHAIN_ID_SEI,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_XPLA,
+    ChainId,
+    isEVMChain,
+    isTerraChain,
 } from "@deltaswapio/deltaswap-sdk";
 import AlgorandWalletKey from "./AlgorandWalletKey";
 import AptosWalletKey from "./AptosWalletKey";

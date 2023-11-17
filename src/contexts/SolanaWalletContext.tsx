@@ -1,26 +1,21 @@
-import { Adapter, WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import {Adapter} from "@solana/wallet-adapter-base";
+import {ConnectionProvider, useWallet, WalletProvider,} from "@solana/wallet-adapter-react";
 import {
-  ConnectionProvider,
-  WalletProvider,
-  useWallet,
-} from "@solana/wallet-adapter-react";
-import {
-  PhantomWalletAdapter,
-  SolflareWalletAdapter,
-  SolletWalletAdapter,
-  CloverWalletAdapter,
-  Coin98WalletAdapter,
-  SlopeWalletAdapter,
-  SolongWalletAdapter,
-  TorusWalletAdapter,
-  SolletExtensionWalletAdapter,
-  ExodusWalletAdapter,
-  BackpackWalletAdapter,
-  NightlyWalletAdapter,
-  BloctoWalletAdapter,
+    BackpackWalletAdapter,
+    CloverWalletAdapter,
+    Coin98WalletAdapter,
+    ExodusWalletAdapter,
+    NightlyWalletAdapter,
+    PhantomWalletAdapter,
+    SlopeWalletAdapter,
+    SolflareWalletAdapter,
+    SolletExtensionWalletAdapter,
+    SolletWalletAdapter,
+    SolongWalletAdapter,
+    TorusWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import { FC, useMemo } from "react";
-import { CLUSTER, SOLANA_HOST } from "../utils/consts";
+import {FC, useMemo} from "react";
+import {CLUSTER, SOLANA_HOST} from "../utils/consts";
 
 export const SolanaWalletProvider: FC = (props) => {
   const wallets = useMemo(() => {

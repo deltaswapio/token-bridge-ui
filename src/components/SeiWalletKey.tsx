@@ -1,5 +1,5 @@
-import { useWallet } from "@sei-js/react";
-import { useCallback, useState } from "react";
+import {useWallet} from "@sei-js/react";
+import {useCallback, useState} from "react";
 import SeiConnectWalletDialog from "./SeiConnectWalletDialog";
 import ToggleConnectedButton from "./ToggleConnectedButton";
 

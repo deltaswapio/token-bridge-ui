@@ -1,43 +1,41 @@
 import {
-  CHAIN_ID_APTOS,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  getEmitterAddressNear,
-  hexToNativeString,
-  isEVMChain,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    getEmitterAddressNear,
+    hexToNativeString,
+    isEVMChain,
 } from "@deltaswapio/deltaswap-sdk";
-import { makeStyles, Typography } from "@material-ui/core";
-import { useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNearContext } from "../../contexts/NearWalletContext";
+import {makeStyles, Typography} from "@material-ui/core";
+import {useCallback, useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNearContext} from "../../contexts/NearWalletContext";
 import useGetTargetParsedTokenAccounts from "../../hooks/useGetTargetParsedTokenAccounts";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import useSyncTargetAddress from "../../hooks/useSyncTargetAddress";
 import {
-  selectTransferAmount,
-  selectTransferIsTargetComplete,
-  selectTransferShouldLockFields,
-  selectTransferSourceChain,
-  selectTransferTargetAddressHex,
-  selectTransferTargetAsset,
-  selectTransferTargetAssetWrapper,
-  selectTransferTargetBalanceString,
-  selectTransferTargetChain,
-  selectTransferTargetError,
-  selectTransferTargetParsedTokenAccount,
+    selectTransferAmount,
+    selectTransferIsTargetComplete,
+    selectTransferShouldLockFields,
+    selectTransferSourceChain,
+    selectTransferTargetAddressHex,
+    selectTransferTargetAsset,
+    selectTransferTargetAssetWrapper,
+    selectTransferTargetBalanceString,
+    selectTransferTargetChain,
+    selectTransferTargetError,
+    selectTransferTargetParsedTokenAccount,
 } from "../../store/selectors";
-import { incrementStep, setTargetChain } from "../../store/transferSlice";
-import { CHAINS } from "../../utils/consts";
+import {incrementStep, setTargetChain} from "../../store/transferSlice";
+import {CHAINS} from "../../utils/consts";
 import ButtonWithLoader from "../ButtonWithLoader";
 import ChainSelect from "../ChainSelect";
 import FeeMethodSelector from "../FeeMethodSelector";
 import KeyAndBalance from "../KeyAndBalance";
 import LowBalanceWarning from "../LowBalanceWarning";
 import SmartAddress from "../SmartAddress";
-import SolanaCreateAssociatedAddress, {
-  useAssociatedAccountExistsState,
-} from "../SolanaCreateAssociatedAddress";
+import SolanaCreateAssociatedAddress, {useAssociatedAccountExistsState,} from "../SolanaCreateAssociatedAddress";
 import StepDescription from "../StepDescription";
 import RegisterNowButton from "./RegisterNowButton";
 

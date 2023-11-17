@@ -1,36 +1,30 @@
 import {
-  CHAIN_ID_ALGORAND,
-  CHAIN_ID_APTOS,
-  CHAIN_ID_INJECTIVE,
-  CHAIN_ID_NEAR,
-  CHAIN_ID_SEI,
-  CHAIN_ID_SOLANA,
-  CHAIN_ID_SUI,
-  CHAIN_ID_XPLA,
-  ChainId,
-  isEVMChain,
-  isTerraChain,
+    CHAIN_ID_ALGORAND,
+    CHAIN_ID_APTOS,
+    CHAIN_ID_INJECTIVE,
+    CHAIN_ID_NEAR,
+    CHAIN_ID_SEI,
+    CHAIN_ID_SOLANA,
+    CHAIN_ID_SUI,
+    CHAIN_ID_XPLA,
+    ChainId,
+    isEVMChain,
+    isTerraChain,
 } from "@deltaswapio/deltaswap-sdk";
-import { hexStripZeros, hexlify } from "@ethersproject/bytes";
-import { useWallet as useSeiWallet } from "@sei-js/react";
-import { useWallet as useSuiWallet } from "@suiet/wallet-kit";
-import { useConnectedWallet } from "@terra-money/wallet-provider";
-import { useConnectedWallet as useXplaConnectedWallet } from "@xpla/wallet-provider";
-import { useCallback, useMemo } from "react";
-import { useAlgorandContext } from "../contexts/AlgorandWalletContext";
-import { useAptosContext } from "../contexts/AptosWalletContext";
-import {
-  ConnectType,
-  useEthereumProvider,
-} from "../contexts/EthereumProviderContext";
-import { useInjectiveContext } from "../contexts/InjectiveWalletContext";
-import { useNearContext } from "../contexts/NearWalletContext";
-import { useSolanaWallet } from "../contexts/SolanaWalletContext";
-import { APTOS_NETWORK, CLUSTER, getEvmChainId } from "../utils/consts";
-import {
-  EVM_RPC_MAP,
-  METAMASK_CHAIN_PARAMETERS,
-} from "../utils/metaMaskChainParameters";
+import {hexlify, hexStripZeros} from "@ethersproject/bytes";
+import {useWallet as useSeiWallet} from "@sei-js/react";
+import {useWallet as useSuiWallet} from "@suiet/wallet-kit";
+import {useConnectedWallet} from "@terra-money/wallet-provider";
+import {useConnectedWallet as useXplaConnectedWallet} from "@xpla/wallet-provider";
+import {useCallback, useMemo} from "react";
+import {useAlgorandContext} from "../contexts/AlgorandWalletContext";
+import {useAptosContext} from "../contexts/AptosWalletContext";
+import {ConnectType, useEthereumProvider,} from "../contexts/EthereumProviderContext";
+import {useInjectiveContext} from "../contexts/InjectiveWalletContext";
+import {useNearContext} from "../contexts/NearWalletContext";
+import {useSolanaWallet} from "../contexts/SolanaWalletContext";
+import {APTOS_NETWORK, CLUSTER, getEvmChainId} from "../utils/consts";
+import {EVM_RPC_MAP, METAMASK_CHAIN_PARAMETERS,} from "../utils/metaMaskChainParameters";
 
 const createWalletStatus = (
   isReady: boolean,

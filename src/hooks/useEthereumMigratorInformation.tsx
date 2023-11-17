@@ -1,7 +1,7 @@
-import { ethers_contracts } from "@deltaswapio/deltaswap-sdk";
-import { Signer } from "@ethersproject/abstract-signer";
-import { formatUnits } from "@ethersproject/units";
-import { useEffect, useMemo, useState } from "react";
+import {ethers_contracts} from "@deltaswapio/deltaswap-sdk";
+import {Signer} from "@ethersproject/abstract-signer";
+import {formatUnits} from "@ethersproject/units";
+import {useEffect, useMemo, useState} from "react";
 
 export type EthMigrationInfo = {
   isLoading: boolean;

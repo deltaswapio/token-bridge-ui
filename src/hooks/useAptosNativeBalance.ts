@@ -1,6 +1,6 @@
-import { AptosAccount, CoinClient } from "aptos";
-import { MutableRefObject, useEffect, useMemo, useState } from "react";
-import { getAptosClient } from "../utils/aptos";
+import {AptosAccount, CoinClient} from "aptos";
+import {MutableRefObject, useEffect, useMemo, useState} from "react";
+import {getAptosClient} from "../utils/aptos";
 
 export default function useAptosNativeBalance(
   address?: string,

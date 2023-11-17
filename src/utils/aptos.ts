@@ -1,7 +1,7 @@
-import { CHAIN_ID_APTOS } from "@deltaswapio/deltaswap-sdk";
-import { AptosClient, Types } from "aptos";
-import { hexZeroPad } from "ethers/lib/utils";
-import { APTOS_URL, getBridgeAddressForChain } from "./consts";
+import {CHAIN_ID_APTOS} from "@deltaswapio/deltaswap-sdk";
+import {AptosClient, Types} from "aptos";
+import {hexZeroPad} from "ethers/lib/utils";
+import {APTOS_URL, getBridgeAddressForChain} from "./consts";
 
 export enum AptosNetwork {
   Testnet = "Testnet",

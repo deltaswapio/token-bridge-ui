@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
 import attestReducer from "./attestSlice";
 import nftReducer from "./nftSlice";
 import transferReducer from "./transferSlice";

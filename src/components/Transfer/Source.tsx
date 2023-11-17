@@ -1,30 +1,24 @@
-import { Button, makeStyles, Typography } from "@material-ui/core";
-import { VerifiedUser } from "@material-ui/icons";
-import { useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import {Button, makeStyles, Typography} from "@material-ui/core";
+import {VerifiedUser} from "@material-ui/icons";
+import {useCallback, useMemo} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import {
-  selectTransferAmount,
-  selectTransferIsSourceComplete,
-  selectTransferRelayerFee,
-  selectTransferShouldLockFields,
-  selectTransferSourceBalanceString,
-  selectTransferSourceChain,
-  selectTransferSourceChainFee,
-  selectTransferSourceChainNativeAsset,
-  selectTransferSourceChainNativeAssetDecimals,
-  selectTransferSourceError,
-  selectTransferSourceParsedTokenAccount,
-  selectTransferTargetChain,
+    selectTransferAmount,
+    selectTransferIsSourceComplete,
+    selectTransferShouldLockFields,
+    selectTransferSourceBalanceString,
+    selectTransferSourceChain,
+    selectTransferSourceChainFee,
+    selectTransferSourceChainNativeAsset,
+    selectTransferSourceChainNativeAssetDecimals,
+    selectTransferSourceError,
+    selectTransferSourceParsedTokenAccount,
+    selectTransferTargetChain,
 } from "../../store/selectors";
-import {
-  incrementStep,
-  setAmount,
-  setSourceChain,
-  setTargetChain,
-} from "../../store/transferSlice";
-import {CHAINS, CLUSTER, getDefaultNativeCurrencySymbol, getIsTransferDisabled} from "../../utils/consts";
+import {incrementStep, setAmount, setSourceChain, setTargetChain,} from "../../store/transferSlice";
+import {CHAINS, getIsTransferDisabled} from "../../utils/consts";
 import ButtonWithLoader from "../ButtonWithLoader";
 import ChainSelect from "../ChainSelect";
 import ChainSelectArrow from "../ChainSelectArrow";
@@ -32,7 +26,7 @@ import KeyAndBalance from "../KeyAndBalance";
 import LowBalanceWarning from "../LowBalanceWarning";
 import NumberTextField from "../NumberTextField";
 import StepDescription from "../StepDescription";
-import { TokenSelector } from "../TokenSelectors/SourceTokenSelector";
+import {TokenSelector} from "../TokenSelectors/SourceTokenSelector";
 import SourceAssetWarning from "./SourceAssetWarning";
 import ChainWarningMessage from "../ChainWarningMessage";
 import useIsTransferLimited from "../../hooks/useIsTransferLimited";

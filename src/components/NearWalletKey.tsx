@@ -1,4 +1,4 @@
-import { useNearContext } from "../contexts/NearWalletContext";
+import {useNearContext} from "../contexts/NearWalletContext";
 import ToggleConnectedButton from "./ToggleConnectedButton";
 
 const NearWalletKey = () => {

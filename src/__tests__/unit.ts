@@ -1,5 +1,5 @@
-import { describe, expect, it } from "@jest/globals";
-import { balancePretty } from "../utils/balancePretty";
+import {describe, expect, it} from "@jest/globals";
+import {balancePretty} from "../utils/balancePretty";
 
 describe("Unit Tests", () => {
   describe("balancePretty() tests", () => {

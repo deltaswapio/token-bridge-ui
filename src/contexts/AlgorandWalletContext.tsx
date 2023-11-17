@@ -1,12 +1,5 @@
-import MyAlgoConnect, { Accounts } from "@randlabs/myalgo-connect";
-import {
-  createContext,
-  ReactChildren,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
+import MyAlgoConnect, {Accounts} from "@randlabs/myalgo-connect";
+import {createContext, ReactChildren, useCallback, useContext, useMemo, useState,} from "react";
 
 interface IAlgorandContext {
   connect(): void;

@@ -1,9 +1,9 @@
-import { useCallback, useState } from "react";
-import { Typography } from "@material-ui/core";
-import { useEthereumProvider } from "../contexts/EthereumProviderContext";
+import {useCallback, useState} from "react";
+import {Typography} from "@material-ui/core";
+import {useEthereumProvider} from "../contexts/EthereumProviderContext";
 import ToggleConnectedButton from "./ToggleConnectedButton";
 import EvmConnectWalletDialog from "./EvmConnectWalletDialog";
-import { ChainId } from "@deltaswapio/deltaswap-sdk";
+import {ChainId} from "@deltaswapio/deltaswap-sdk";
 
 const EthereumSignerKey = ({ chainId }: { chainId: ChainId }) => {
   const { disconnect, signerAddress, providerError } = useEthereumProvider();

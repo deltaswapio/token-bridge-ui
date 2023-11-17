@@ -1,19 +1,9 @@
-import {
-  ChainId,
-  CHAIN_ID_ETH,
-  CHAIN_ID_SOLANA,
-} from "@deltaswapio/deltaswap-sdk";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { StateSafeWormholeWrappedInfo } from "../hooks/useCheckIfWormholeWrapped";
-import { ForeignAssetInfo } from "../hooks/useFetchForeignAsset";
-import {
-  DataWrapper,
-  errorDataWrapper,
-  fetchDataWrapper,
-  getEmptyDataWrapper,
-  receiveDataWrapper,
-} from "./helpers";
-import { ParsedTokenAccount, Transaction } from "./transferSlice";
+import {CHAIN_ID_ETH, CHAIN_ID_SOLANA, ChainId,} from "@deltaswapio/deltaswap-sdk";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {StateSafeWormholeWrappedInfo} from "../hooks/useCheckIfWormholeWrapped";
+import {ForeignAssetInfo} from "../hooks/useFetchForeignAsset";
+import {DataWrapper, errorDataWrapper, fetchDataWrapper, getEmptyDataWrapper, receiveDataWrapper,} from "./helpers";
+import {ParsedTokenAccount, Transaction} from "./transferSlice";
 
 const LAST_STEP = 3;
 

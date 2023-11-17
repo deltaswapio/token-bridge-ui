@@ -1,15 +1,15 @@
-import { CHAIN_ID_SEI, ChainId, cosmos } from "@deltaswapio/deltaswap-sdk";
-import { useCallback, useRef } from "react";
+import {CHAIN_ID_SEI, ChainId, cosmos} from "@deltaswapio/deltaswap-sdk";
+import {useCallback, useRef} from "react";
 import useIsWalletReady from "../../hooks/useIsWalletReady";
 import useSeiNativeBalances from "../../hooks/useSeiNativeBalances";
-import { DataWrapper } from "../../store/helpers";
-import { NFTParsedTokenAccount } from "../../store/nftSlice";
-import { ParsedTokenAccount } from "../../store/transferSlice";
-import TokenPicker, { BasicAccountRender } from "./TokenPicker";
-import { getSeiQueryClient, getSeiWasmClient } from "../../utils/sei";
-import { base58, formatUnits } from "ethers/lib/utils";
-import { SEI_TRANSLATOR } from "../../utils/consts";
-import { createParsedTokenAccount } from "../../hooks/useGetSourceParsedTokenAccounts";
+import {DataWrapper} from "../../store/helpers";
+import {NFTParsedTokenAccount} from "../../store/nftSlice";
+import {ParsedTokenAccount} from "../../store/transferSlice";
+import TokenPicker, {BasicAccountRender} from "./TokenPicker";
+import {getSeiQueryClient, getSeiWasmClient} from "../../utils/sei";
+import {base58, formatUnits} from "ethers/lib/utils";
+import {SEI_TRANSLATOR} from "../../utils/consts";
+import {createParsedTokenAccount} from "../../hooks/useGetSourceParsedTokenAccounts";
 
 type SeiTokenPickerProps = {
   value: ParsedTokenAccount | null;
