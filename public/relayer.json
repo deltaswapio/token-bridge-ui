@@ -1,0 +1,30 @@
+{
+  "supportedTokens": [
+    {
+      "chainId": 4,
+      "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+      "coingeckoId": "binancecoin"
+    },
+    {
+      "chainId": 7070,
+      "address": "0x5EBCdf1De1781e8B5D41c016B0574aD53E2F6E1A",
+      "coingeckoId": "planq"
+    }
+  ],
+  "relayers": [
+    {
+      "name": "Delta One",
+      "url": "https://p-1.deltaswap.io"
+    }
+  ],
+  "feeSchedule": {
+    "4": {
+      "type": "flat",
+      "feeUsd": 1
+    },
+    "7070": {
+      "type": "flat",
+      "feeUsd": 1
+    }
+  }
+}

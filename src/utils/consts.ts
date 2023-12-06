@@ -983,7 +983,7 @@ export const getCoinGeckoURL = (coinGeckoId: string) =>
   `https://api.coingecko.com/api/v3/simple/price?ids=${coinGeckoId}&vs_currencies=usd`;
 
 export const RELAYER_INFO_URL =
-  CLUSTER === "testnet" ? "" : "/relayerExample.json";
+  CLUSTER === "mainnet" ? "" : "/relayer.json";
 
 export const RELAY_URL_EXTENSION = "/relayvaa/";
 
