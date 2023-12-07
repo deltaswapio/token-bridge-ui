@@ -641,7 +641,7 @@ export const getTokenBridgeAddressForChain = (chainId: ChainId) =>
 
 export const COVALENT_API_KEY = process.env.REACT_APP_COVALENT_API_KEY
   ? process.env.REACT_APP_COVALENT_API_KEY
-  : "";
+  : "cqt_rQkfcPxjbdTYV8M4wPFqcKpRhXhY";
 
 export const COVALENT_ETHEREUM = 5; // Covalent only supports mainnet and Goerli
 export const COVALENT_BSC = CLUSTER === "mainnet" ? 56 : BSC_NETWORK_CHAIN_ID;
