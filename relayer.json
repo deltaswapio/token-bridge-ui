@@ -14,7 +14,7 @@
   "relayers": [
     {
       "name": "Delta One",
-      "url": "https://p-1.deltaswap.io"
+      "url": "https://spy-relayer.deltaswap.io"
     }
   ],
   "feeSchedule": {
