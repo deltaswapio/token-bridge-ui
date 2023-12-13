@@ -94,9 +94,6 @@ function App() {
             <Button component={Link} to="/redeem">
               Redeem
             </Button>
-            <Button href={"https://physica.finance"}>
-              DEX
-            </Button>
             <Button href={"https://vesting.deltaswap.io"}>
               Vesting
             </Button>
