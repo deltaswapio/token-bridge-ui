@@ -5,7 +5,7 @@ export const theme = responsiveFontSizes(
     palette: {
       type: "dark",
       primary: {
-        main: '#983fb5',
+        main: "rgba(14,58,107, 0.7)",
       },
       secondary: {
         main: '#00c7f5',
@@ -34,10 +34,10 @@ export const theme = responsiveFontSizes(
         "@global": {
           body: {
             overscrollBehaviorY: "none",
-            backgroundPosition: "top center",
-            backgroundRepeat: "repeat-y",
-            backgroundSize: "120%",
-            backgroundColor: "#8380a2"
+            backgroundColor: "#0e3a6b",
+            backgroundPosition: "bottom right",
+            backgroundRepeat: "no-repeat",
+            backgroundImage: "url(./bg.png), linear-gradient(135deg, rgba(14,58,107,1) 0%, rgba(22,26,35,1) 90%)"
           },
           "*": {
             scrollbarWidth: "thin",
@@ -55,7 +55,7 @@ export const theme = responsiveFontSizes(
       },
       MuiInputBase: {
         root: {
-          borderColor: "#C26BFE",
+          borderColor: "#07aeb4",
         }
       },
       MuiDivider: {
@@ -74,6 +74,12 @@ export const theme = responsiveFontSizes(
           },
         },
       },
+      MuiAppBar: {
+        colorPrimary: {
+          background: "transparent",
+          backgroundColor: "transparent"
+        }
+      },
       MuiAlert: {
         root: {
           border: "1px solid",
@@ -83,19 +89,19 @@ export const theme = responsiveFontSizes(
       MuiButton: {
         root: {},
         containedSizeSmall: {
-          background: 'rgba(255, 255, 255, .3)',
+          background: 'rgba(7, 174, 180, .3)',
           border: 0,
           borderRadius: 3,
-          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+          boxShadow: '0 3px 5px 2px rgba(7, 174, 180, .2)',
           color: 'white',
           height: 48,
           padding: '0 30px',
         },
         outlinedSizeSmall: {
-          background: 'rgba(255, 255, 255, .3)',
+          background: 'rgba(7, 174, 180, .3)',
           border: 0,
           borderRadius: 3,
-          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+          boxShadow: '0 3px 5px 2px rgba(7, 174, 180, .2)',
           color: 'white',
           height: 48,
           padding: '0 30px',
@@ -104,10 +110,27 @@ export const theme = responsiveFontSizes(
       MuiLink: {
         root: {},
       },
+      MuiList: {
+        root: {
+          backgroundColor: "rgba(14,58,107, 0.95)"
+        },
+      },
       MuiPaper: {
         root: {
-          background: "linear-gradient(45deg, #C26BFE63 30%, #FF538B6B 90%);",
-          borderRadius: "4px",
+          backgroundColor: 'rgba(7, 174, 180, .1)',
+          borderRadius: "5px",
+        }
+      },
+      MuiDialog: {
+        paper: {
+          backgroundColor: "rgba(14,58,107, 0.95)"
+        }
+      },
+      MuiBottomNavigation: {
+        root: {
+          backgroundColor: "rgba(255,255,255,.07)",
+          justifyContent: "space-evenly",
+          borderRadius: "5px"
         }
       },
       MuiStepper: {
@@ -117,6 +140,9 @@ export const theme = responsiveFontSizes(
         },
       },
       MuiStep: {
+        root: {
+          borderRadius: "5px"
+        },
         vertical: {
           backgroundColor: "rgba(255,255,255,.07)",
           backdropFilter: "blur(4px)",

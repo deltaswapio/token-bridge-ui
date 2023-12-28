@@ -1,9 +1,24 @@
-import {AppBar, Box, Button, Container, makeStyles, MenuItem, Select, Toolbar, Typography,} from "@material-ui/core";
+import {
+  AppBar, BottomNavigation,
+  BottomNavigationAction,
+  Box,
+  Button,
+  Container,
+  makeStyles,
+  MenuItem,
+  Select,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
 import {useCallback} from "react";
 import {useLocation} from "react-router";
-import {Link, Redirect, Route, Switch} from "react-router-dom";
+import {Link, Redirect, Route, Switch, useHistory} from "react-router-dom";
 import Attest from "./components/Attest";
 import Footer from "./components/Footer";
+import deltaswap from "./icons/logo.png";
+import ImageIcon from '@material-ui/icons/Image';
+import RedeemIcon from '@material-ui/icons/Redeem';
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import HeaderText from "./components/HeaderText";
 import NFT from "./components/NFT";
 import NFTOriginVerifier from "./components/NFTOriginVerifier";
@@ -14,8 +29,6 @@ import UnwrapNative from "./components/UnwrapNative";
 import USDC from "./components/USDC";
 import WithdrawTokensTerra from "./components/WithdrawTokensTerra";
 
-import {CLUSTER} from "./utils/consts";
-
 const useStyles = makeStyles((theme) => ({
   disclaimerText: {
     display: "flex",
@@ -25,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff"
   },
   appBar: {
-    background: "transparent",
     marginTop: theme.spacing(2),
     "& > .MuiToolbar-root": {
       margin: "auto",
@@ -67,47 +79,40 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: "none",
     },
   },
+  logoImg: {
+    height: "auto",
+    verticalAlign: "middle",
+    display: "inline-block",
+    maxWidth: "100%"
+  },
 }));
 
 function App() {
   const classes = useStyles();
+  const { push } = useHistory();
+  const handleBotNavChange = useCallback(
+      (_, value) => {
+        push(value);
+      },
+      [push]
+  );
   const { pathname } = useLocation();
-  const handleClusterChange = useCallback((event) => {
-    const urlParams = new URLSearchParams(window.location.search);
-    urlParams.set("cluster", event.target.value);
-    window.location.search = urlParams;
-  }, []);
   return (
     <div className={classes.bg}>
       {
-        <AppBar position="static" elevation={0} style={{ marginBottom: 40 }}>
-          <Toolbar variant="dense">
-            {/*<Button component={Link} to="/usdc">
-              USDC
-            </Button>*/}
-            <Button component={Link} to="/transfer">
-              Tokens
-            </Button>
-            <Button component={Link} to="/nft">
-              NFTs
-            </Button>
-            <Button component={Link} to="/redeem">
-              Redeem
-            </Button>
+        <AppBar position="static" elevation={0} style={{ marginTop: 25, marginBottom: 40 }}>
+          <Toolbar>
+            <div className={classes.spacer} />
             <Button href={"https://vesting.deltaswap.io"}>
               Vesting
             </Button>
-            <Box sx={{ flexGrow: 1 }} />
-            {<Select
-              value={CLUSTER}
-              onChange={handleClusterChange}
-              variant="outlined"
-              margin="dense"
-            >
-              <MenuItem value="mainnet">Mainnet</MenuItem>
-              <MenuItem value="testnet">Testnet</MenuItem>
-              <MenuItem value="devnet">Devnet</MenuItem>
-            </Select>}
+            <Link href={"https://swap.deltaswap.io"} className={classes.brandLink}>
+              <img src={deltaswap} alt={"Deltaswap"} className={classes.logoImg} />
+            </Link>
+            <Button href={"https://docs.planq.network"}>
+              Docs
+            </Button>
+            <div className={classes.spacer} />
           </Toolbar>
         </AppBar>
       }
@@ -123,8 +128,17 @@ function App() {
               </>
             }
           >
-            Token Bridge
           </HeaderText>
+          <BottomNavigation
+              value={pathname}
+              onChange={handleBotNavChange}
+              indicatorColor="primary"
+              showLabels={true}
+          >
+          <BottomNavigationAction label="Tokens" icon={<LocalAtmIcon />} component={Link} to="/transfer" />
+          <BottomNavigationAction label="NFTs" icon={<ImageIcon />} component={Link} to="/nft" />
+          <BottomNavigationAction label="Redeem" icon={<RedeemIcon />} component={Link} to="/redeem" />
+            </BottomNavigation>
         </Container>
       ) : null}
       <Switch>
