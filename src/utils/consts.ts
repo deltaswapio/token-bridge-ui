@@ -374,7 +374,7 @@ export const getFeesEvm = (chainId: ChainId) => {
     return chainId === CHAIN_ID_BSC
         ? "4400000000000000"
         : chainId === CHAIN_ID_PLANQ
-        ? "45000000000000000000"
+        ? "10000000000000000000"
         : ""
 }
 
