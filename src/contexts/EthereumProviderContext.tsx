@@ -1,7 +1,7 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import {BigNumber, ethers} from "ethers";
-import React, {ReactChildren, useCallback, useContext, useEffect, useMemo, useState,} from "react";
+import React, { ReactChildren, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import metamaskIcon from "../icons/metamask-fox.svg";
 import walletconnectIcon from "../icons/walletconnect.svg";
 import {EVM_RPC_MAP} from "../utils/metaMaskChainParameters";
@@ -49,7 +49,7 @@ const EthereumProviderContext = React.createContext<IEthereumProviderContext>({
 export const EthereumProviderProvider = ({
   children,
 }: {
-  children: ReactChildren;
+  children: ReactNode;
 }) => {
   const [providerError, setProviderError] = useState<string | null>(null);
   const [provider, setProvider] = useState<Provider>(undefined);

@@ -606,18 +606,18 @@ export const TERRA_TEST_TOKEN_ADDRESS =
 export const ALGORAND_WAIT_FOR_CONFIRMATIONS = CLUSTER === "testnet" ? 4 : 1;
 
 export const SOL_BRIDGE_ADDRESS =
-  CONTRACTS[CLUSTER === "testnet" ? "TESTNET" : "DEVNET"].solana.core;
+  "";
 
 export const SOL_NFT_BRIDGE_ADDRESS =
-  CONTRACTS[CLUSTER === "testnet" ? "TESTNET" : "DEVNET"].solana.nft_bridge;
+  "";
 export const SOL_TOKEN_BRIDGE_ADDRESS =
-  CONTRACTS[CLUSTER === "testnet" ? "TESTNET" : "DEVNET"].solana.token_bridge;
+  "";
 
 export const ALGORAND_BRIDGE_ID = BigInt(
-  CONTRACTS[CLUSTER === "testnet" ? "TESTNET" : "DEVNET"].algorand.core
+  0
 );
 export const ALGORAND_TOKEN_BRIDGE_ID = BigInt(
-  CONTRACTS[CLUSTER === "testnet" ? "TESTNET" : "DEVNET"].algorand.token_bridge
+  0
 );
 
 export const NEAR_CORE_BRIDGE_ACCOUNT =

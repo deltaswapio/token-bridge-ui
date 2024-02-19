@@ -13,14 +13,14 @@ import {
     useWallet,
     WalletProvider,
 } from "@manahippo/aptos-wallet-adapter";
-import {ReactChildren, useMemo} from "react";
+import { ReactChildren, ReactNode, useMemo } from "react";
 
 export const useAptosContext = useWallet;
 
 export const AptosWalletProvider = ({
   children,
 }: {
-  children: ReactChildren;
+  children: ReactNode;
 }) => {
   const wallets = useMemo(
     () => [

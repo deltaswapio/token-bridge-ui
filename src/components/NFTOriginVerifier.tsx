@@ -81,13 +81,13 @@ export default function NFTOriginVerifier() {
       DeltaswapWrappedNFTInfo | undefined
   >(undefined);
   const [isLoading, setIsLoading] = useState(false);
-  const handleChainChange = useCallback((event) => {
+  const handleChainChange = useCallback((event: any) => {
     setLookupChain(event.target.value);
   }, []);
-  const handleAssetChange = useCallback((event) => {
+  const handleAssetChange = useCallback((event: any) => {
     setLookupAsset(event.target.value);
   }, []);
-  const handleTokenIdChange = useCallback((event) => {
+  const handleTokenIdChange = useCallback((event: any) => {
     setLookupTokenId(event.target.value);
   }, []);
   useEffect(() => {
@@ -146,7 +146,7 @@ export default function NFTOriginVerifier() {
       } else {
         setLookupError("Invalid address");
       }
-    } else if (lookupChain === CHAIN_ID_SOLANA && lookupAsset) {
+    } else if (lookupChain === CHAIN_ID_SOLANA && lookupAsset && SOL_NFT_BRIDGE_ADDRESS) {
       (async () => {
         try {
           setIsLoading(true);

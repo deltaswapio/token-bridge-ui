@@ -286,8 +286,11 @@ function USDC() {
   const maxSwapAmount = useSelector(selectMaxSwapAmount);
   const estimatedSwapAmount = useSelector(selectEstimatedSwapAmount);
   const amount = useSelector(selectAmount);
-  const baseAmountParsed = amount && parseUnits(amount, USDC_DECIMALS);
-  const transferAmountParsed = baseAmountParsed && baseAmountParsed.toBigInt();
+  let baseAmountParsed = BigInt(0)
+  if(amount !== "") {
+    baseAmountParsed = parseUnits(amount, USDC_DECIMALS).toBigInt();
+  }
+  const transferAmountParsed = baseAmountParsed;
   const humanReadableTransferAmount =
     transferAmountParsed && formatUnits(transferAmountParsed, USDC_DECIMALS);
   const oneParsed = parseUnits("1", USDC_DECIMALS).toBigInt();
@@ -299,7 +302,7 @@ function USDC() {
   const toNativeAmount = useSelector(selectToNativeAmount);
   const [debouncedToNativeAmount] = useDebounce(toNativeAmount, 500);
   const amountError =
-    transferAmountParsed !== "" && transferAmountParsed <= BigInt(0)
+    transferAmountParsed && transferAmountParsed <= BigInt(0)
       ? "Amount must be greater than zero"
       : transferAmountParsed > bigIntBalance
       ? "Amount must not be greater than balance"
@@ -341,7 +344,7 @@ function USDC() {
     dispatch(setShouldRelay(!shouldRelay));
   }, [shouldRelay, dispatch]);
   const handleSliderChange = useCallback(
-    (event, value) => {
+    (event: any, value: any) => {
       dispatch(
         setToNativeAmount(
           parseUnits(value.toString(), USDC_DECIMALS).toString()
@@ -541,7 +544,7 @@ function USDC() {
     dispatch,
   ]);
   const handleAmountChange = useCallback(
-    (event) => {
+    (event: any) => {
       dispatch(setAmount(event.target.value));
     },
     [dispatch]

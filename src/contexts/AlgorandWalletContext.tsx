@@ -1,5 +1,5 @@
 import MyAlgoConnect, {Accounts} from "@randlabs/myalgo-connect";
-import {createContext, ReactChildren, useCallback, useContext, useMemo, useState,} from "react";
+import { createContext, ReactChildren, ReactNode, useCallback, useContext, useMemo, useState } from "react";
 
 interface IAlgorandContext {
   connect(): void;
@@ -16,7 +16,7 @@ const AlgorandContext = createContext<IAlgorandContext>({
 export const AlgorandContextProvider = ({
   children,
 }: {
-  children: ReactChildren;
+  children: ReactNode;
 }) => {
   const myAlgoConnect = useMemo(() => new MyAlgoConnect(), []);
   const [accounts, setAccounts] = useState<Accounts[]>([]);

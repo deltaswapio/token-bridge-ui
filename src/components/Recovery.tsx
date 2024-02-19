@@ -249,7 +249,7 @@ async function solana(tx: string, enqueueSnackbar: any, nft: boolean) {
   try {
     const connection = new Connection(SOLANA_HOST, "confirmed");
     const info = await connection.getTransaction(tx);
-    if (!info) {
+    if (!info || !SOL_NFT_BRIDGE_ADDRESS || !SOL_TOKEN_BRIDGE_ADDRESS) {
       throw new Error("An error occurred while fetching the transaction info");
     }
     const sequence = parseSequenceFromLogSolana(info);
@@ -860,7 +860,7 @@ export default function Recovery() {
     isReady,
     nearAccountId,
   ]);
-  const handleTypeChange = useCallback((event) => {
+  const handleTypeChange = useCallback((event: any) => {
     setRecoverySourceChain((prevChain) =>
       event.target.value === "NFT" &&
       !CHAINS_WITH_NFT_SUPPORT.find((chain) => chain.id === prevChain)
@@ -869,14 +869,14 @@ export default function Recovery() {
     );
     setType(event.target.value);
   }, []);
-  const handleSourceChainChange = useCallback((event) => {
+  const handleSourceChainChange = useCallback((event: any) => {
     setRecoverySourceTx("");
     setRecoverySourceChain(event.target.value);
   }, []);
-  const handleSourceTxChange = useCallback((event) => {
+  const handleSourceTxChange = useCallback((event: any) => {
     setRecoverySourceTx(event.target.value.trim());
   }, []);
-  const handleSignedVAAChange = useCallback((event) => {
+  const handleSignedVAAChange = useCallback((event: any) => {
     setRecoverySignedVAA(event.target.value.trim());
   }, []);
   useEffect(() => {

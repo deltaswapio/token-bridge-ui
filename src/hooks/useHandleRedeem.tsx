@@ -244,7 +244,7 @@ async function solana(
 ) {
   dispatch(setIsRedeeming(true));
   try {
-    if (!wallet.signTransaction) {
+    if (!wallet.signTransaction || !SOL_TOKEN_BRIDGE_ADDRESS || !SOL_BRIDGE_ADDRESS) {
       throw new Error("wallet.signTransaction is undefined");
     }
     const connection = new Connection(SOLANA_HOST, "confirmed");

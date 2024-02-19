@@ -1,4 +1,4 @@
-import {createContext, ReactChildren, useCallback, useContext, useMemo, useState,} from "react";
+import { createContext, ReactChildren, ReactNode, useCallback, useContext, useMemo, useState } from "react";
 import {Wallet, WalletStrategy} from "@injectivelabs/wallet-ts";
 import {ChainId} from "@injectivelabs/ts-types";
 import keplrIcon from "../icons/keplr.svg";
@@ -38,7 +38,7 @@ export const SUPPORTED_WALLETS: InjectiveWalletInfo[] = [
 export const InjectiveWalletProvider = ({
   children,
 }: {
-  children: ReactChildren;
+  children: ReactNode;
 }) => {
   const [wallet, setWallet] = useState<WalletStrategy | null>(null);
   const [address, setAddress] = useState<string | null>(null);
@@ -82,7 +82,7 @@ export const InjectiveWalletProvider = ({
     let cancelled = false;
     (async () => {
       try {
-        await wallet?.disconnectWallet();
+        await wallet?.disconnect();
       } catch (e) {
         console.error(e);
       }

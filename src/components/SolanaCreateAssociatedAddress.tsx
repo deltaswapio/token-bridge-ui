@@ -180,7 +180,7 @@ export function SolanaCreateAssociatedAddressAlternate() {
 
   useEffect(() => {
     let cancelled = false;
-    if (!(originChain && originAsset && addressHex && base58TargetAddress)) {
+    if (!(originChain && originAsset && addressHex && base58TargetAddress) || !SOL_TOKEN_BRIDGE_ADDRESS) {
       setTargetAsset(null);
     } else if (originChain === CHAIN_ID_SOLANA && base58OriginAddress) {
       setTargetAsset(base58OriginAddress);
