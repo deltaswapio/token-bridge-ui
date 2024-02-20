@@ -150,7 +150,7 @@ export const METAMASK_CHAIN_PARAMETERS: {
     chainId: "7070",
     chainName: "Planq",
     nativeCurrency: { name: "Planq", symbol: "PLQ", decimals: 18 },
-    rpcUrls: ["https://evm-rpc.planq.network"],
+    rpcUrls: ["https://planq-rpc.nodies.app"],
     blockExplorerUrls: ["https://evm.planq.network"],
   },
   56: {
