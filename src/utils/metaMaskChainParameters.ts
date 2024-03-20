@@ -160,6 +160,20 @@ export const METAMASK_CHAIN_PARAMETERS: {
     rpcUrls: ["https://bsc-dataseed3.bnbchain.org"],
     blockExplorerUrls: ["https://bscscan.com/"],
   },
+  137: {
+    chainId: "0x89",
+    chainName: "Polygon",
+    nativeCurrency: { name: "MATIC", symbol: "MATIC", decimals: 18 },
+    rpcUrls: ["https://polygon.llamarpc.com"],
+    blockExplorerUrls: ["https://polygonscan.com"],
+  },
+  8453: {
+    chainId: "0x2105",
+    chainName: "Base",
+    nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
+    rpcUrls: ["https://base-rpc.publicnode.com"],
+    blockExplorerUrls: ["https://base.blockscout.com"],
+  },
 };
 
 export interface EvmRpcMap {

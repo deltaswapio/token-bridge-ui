@@ -98,6 +98,16 @@ export const CHAINS: ChainInfo[] =
                 name: "Binance Smart Chain",
                 logo: bscIcon,
             },
+            {
+              id: CHAIN_ID_POLYGON,
+              name: "Polygon",
+              logo: polygonIcon,
+            },
+            {
+              id: CHAIN_ID_BASE,
+              name: "Base",
+              logo: baseIcon,
+            },
         ]
         :
   CLUSTER === "testnet"
@@ -375,6 +385,10 @@ export const getFeesEvm = (chainId: ChainId) => {
         ? "4400000000000000"
         : chainId === CHAIN_ID_PLANQ
         ? "10000000000000000000"
+        : chainId === CHAIN_ID_POLYGON
+        ? "1000000000000000000"
+        : chainId === CHAIN_ID_BASE
+        ? "300000000000000"
         : ""
 }
 
@@ -414,6 +428,8 @@ export const getDefaultNativeCurrencyAddressEvm = (chainId: ChainId) => {
     ? CELO_ADDRESS
     : chainId === CHAIN_ID_NEON
     ? WNEON_ADDRESS
+    : chainId === CHAIN_ID_BASE
+    ? WETH_ADDRESS_BASE
     : chainId === CHAIN_ID_MOONBEAM
     ? WGLMR_ADDRESS
     : "";
@@ -457,7 +473,7 @@ export const ETH_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 5 : 1337;
 export const SEPOLIA_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 11155111 : 1337;
 export const BSC_NETWORK_CHAIN_ID = CLUSTER === "mainnet" ? 56 : 1397;
 export const PLANQ_NETWORK_CHAIN_ID = CLUSTER === "mainnet" ? 7070 : 7777;
-export const POLYGON_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 80001 : 1381;
+export const POLYGON_NETWORK_CHAIN_ID = CLUSTER === "mainnet" ? 137 : 1381;
 export const AVAX_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 43113 : 1381;
 export const OASIS_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 42261 : 1381;
 export const AURORA_NETWORK_CHAIN_ID =
@@ -470,7 +486,7 @@ export const CELO_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 44787 : 1381;
 export const NEON_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 245022926 : 1381;
 export const ARBITRUM_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 421613 : 1381;
 export const MOONBEAM_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 1287 : 1381;
-export const BASE_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 84531 : 1381;
+export const BASE_NETWORK_CHAIN_ID = CLUSTER === "mainnet" ? 8453 : 1381;
 export const OPTIMISM_NETWORK_CHAIN_ID = CLUSTER === "testnet" ? 420 : 1381;
 export const getEvmChainId = (chainId: ChainId) =>
   chainId === CHAIN_ID_ETH
@@ -753,6 +769,11 @@ export const WETH_ADDRESS_SEPOLIA =
     : "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E";
 export const WETH_DECIMALS_SEPOLIA = 18;
 
+export const WETH_ADDRESS_BASE =
+  CLUSTER === "mainnet"
+    ? "0x4200000000000000000000000000000000000006"
+    : "0x4200000000000000000000000000000000000006";
+
 export const WPLANQ_ADDRESS =
     CLUSTER === "mainnet"
         ? "0x5EBCdf1De1781e8B5D41c016B0574aD53E2F6E1A"
@@ -765,8 +786,8 @@ export const WBNB_ADDRESS =
 export const WBNB_DECIMALS = 18;
 
 export const WMATIC_ADDRESS =
-  CLUSTER === "testnet"
-    ? "0x9c3c9283d3e44854697cd22d3faa240cfb032889"
+  CLUSTER === "mainnet"
+    ? "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270"
     : "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E";
 export const WMATIC_DECIMALS = 18;
 
