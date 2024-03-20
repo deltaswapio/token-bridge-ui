@@ -1,33 +1,33 @@
 import {
-    CHAIN_ID_ACALA,
-    CHAIN_ID_ALGORAND,
-    CHAIN_ID_APTOS,
-    CHAIN_ID_AURORA,
-    CHAIN_ID_AVAX,
-    CHAIN_ID_BSC,
-    CHAIN_ID_CELO,
-    CHAIN_ID_ETH,
-    CHAIN_ID_FANTOM,
-    CHAIN_ID_INJECTIVE,
-    CHAIN_ID_KARURA,
-    CHAIN_ID_KLAYTN,
-    CHAIN_ID_MOONBEAM,
-    CHAIN_ID_NEAR,
-    CHAIN_ID_NEON,
-    CHAIN_ID_OASIS,
-    CHAIN_ID_PLANQ,
-    CHAIN_ID_POLYGON,
-    CHAIN_ID_SEI,
-    CHAIN_ID_SEPOLIA,
-    CHAIN_ID_SOLANA,
-    CHAIN_ID_SUI,
-    CHAIN_ID_XPLA,
-    ChainId,
-    ethers_contracts,
-    isEVMChain,
-    isTerraChain,
-    WSOL_ADDRESS,
-    WSOL_DECIMALS,
+  CHAIN_ID_ACALA,
+  CHAIN_ID_ALGORAND,
+  CHAIN_ID_APTOS,
+  CHAIN_ID_AURORA,
+  CHAIN_ID_AVAX, CHAIN_ID_BASE,
+  CHAIN_ID_BSC,
+  CHAIN_ID_CELO,
+  CHAIN_ID_ETH,
+  CHAIN_ID_FANTOM,
+  CHAIN_ID_INJECTIVE,
+  CHAIN_ID_KARURA,
+  CHAIN_ID_KLAYTN,
+  CHAIN_ID_MOONBEAM,
+  CHAIN_ID_NEAR,
+  CHAIN_ID_NEON,
+  CHAIN_ID_OASIS,
+  CHAIN_ID_PLANQ,
+  CHAIN_ID_POLYGON,
+  CHAIN_ID_SEI,
+  CHAIN_ID_SEPOLIA,
+  CHAIN_ID_SOLANA,
+  CHAIN_ID_SUI,
+  CHAIN_ID_XPLA,
+  ChainId,
+  ethers_contracts,
+  isEVMChain,
+  isTerraChain,
+  WSOL_ADDRESS,
+  WSOL_DECIMALS
 } from "@deltaswapio/deltaswap-sdk";
 import {Dispatch} from "@reduxjs/toolkit";
 import {TOKEN_PROGRAM_ID} from "@solana/spl-token";
@@ -85,44 +85,44 @@ import {
     setSourceWalletAddress,
 } from "../store/transferSlice";
 import {
-    ACA_ADDRESS,
-    ACA_DECIMALS,
-    ALGO_DECIMALS,
-    ALGORAND_HOST,
-    BLOCKSCOUT_GET_TOKENS_URL,
-    CELO_ADDRESS,
-    CELO_DECIMALS,
-    COVALENT_GET_TOKENS_URL,
-    getDefaultNativeCurrencyAddressEvm,
-    KAR_ADDRESS,
-    KAR_DECIMALS,
-    NATIVE_NEAR_DECIMALS,
-    NATIVE_NEAR_PLACEHOLDER,
-    SOLANA_HOST,
-    SUI_NATIVE_TOKEN_KEY,
-    WAVAX_ADDRESS,
-    WAVAX_DECIMALS,
-    WBNB_ADDRESS,
-    WBNB_DECIMALS,
-    WETH_ADDRESS,
-    WETH_ADDRESS_SEPOLIA,
-    WETH_AURORA_ADDRESS,
-    WETH_AURORA_DECIMALS,
-    WETH_DECIMALS,
-    WETH_DECIMALS_SEPOLIA,
-    WFTM_ADDRESS,
-    WFTM_DECIMALS,
-    WGLMR_ADDRESS,
-    WGLMR_DECIMALS,
-    WKLAY_ADDRESS,
-    WKLAY_DECIMALS,
-    WMATIC_ADDRESS,
-    WMATIC_DECIMALS,
-    WNEON_ADDRESS,
-    WNEON_DECIMALS,
-    WPLANQ_ADDRESS,
-    WROSE_ADDRESS,
-    WROSE_DECIMALS,
+  ACA_ADDRESS,
+  ACA_DECIMALS,
+  ALGO_DECIMALS,
+  ALGORAND_HOST,
+  BLOCKSCOUT_GET_TOKENS_URL,
+  CELO_ADDRESS,
+  CELO_DECIMALS,
+  COVALENT_GET_TOKENS_URL,
+  getDefaultNativeCurrencyAddressEvm,
+  KAR_ADDRESS,
+  KAR_DECIMALS,
+  NATIVE_NEAR_DECIMALS,
+  NATIVE_NEAR_PLACEHOLDER,
+  SOLANA_HOST,
+  SUI_NATIVE_TOKEN_KEY,
+  WAVAX_ADDRESS,
+  WAVAX_DECIMALS,
+  WBNB_ADDRESS,
+  WBNB_DECIMALS,
+  WETH_ADDRESS, WETH_ADDRESS_BASE,
+  WETH_ADDRESS_SEPOLIA,
+  WETH_AURORA_ADDRESS,
+  WETH_AURORA_DECIMALS,
+  WETH_DECIMALS,
+  WETH_DECIMALS_SEPOLIA,
+  WFTM_ADDRESS,
+  WFTM_DECIMALS,
+  WGLMR_ADDRESS,
+  WGLMR_DECIMALS,
+  WKLAY_ADDRESS,
+  WKLAY_DECIMALS,
+  WMATIC_ADDRESS,
+  WMATIC_DECIMALS,
+  WNEON_ADDRESS,
+  WNEON_DECIMALS,
+  WPLANQ_ADDRESS,
+  WROSE_ADDRESS,
+  WROSE_DECIMALS
 } from "../utils/consts";
 import {makeNearAccount} from "../utils/near";
 import {ExtractedMintInfo, extractMintInfo, getMultipleAccountsRPC,} from "../utils/solana";
@@ -342,6 +342,30 @@ const createNativePlanqParsedTokenAccount = (
             );
         });
 };
+
+const createNativeBaseParsedTokenAccount = (
+  provider: Provider,
+  signerAddress: string | undefined
+) => {
+  return !(provider && signerAddress)
+    ? Promise.reject()
+    : provider.getBalance(signerAddress).then((balanceInWei) => {
+      const balanceInEth = ethers.utils.formatEther(balanceInWei);
+      return createParsedTokenAccount(
+        signerAddress, //public key
+        WETH_ADDRESS_BASE, //Mint key, On the other side this will be WBNB, so this is hopefully a white lie.
+        balanceInWei.toString(), //amount, in wei
+        WBNB_DECIMALS, //Luckily both BNB and WBNB have 18 decimals, so this should not be an issue.
+        parseFloat(balanceInEth), //This loses precision, but is a limitation of the current datamodel. This field is essentially deprecated
+        balanceInEth.toString(), //This is the actual display field, which has full precision.
+        "ETH", //A white lie for display purposes
+        "Ethereum", //A white lie for display purposes
+        ethIcon,
+        true //isNativeAsset
+      );
+    });
+};
+
 
 const createNativePolygonParsedTokenAccount = (
   provider: Provider,
@@ -1237,6 +1261,39 @@ function useGetAvailableTokens(nft: boolean = false) {
             cancelled = true;
         };
     }, [lookupChain, provider, signerAddress, nft, ethNativeAccount]);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (
+      signerAddress &&
+      lookupChain === CHAIN_ID_BASE &&
+      !ethNativeAccount &&
+      !nft
+    ) {
+      setEthNativeAccountLoading(true);
+      createNativeBaseParsedTokenAccount(provider, signerAddress).then(
+        (result) => {
+          console.log("create native account returned with value", result);
+          if (!cancelled) {
+            setEthNativeAccount(result);
+            setEthNativeAccountLoading(false);
+            setEthNativeAccountError("");
+          }
+        },
+        (error) => {
+          if (!cancelled) {
+            setEthNativeAccount(undefined);
+            setEthNativeAccountLoading(false);
+            setEthNativeAccountError("Unable to retrieve your BNB balance.");
+          }
+        }
+      );
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, [lookupChain, provider, signerAddress, nft, ethNativeAccount]);
 
   //Binance Smart Chain native asset load
   useEffect(() => {

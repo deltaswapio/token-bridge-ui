@@ -706,8 +706,8 @@ export const COVALENT_GET_TOKENS_URL = (
       ? COVALENT_ARBITRUM
       : chainId === CHAIN_ID_MOONBEAM
       ? COVALENT_MOONBEAM
-      : chainId === CHAIN_ID_BASE
-      ? COVALENT_BASE
+      /*: chainId === CHAIN_ID_BASE
+      ? COVALENT_BASE*/
       : chainId === CHAIN_ID_OPTIMISM
       ? COVALENT_OPTIMISM
       : "";
@@ -743,6 +743,10 @@ export const BLOCKSCOUT_GET_TOKENS_URL = (
       : chainId === CHAIN_ID_PLANQ
       ? CLUSTER === "mainnet"
         ? "https://evm.planq.network"
+        : ""
+      : chainId === CHAIN_ID_BASE
+      ? CLUSTER === "mainnet"
+        ? "https://base.blockscout.com"
         : ""
       : chainId === CHAIN_ID_CELO
       ? CLUSTER === "testnet"
