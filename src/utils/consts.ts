@@ -103,11 +103,11 @@ export const CHAINS: ChainInfo[] =
               name: "Polygon",
               logo: polygonIcon,
             },
-            {
+            /*{
               id: CHAIN_ID_BASE,
               name: "Base",
               logo: baseIcon,
-            },
+            },*/
         ]
         :
   CLUSTER === "testnet"
