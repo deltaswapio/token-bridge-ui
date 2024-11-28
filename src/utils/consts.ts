@@ -742,7 +742,7 @@ export const BLOCKSCOUT_GET_TOKENS_URL = (
         : ""
       : chainId === CHAIN_ID_PLANQ
       ? CLUSTER === "mainnet"
-        ? "https://evm.planq.network"
+        ? "https://evm-api.planq.network"
         : ""
       : chainId === CHAIN_ID_BASE
       ? CLUSTER === "mainnet"
