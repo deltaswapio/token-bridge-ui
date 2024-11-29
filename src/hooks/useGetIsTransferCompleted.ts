@@ -10,7 +10,6 @@ import {
     getIsTransferCompletedAlgorand,
     getIsTransferCompletedAptos,
     getIsTransferCompletedEth,
-    getIsTransferCompletedInjective,
     getIsTransferCompletedNear,
     getIsTransferCompletedSolana,
     getIsTransferCompletedSui,
@@ -40,7 +39,6 @@ import {
     SOLANA_HOST,
     XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
-import {getInjectiveWasmClient} from "../utils/injective";
 import {makeNearProvider} from "../utils/near";
 import {getIsTransferCompletedSei, getSeiWasmClient} from "../utils/sei";
 import {getSuiProvider} from "../utils/sui";
@@ -197,24 +195,6 @@ export default function useGetIsTransferCompleted(
               algodClient,
               ALGORAND_TOKEN_BRIDGE_ID,
               signedVAA
-            );
-          } catch (error) {
-            console.error(error);
-          }
-          if (!cancelled) {
-            setIsTransferCompleted(transferCompleted);
-            setIsLoading(false);
-          }
-        })();
-      } else if (targetChain === CHAIN_ID_INJECTIVE) {
-        setIsLoading(true);
-        (async () => {
-          try {
-            const client = getInjectiveWasmClient();
-            transferCompleted = await getIsTransferCompletedInjective(
-              getTokenBridgeAddressForChain(targetChain),
-              signedVAA,
-              client
             );
           } catch (error) {
             console.error(error);

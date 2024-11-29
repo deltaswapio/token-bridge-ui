@@ -238,8 +238,6 @@ export default function SmartAddress({
           ? "?network=local"
           : ""
       }`
-    : chainId === CHAIN_ID_INJECTIVE
-    ? `https://testnet.explorer.injective.network/account/${useableAddress}`
     : chainId === CHAIN_ID_NEAR && CLUSTER === "testnet"
     ? `https://explorer.testnetnear.org/accounts/${useableAddress}`
     : undefined;

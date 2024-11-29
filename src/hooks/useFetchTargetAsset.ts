@@ -13,7 +13,6 @@ import {
     getForeignAssetAlgorand,
     getForeignAssetAptos,
     getForeignAssetEth,
-    getForeignAssetInjective,
     getForeignAssetNear,
     getForeignAssetSolana,
     getForeignAssetSui,
@@ -25,7 +24,6 @@ import {
     isEVMChain,
     isTerraChain,
     queryExternalId,
-    queryExternalIdInjective,
 } from "@deltaswapio/deltaswap-sdk";
 import {
     getForeignAssetEth as getForeignAssetEthNFT,
@@ -72,7 +70,6 @@ import {
 } from "../utils/consts";
 import {LCDClient as XplaLCDClient} from "@xpla/xpla.js";
 import {getAptosClient} from "../utils/aptos";
-import {getInjectiveWasmClient} from "../utils/injective";
 import {lookupHash, makeNearAccount, makeNearProvider} from "../utils/near";
 import {getForeignAssetSei, getSeiWasmClient, queryExternalIdSei,} from "../utils/sei";
 import {getSuiProvider} from "../utils/sui";
@@ -178,25 +175,6 @@ function useFetchTargetAsset(nft?: boolean) {
                 receiveDataWrapper({
                   doesExist: true,
                   address: tokenId || null,
-                })
-              )
-            );
-          }
-        } else if (originChain === CHAIN_ID_INJECTIVE) {
-          const client = getInjectiveWasmClient();
-          const tokenBridgeAddress =
-            getTokenBridgeAddressForChain(CHAIN_ID_INJECTIVE);
-          const tokenId = await queryExternalIdInjective(
-            client,
-            tokenBridgeAddress,
-            originAsset || ""
-          );
-          if (!cancelled) {
-            dispatch(
-              setTargetAsset(
-                receiveDataWrapper({
-                  doesExist: true,
-                  address: tokenId,
                 })
               )
             );
@@ -503,36 +481,6 @@ function useFetchTargetAsset(nft?: boolean) {
           }
         } catch (e) {
           console.error(e);
-          if (!cancelled) {
-            dispatch(
-              setTargetAsset(
-                errorDataWrapper(
-                  "Unable to determine existence of wrapped asset"
-                )
-              )
-            );
-          }
-        }
-      }
-      if (targetChain === CHAIN_ID_INJECTIVE && originChain && originAsset) {
-        dispatch(setTargetAsset(fetchDataWrapper()));
-        try {
-          const client = getInjectiveWasmClient();
-          const asset = await getForeignAssetInjective(
-            getTokenBridgeAddressForChain(targetChain),
-            client,
-            originChain,
-            hexToUint8Array(originAsset)
-          );
-          if (!cancelled) {
-            dispatch(
-              setTargetAsset(
-                receiveDataWrapper({ doesExist: !!asset, address: asset })
-              )
-            );
-            setArgs();
-          }
-        } catch (e) {
           if (!cancelled) {
             dispatch(
               setTargetAsset(

@@ -167,8 +167,6 @@ export default function ShowTx({
             ? "?network=local"
             : ""
         }`
-      : chainId === CHAIN_ID_INJECTIVE
-      ? `https://testnet.explorer.injective.network/transaction/${tx.id}`
       : chainId === CHAIN_ID_NEAR && CLUSTER === "testnet"
       ? `https://explorer.testnet.near.org/transactions/${tx?.id}`
       : undefined;

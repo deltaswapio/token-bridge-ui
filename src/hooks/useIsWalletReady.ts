@@ -20,7 +20,6 @@ import {useCallback, useMemo} from "react";
 import {useAlgorandContext} from "../contexts/AlgorandWalletContext";
 import {useAptosContext} from "../contexts/AptosWalletContext";
 import {ConnectType, useEthereumProvider,} from "../contexts/EthereumProviderContext";
-import {useInjectiveContext} from "../contexts/InjectiveWalletContext";
 import {useNearContext} from "../contexts/NearWalletContext";
 import {useSolanaWallet} from "../contexts/SolanaWalletContext";
 import {APTOS_NETWORK, CLUSTER, getEvmChainId} from "../utils/consts";
@@ -77,8 +76,6 @@ function useIsWalletReady(
   const hasCorrectAptosNetwork = aptosNetwork?.name
     ?.toLowerCase()
     .includes(APTOS_NETWORK.toLowerCase());
-  const { address: injAddress } = useInjectiveContext();
-  const hasInjWallet = !!injAddress;
   const { accountId: nearPK } = useNearContext();
   const { accounts: seiAccounts } = useSeiWallet();
   const seiAddress = seiAccounts.length ? seiAccounts[0].address : null;
@@ -173,14 +170,6 @@ function useIsWalletReady(
         );
       }
     }
-    if (chainId === CHAIN_ID_INJECTIVE && hasInjWallet && injAddress) {
-      return createWalletStatus(
-        true,
-        undefined,
-        forceNetworkSwitch,
-        injAddress
-      );
-    }
     if (chainId === CHAIN_ID_SEI && hasSeiWallet && seiAddress) {
       return createWalletStatus(
         true,
@@ -245,8 +234,6 @@ function useIsWalletReady(
     hasAptosWallet,
     aptosAddress,
     hasCorrectAptosNetwork,
-    hasInjWallet,
-    injAddress,
     hasSeiWallet,
     seiAddress,
     nearPK,

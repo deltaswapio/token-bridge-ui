@@ -34,7 +34,6 @@ import {setTargetAddressHex as setTransferTargetAddressHex} from "../store/trans
 import {decodeAddress} from "algosdk";
 import {useConnectedWallet as useXplaConnectedWallet} from "@xpla/wallet-provider";
 import {useAptosContext} from "../contexts/AptosWalletContext";
-import {useInjectiveContext} from "../contexts/InjectiveWalletContext";
 import {useNearContext} from "../contexts/NearWalletContext";
 import {makeNearAccount, signAndSendTransactions} from "../utils/near";
 import {NEAR_TOKEN_BRIDGE_ACCOUNT} from "../utils/consts";
@@ -62,7 +61,6 @@ function useSyncTargetAddress(shouldFire: boolean, nft?: boolean) {
   const { accounts: algoAccounts } = useAlgorandContext();
   const { account: aptosAccount } = useAptosContext();
   const aptosAddress = aptosAccount?.address?.toString();
-  const { address: injAddress } = useInjectiveContext();
   const { accounts: seiAccounts } = useSeiWallet();
   const seiAddress = seiAccounts.length ? seiAccounts[0].address : null;
   const { accountId: nearAccountId, wallet: nearWallet } = useNearContext();
@@ -153,12 +151,6 @@ function useSyncTargetAddress(shouldFire: boolean, nft?: boolean) {
             uint8ArrayToHex(decodeAddress(algoAccounts[0].address).publicKey)
           )
         );
-      } else if (targetChain === CHAIN_ID_INJECTIVE && injAddress) {
-        dispatch(
-          setTargetAddressHex(
-            uint8ArrayToHex(zeroPad(cosmos.canonicalAddress(injAddress), 32))
-          )
-        );
       } else if (targetChain === CHAIN_ID_SEI && seiAddress) {
         dispatch(
           setTargetAddressHex(
@@ -237,7 +229,6 @@ function useSyncTargetAddress(shouldFire: boolean, nft?: boolean) {
     algoAccounts,
     xplaWallet,
     aptosAddress,
-    injAddress,
     seiAddress,
     nearAccountId,
     nearWallet,

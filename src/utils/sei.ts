@@ -30,7 +30,6 @@ export type CosmWasmClient = {
 };
 
 // START SDK PATCH
-export const isNativeDenomInjective = (denom: string) => denom === "inj";
 export const isNativeDenomXpla = (denom: string) => denom === "axpla";
 export const isNativeDenomSei = (denom: string) => denom === "usei";
 
@@ -40,7 +39,6 @@ export function isNativeCosmWasmDenom(
 ) {
   return (
     (isTerraChain(chainId) && isNativeDenom(address)) ||
-    (chainId === CHAIN_ID_INJECTIVE && isNativeDenomInjective(address)) ||
     (chainId === CHAIN_ID_XPLA && isNativeDenomXpla(address)) ||
     (chainId === CHAIN_ID_SEI && isNativeDenomSei(address))
   );

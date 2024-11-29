@@ -1,7 +1,6 @@
 import {
     CHAIN_ID_ALGORAND,
     CHAIN_ID_APTOS,
-    CHAIN_ID_INJECTIVE,
     CHAIN_ID_NEAR,
     CHAIN_ID_SOLANA,
     CHAIN_ID_SUI,
@@ -13,7 +12,6 @@ import {
     getOriginalAssetAptos,
     getOriginalAssetCosmWasm,
     getOriginalAssetEth,
-    getOriginalAssetInjective,
     getOriginalAssetNear,
     getOriginalAssetSol,
     getOriginalAssetSui,
@@ -22,7 +20,6 @@ import {
     isEVMChain,
     isTerraChain,
     queryExternalId,
-    queryExternalIdInjective,
     uint8ArrayToHex,
     uint8ArrayToNative,
 } from "@deltaswapio/deltaswap-sdk";
@@ -57,7 +54,6 @@ import {
     SOLANA_SYSTEM_PROGRAM_ADDRESS,
     XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
-import {getInjectiveWasmClient} from "../utils/injective";
 import {lookupHash, makeNearAccount, makeNearProvider} from "../utils/near";
 import {getSuiProvider} from "../utils/sui";
 import useIsWalletReady from "./useIsWalletReady";
@@ -113,11 +109,6 @@ export async function getOriginalAssetToken(
         getAptosClient(),
         getTokenBridgeAddressForChain(CHAIN_ID_APTOS),
         foreignNativeStringAddress
-      );
-    } else if (foreignChain === CHAIN_ID_INJECTIVE) {
-      promise = await getOriginalAssetInjective(
-        foreignNativeStringAddress,
-        getInjectiveWasmClient()
       );
     } else if (foreignChain === CHAIN_ID_NEAR && nearAccountId) {
       const provider = makeNearProvider();
@@ -315,16 +306,6 @@ function useOriginalAsset(
               getTokenBridgeAddressForChain(CHAIN_ID_APTOS),
               uint8ArrayToHex(result.assetAddress)
             ).then((tokenId) => setOriginAddress(tokenId || null));
-          } else if (result.chainId === CHAIN_ID_INJECTIVE) {
-            const client = getInjectiveWasmClient();
-            const tokenBridgeAddress = getTokenBridgeAddressForChain(
-              result.chainId
-            );
-            queryExternalIdInjective(
-              client,
-              tokenBridgeAddress,
-              uint8ArrayToHex(result.assetAddress)
-            ).then((tokenId) => setOriginAddress(tokenId));
           } else if (result.chainId === CHAIN_ID_NEAR) {
             if (
               uint8ArrayToHex(result.assetAddress) === NATIVE_NEAR_WH_ADDRESS

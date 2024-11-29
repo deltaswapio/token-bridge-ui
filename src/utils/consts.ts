@@ -63,9 +63,7 @@ import suiIcon from "../icons/sui.svg";
 import terraIcon from "../icons/terra.svg";
 import terra2Icon from "../icons/terra2.svg";
 import xplaIcon from "../icons/xpla.svg";
-import injectiveIcon from "../icons/injective.svg";
 import {AptosNetwork} from "./aptos";
-import {getNetworkInfo, Network} from "@injectivelabs/networks";
 import nearIcon from "../icons/near.svg";
 import {ConnectConfig, keyStores} from "near-api-js";
 import {ChainConfiguration} from "@sei-js/react";
@@ -171,11 +169,6 @@ export const CHAINS: ChainInfo[] =
           id: CHAIN_ID_FANTOM,
           name: "Fantom",
           logo: fantomIcon,
-        },
-        {
-          id: CHAIN_ID_INJECTIVE,
-          name: "Injective",
-          logo: injectiveIcon,
         },
         {
           id: CHAIN_ID_KARURA,
@@ -573,9 +566,6 @@ export const APTOS_NETWORK =
 
 export const APTOS_NATIVE_DECIMALS = 8;
 export const APTOS_NATIVE_TOKEN_KEY = "0x1::aptos_coin::AptosCoin";
-
-export const INJECTIVE_NETWORK = Network.TestnetK8s;
-export const INJECTIVE_NETWORK_INFO = getNetworkInfo(Network.TestnetK8s);
 
 export const SEI_CHAIN_CONFIGURATION: ChainConfiguration = {
   chainId: "atlantic-2",

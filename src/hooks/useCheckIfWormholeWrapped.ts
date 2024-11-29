@@ -14,7 +14,6 @@ import {
     getOriginalAssetAptos,
     getOriginalAssetCosmWasm,
     getOriginalAssetEth,
-    getOriginalAssetInjective,
     getOriginalAssetNear,
     getOriginalAssetSol,
     getOriginalAssetSui,
@@ -59,7 +58,6 @@ import {
     XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
 import {LCDClient as XplaLCDClient} from "@xpla/xpla.js";
-import {getInjectiveWasmClient} from "../utils/injective";
 import {getAptosClient} from "../utils/aptos";
 import {makeNearProvider} from "../utils/near";
 import {getOriginalAssetSei, getSeiWasmClient} from "../utils/sei";
@@ -203,17 +201,6 @@ function useCheckIfWormholeWrapped(nft?: boolean) {
               ALGORAND_TOKEN_BRIDGE_ID,
               BigInt(sourceAsset)
             )
-          );
-          if (!cancelled) {
-            dispatch(setSourceWormholeWrappedInfo(wrappedInfo));
-          }
-        } catch (e) {}
-      }
-      if (sourceChain === CHAIN_ID_INJECTIVE && sourceAsset) {
-        try {
-          const client = getInjectiveWasmClient();
-          const wrappedInfo = makeStateSafe(
-            await getOriginalAssetInjective(sourceAsset, client)
           );
           if (!cancelled) {
             dispatch(setSourceWormholeWrappedInfo(wrappedInfo));

@@ -14,7 +14,6 @@ import {
 import AlgorandWalletKey from "./AlgorandWalletKey";
 import AptosWalletKey from "./AptosWalletKey";
 import EthereumSignerKey from "./EthereumSignerKey";
-import InjectiveWalletKey from "./InjectiveWalletKey";
 import NearWalletKey from "./NearWalletKey";
 import SolanaWalletKey from "./SolanaWalletKey";
 import SuiWalletKey from "./SuiWalletKey";
@@ -40,9 +39,6 @@ function KeyAndBalance({ chainId }: { chainId: ChainId }) {
   }
   if (chainId === CHAIN_ID_APTOS) {
     return <AptosWalletKey />;
-  }
-  if (chainId === CHAIN_ID_INJECTIVE) {
-    return <InjectiveWalletKey />;
   }
   if (chainId === CHAIN_ID_SEI) {
     return <SeiWalletKey />;

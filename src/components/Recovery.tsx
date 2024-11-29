@@ -13,7 +13,6 @@ import {
     ChainId,
     getEmitterAddressAlgorand,
     getEmitterAddressEth,
-    getEmitterAddressInjective,
     getEmitterAddressNear,
     getEmitterAddressSolana,
     getEmitterAddressTerra,
@@ -27,7 +26,6 @@ import {
     parseNFTPayload,
     parseSequenceFromLogAlgorand,
     parseSequenceFromLogEth,
-    parseSequenceFromLogInjective,
     parseSequenceFromLogNear,
     parseSequenceFromLogSolana,
     parseSequenceFromLogTerra,
@@ -35,7 +33,6 @@ import {
     parseTransferPayload,
     parseVaa,
     queryExternalId,
-    queryExternalIdInjective,
     TerraChainId,
     tryHexToNativeStringNear,
     uint8ArrayToHex,
@@ -97,7 +94,6 @@ import {
     XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
 import {getSignedVAAWithRetry} from "../utils/getSignedVAAWithRetry";
-import {getInjectiveTxClient, getInjectiveWasmClient,} from "../utils/injective";
 import {makeNearProvider} from "../utils/near";
 import parseError from "../utils/parseError";
 import {getSeiQueryClient, getSeiWasmClient, parseSequenceFromLogSei, queryExternalIdSei,} from "../utils/sei";
@@ -291,26 +287,6 @@ async function xpla(tx: string, enqueueSnackbar: any) {
       getTokenBridgeAddressForChain(CHAIN_ID_XPLA)
     );
     return await fetchSignedVAA(CHAIN_ID_XPLA, emitterAddress, sequence);
-  } catch (e) {
-    return handleError(e, enqueueSnackbar);
-  }
-}
-
-async function injective(txHash: string, enqueueSnackbar: any) {
-  try {
-    const client = getInjectiveTxClient();
-    const tx = await client.fetchTx(txHash);
-    if (!tx) {
-      throw new Error("Unable to fetch transaction");
-    }
-    const sequence = parseSequenceFromLogInjective(tx);
-    if (!sequence) {
-      throw new Error("Sequence not found");
-    }
-    const emitterAddress = await getEmitterAddressInjective(
-      getTokenBridgeAddressForChain(CHAIN_ID_INJECTIVE)
-    );
-    return await fetchSignedVAA(CHAIN_ID_INJECTIVE, emitterAddress, sequence);
   } catch (e) {
     return handleError(e, enqueueSnackbar);
   }
@@ -555,21 +531,6 @@ export default function Recovery() {
         }
       })();
     }
-    if (parsedPayload && parsedPayload.targetChain === CHAIN_ID_INJECTIVE) {
-      (async () => {
-        const client = getInjectiveWasmClient();
-        const tokenBridgeAddress =
-          getTokenBridgeAddressForChain(CHAIN_ID_INJECTIVE);
-        const tokenId = await queryExternalIdInjective(
-          client,
-          tokenBridgeAddress,
-          parsedPayload.originAddress
-        );
-        if (!cancelled) {
-          setTokenId(tokenId || "");
-        }
-      })();
-    }
     if (parsedPayload && parsedPayload.targetChain === CHAIN_ID_NEAR) {
       (async () => {
         const provider = makeNearProvider();
@@ -751,26 +712,6 @@ export default function Recovery() {
         setRecoverySourceTxIsLoading(true);
         (async () => {
           const { vaa, isPending, error } = await aptos(
-            recoverySourceTx,
-            enqueueSnackbar
-          );
-          if (!cancelled) {
-            setRecoverySourceTxIsLoading(false);
-            if (vaa) {
-              setRecoverySignedVAA(vaa);
-            }
-            if (error) {
-              setRecoverySourceTxError(error);
-            }
-            setIsVAAPending(isPending);
-          }
-        })();
-      } else if (recoverySourceChain === CHAIN_ID_INJECTIVE) {
-        setRecoverySourceTxError("");
-        setRecoverySourceTxIsLoading(true);
-        setTokenId("");
-        (async () => {
-          const { vaa, isPending, error } = await injective(
             recoverySourceTx,
             enqueueSnackbar
           );

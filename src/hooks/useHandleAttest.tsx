@@ -2,7 +2,6 @@ import {
     attestFromAlgorand,
     attestFromAptos,
     attestFromEth,
-    attestFromInjective,
     attestFromSolana,
     attestFromSui,
     attestFromTerra,
@@ -21,7 +20,6 @@ import {
     ChainId,
     getEmitterAddressAlgorand,
     getEmitterAddressEth,
-    getEmitterAddressInjective,
     getEmitterAddressNear,
     getEmitterAddressSolana,
     getEmitterAddressTerra,
@@ -31,7 +29,6 @@ import {
     isTerraChain,
     parseSequenceFromLogAlgorand,
     parseSequenceFromLogEth,
-    parseSequenceFromLogInjective,
     parseSequenceFromLogNear,
     parseSequenceFromLogSolana,
     parseSequenceFromLogTerra,
@@ -43,7 +40,6 @@ import {getOriginalPackageId} from "@deltaswapio/deltaswap-sdk/lib/cjs/sui";
 import {getEmitterAddressAndSequenceFromResponseSui} from "@deltaswapio/deltaswap-sdk/lib/esm/sui";
 import {SigningCosmWasmClient} from "@cosmjs/cosmwasm-stargate";
 import {calculateFee} from "@cosmjs/stargate";
-import {WalletStrategy} from "@injectivelabs/wallet-ts";
 import {Alert} from "@material-ui/lab";
 import {Wallet} from "@near-wallet-selector/core";
 import {useSigningCosmWasmClient as useSeiSigningCosmWasmClient, useWallet as useSeiWallet,} from "@sei-js/react";
@@ -63,7 +59,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useAlgorandContext} from "../contexts/AlgorandWalletContext";
 import {useAptosContext} from "../contexts/AptosWalletContext";
 import {useEthereumProvider} from "../contexts/EthereumProviderContext";
-import {useInjectiveContext} from "../contexts/InjectiveWalletContext";
 import {useNearContext} from "../contexts/NearWalletContext";
 import {useSolanaWallet} from "../contexts/SolanaWalletContext";
 import {setAttestTx, setIsSending, setSignedVAAHex,} from "../store/attestSlice";
@@ -92,7 +87,6 @@ import {
     SOLANA_HOST,
     WORMHOLE_RPC_HOSTS,
 } from "../utils/consts";
-import {broadcastInjectiveTx} from "../utils/injective";
 import {makeNearAccount, makeNearProvider, signAndSendTransactions,} from "../utils/near";
 import parseError from "../utils/parseError";
 import {signSendAndConfirm} from "../utils/solana";
@@ -483,59 +477,6 @@ async function xpla(
   }
 }
 
-async function injective(
-  dispatch: any,
-  enqueueSnackbar: any,
-  wallet: WalletStrategy,
-  walletAddress: string,
-  asset: string
-) {
-  dispatch(setIsSending(true));
-  try {
-    const tokenBridgeAddress =
-      getTokenBridgeAddressForChain(CHAIN_ID_INJECTIVE);
-    const msg = await attestFromInjective(
-      tokenBridgeAddress,
-      walletAddress,
-      asset
-    );
-    const tx = await broadcastInjectiveTx(
-      wallet,
-      walletAddress,
-      msg,
-      "Attest Token"
-    );
-    dispatch(setAttestTx({ id: tx.txHash, block: tx.height }));
-    enqueueSnackbar(null, {
-      content: <Alert severity="success">Transaction confirmed</Alert>,
-    });
-    const sequence = parseSequenceFromLogInjective(tx);
-    if (!sequence) {
-      throw new Error("Sequence not found");
-    }
-    const emitterAddress = await getEmitterAddressInjective(tokenBridgeAddress);
-    enqueueSnackbar(null, {
-      content: <Alert severity="info">Fetching VAA</Alert>,
-    });
-    const { vaaBytes } = await getSignedVAAWithRetry(
-      WORMHOLE_RPC_HOSTS,
-      CHAIN_ID_INJECTIVE,
-      emitterAddress,
-      sequence
-    );
-    dispatch(setSignedVAAHex(uint8ArrayToHex(vaaBytes)));
-    enqueueSnackbar(null, {
-      content: <Alert severity="success">Fetched Signed VAA</Alert>,
-    });
-  } catch (e) {
-    console.error(e);
-    enqueueSnackbar(null, {
-      content: <Alert severity="error">{parseError(e)}</Alert>,
-    });
-    dispatch(setIsSending(false));
-  }
-}
-
 async function sei(
   dispatch: any,
   enqueueSnackbar: any,
@@ -666,7 +607,6 @@ export function useHandleAttest() {
   const { accounts: algoAccounts } = useAlgorandContext();
   const { account: aptosAccount, signAndSubmitTransaction } = useAptosContext();
   const aptosAddress = aptosAccount?.address?.toString();
-  const { wallet: injWallet, address: injAddress } = useInjectiveContext();
   const { signingCosmWasmClient: seiSigningCosmWasmClient } =
     useSeiSigningCosmWasmClient();
   const { accounts: seiAccounts } = useSeiWallet();
@@ -694,8 +634,6 @@ export function useHandleAttest() {
       algo(dispatch, enqueueSnackbar, algoAccounts[0].address, sourceAsset);
     } else if (sourceChain === CHAIN_ID_APTOS && aptosAddress) {
       aptos(dispatch, enqueueSnackbar, sourceAsset, signAndSubmitTransaction);
-    } else if (sourceChain === CHAIN_ID_INJECTIVE && injWallet && injAddress) {
-      injective(dispatch, enqueueSnackbar, injWallet, injAddress, sourceAsset);
     } else if (
       sourceChain === CHAIN_ID_SEI &&
       seiSigningCosmWasmClient &&
@@ -731,8 +669,6 @@ export function useHandleAttest() {
     xplaWallet,
     aptosAddress,
     signAndSubmitTransaction,
-    injWallet,
-    injAddress,
     nearAccountId,
     nearWallet,
     suiWallet,

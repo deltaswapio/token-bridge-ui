@@ -18,7 +18,6 @@ import {
     redeemOnAlgorand,
     redeemOnEth,
     redeemOnEthNative,
-    redeemOnInjective,
     redeemOnNear,
     redeemOnSolana,
     redeemOnSui,
@@ -30,7 +29,6 @@ import {
 import {completeTransferAndRegister} from "@deltaswapio/deltaswap-sdk/lib/esm/aptos/api/tokenBridge";
 import {SigningCosmWasmClient} from "@cosmjs/cosmwasm-stargate";
 import {calculateFee} from "@cosmjs/stargate";
-import {WalletStrategy} from "@injectivelabs/wallet-ts";
 import {Alert} from "@material-ui/lab";
 import {Wallet} from "@near-wallet-selector/core";
 import {useSigningCosmWasmClient as useSeiSigningCosmWasmClient, useWallet as useSeiWallet,} from "@sei-js/react";
@@ -53,7 +51,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useAlgorandContext} from "../contexts/AlgorandWalletContext";
 import {useAptosContext} from "../contexts/AptosWalletContext";
 import {useEthereumProvider} from "../contexts/EthereumProviderContext";
-import {useInjectiveContext} from "../contexts/InjectiveWalletContext";
 import {useNearContext} from "../contexts/NearWalletContext";
 import {useSolanaWallet} from "../contexts/SolanaWalletContext";
 import {selectTerraFeeDenom, selectTransferIsRedeeming, selectTransferTargetChain,} from "../store/selectors";
@@ -75,7 +72,6 @@ import {
     SOL_TOKEN_BRIDGE_ADDRESS,
     SOLANA_HOST,
 } from "../utils/consts";
-import {broadcastInjectiveTx} from "../utils/injective";
 import {makeNearAccount, makeNearProvider, signAndSendTransactions,} from "../utils/near";
 import parseError from "../utils/parseError";
 import {signSendAndConfirm} from "../utils/solana";
@@ -354,38 +350,6 @@ async function xpla(
   }
 }
 
-async function injective(
-  dispatch: any,
-  enqueueSnackbar: any,
-  wallet: WalletStrategy,
-  walletAddress: string,
-  signedVAA: Uint8Array
-) {
-  dispatch(setIsRedeeming(true));
-  try {
-    const msg = await redeemOnInjective(
-      getTokenBridgeAddressForChain(CHAIN_ID_INJECTIVE),
-      walletAddress,
-      signedVAA
-    );
-    const tx = await broadcastInjectiveTx(
-      wallet,
-      walletAddress,
-      msg,
-      "Wormhole - Complete Transfer"
-    );
-    dispatch(setRedeemTx({ id: tx.txHash, block: tx.height }));
-    enqueueSnackbar(null, {
-      content: <Alert severity="success">Transaction confirmed</Alert>,
-    });
-  } catch (e) {
-    enqueueSnackbar(null, {
-      content: <Alert severity="error">{parseError(e)}</Alert>,
-    });
-    dispatch(setIsRedeeming(false));
-  }
-}
-
 async function sei(
   dispatch: any,
   enqueueSnackbar: any,
@@ -490,7 +454,6 @@ export function useHandleRedeem() {
   const { accounts: algoAccounts } = useAlgorandContext();
   const { account: aptosAccount, signAndSubmitTransaction } = useAptosContext();
   const aptosAddress = aptosAccount?.address?.toString();
-  const { wallet: injWallet, address: injAddress } = useInjectiveContext();
   const { accountId: nearAccountId, wallet } = useNearContext();
   const { signingCosmWasmClient: seiSigningCosmWasmClient } =
     useSeiSigningCosmWasmClient();
@@ -536,13 +499,6 @@ export function useHandleRedeem() {
     ) {
       algo(dispatch, enqueueSnackbar, algoAccounts[0]?.address, signedVAA);
     } else if (
-      targetChain === CHAIN_ID_INJECTIVE &&
-      injWallet &&
-      injAddress &&
-      signedVAA
-    ) {
-      injective(dispatch, enqueueSnackbar, injWallet, injAddress, signedVAA);
-    } else if (
       targetChain === CHAIN_ID_SEI &&
       seiSigningCosmWasmClient &&
       seiAddress &&
@@ -583,8 +539,6 @@ export function useHandleRedeem() {
     xplaWallet,
     aptosAddress,
     signAndSubmitTransaction,
-    injWallet,
-    injAddress,
     nearAccountId,
     wallet,
     seiSigningCosmWasmClient,
@@ -626,13 +580,6 @@ export function useHandleRedeem() {
     ) {
       algo(dispatch, enqueueSnackbar, algoAccounts[0]?.address, signedVAA);
     } else if (
-      targetChain === CHAIN_ID_INJECTIVE &&
-      injWallet &&
-      injAddress &&
-      signedVAA
-    ) {
-      injective(dispatch, enqueueSnackbar, injWallet, injAddress, signedVAA);
-    } else if (
       targetChain === CHAIN_ID_SEI &&
       seiSigningCosmWasmClient &&
       seiAddress &&
@@ -659,8 +606,6 @@ export function useHandleRedeem() {
     terraWallet,
     terraFeeDenom,
     algoAccounts,
-    injWallet,
-    injAddress,
     seiSigningCosmWasmClient,
     seiAddress,
     suiWallet,

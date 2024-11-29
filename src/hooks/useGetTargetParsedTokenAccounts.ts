@@ -10,7 +10,6 @@ import {
     ensureHexPrefix,
     ethers_contracts,
     isEVMChain,
-    isNativeDenomInjective,
     isNativeDenomXpla,
     isTerraChain,
     parseSmartContractStateResponse,
@@ -30,7 +29,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useAlgorandContext} from "../contexts/AlgorandWalletContext";
 import {useAptosContext} from "../contexts/AptosWalletContext";
 import {useEthereumProvider} from "../contexts/EthereumProviderContext";
-import {useInjectiveContext} from "../contexts/InjectiveWalletContext";
 import {useNearContext} from "../contexts/NearWalletContext";
 import {useSolanaWallet} from "../contexts/SolanaWalletContext";
 import {selectTransferTargetAsset, selectTransferTargetChain,} from "../store/selectors";
@@ -45,7 +43,6 @@ import {
     SOLANA_HOST,
     XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
-import {getInjectiveBankClient, getInjectiveWasmClient, NATIVE_INJECTIVE_DECIMALS,} from "../utils/injective";
 import {makeNearAccount} from "../utils/near";
 import {getSeiWasmClient} from "../utils/sei";
 import {getSuiProvider} from "../utils/sui";
@@ -85,7 +82,6 @@ function useGetTargetParsedTokenAccounts() {
   const { accounts: algoAccounts } = useAlgorandContext();
   const { account: aptosAccount } = useAptosContext();
   const aptosAddress = aptosAccount?.address?.toString();
-  const { address: injAddress } = useInjectiveContext();
   const { accounts: seiAccounts } = useSeiWallet();
   const seiAddress = seiAccounts.length ? seiAccounts[0].address : null;
   const { accountId: nearAccountId } = useNearContext();
@@ -349,88 +345,6 @@ function useGetTargetParsedTokenAccounts() {
           }
         }
       })();
-    }
-
-    if (targetChain === CHAIN_ID_INJECTIVE && injAddress) {
-      if (isNativeDenomInjective(targetAsset)) {
-        const client = getInjectiveBankClient();
-        client
-          .fetchBalance({ accountAddress: injAddress, denom: targetAsset })
-          .then(({ amount }) => {
-            if (!cancelled) {
-              dispatch(
-                setTargetParsedTokenAccount(
-                  createParsedTokenAccount(
-                    "",
-                    "",
-                    amount,
-                    NATIVE_INJECTIVE_DECIMALS,
-                    Number(formatUnits(amount, NATIVE_INJECTIVE_DECIMALS)),
-                    formatUnits(amount, NATIVE_INJECTIVE_DECIMALS),
-                    symbol,
-                    tokenName,
-                    logo
-                  )
-                )
-              );
-            }
-          })
-          .catch(() => {
-            if (!cancelled) {
-              // TODO: error state
-            }
-          });
-      } else {
-        const client = getInjectiveWasmClient();
-        client
-          .fetchSmartContractState(
-            targetAsset,
-            Buffer.from(
-              JSON.stringify({
-                token_info: {},
-              })
-            ).toString("base64")
-          )
-          .then((infoData) =>
-            client
-              .fetchSmartContractState(
-                targetAsset,
-                Buffer.from(
-                  JSON.stringify({
-                    balance: {
-                      address: injAddress,
-                    },
-                  })
-                ).toString("base64")
-              )
-              .then((balanceData) => {
-                if (infoData && balanceData && !cancelled) {
-                  const balance = parseSmartContractStateResponse(balanceData);
-                  const info = parseSmartContractStateResponse(infoData);
-                  dispatch(
-                    setTargetParsedTokenAccount(
-                      createParsedTokenAccount(
-                        "",
-                        "",
-                        balance.balance.toString(),
-                        info.decimals,
-                        Number(formatUnits(balance.balance, info.decimals)),
-                        formatUnits(balance.balance, info.decimals),
-                        symbol,
-                        tokenName,
-                        logo
-                      )
-                    )
-                  );
-                }
-              })
-          )
-          .catch((e) => {
-            if (!cancelled) {
-              // TODO: error state
-            }
-          });
-      }
     }
 
     if (targetChain === CHAIN_ID_SUI && suiAddress) {
@@ -719,7 +633,6 @@ function useGetTargetParsedTokenAccounts() {
     decimals,
     xplaWallet,
     aptosAddress,
-    injAddress,
     nearAccountId,
     seiAddress,
     suiAddress,

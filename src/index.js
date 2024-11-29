@@ -9,7 +9,6 @@ import ErrorBoundary from "./ErrorBoundary";
 import {AlgorandContextProvider} from "./contexts/AlgorandWalletContext";
 import AptosWalletProvider from "./contexts/AptosWalletContext";
 import {EthereumProviderProvider} from "./contexts/EthereumProviderContext";
-import InjectiveWalletProvider from "./contexts/InjectiveWalletContext";
 import {SolanaWalletProvider} from "./contexts/SolanaWalletContext.tsx";
 import SuiWalletProvider from "./contexts/SuiWalletContext";
 import {TerraWalletProvider} from "./contexts/TerraWalletContext.tsx";
@@ -31,14 +30,12 @@ ReactDOM.render(
                   <AlgorandContextProvider>
                     <XplaWalletProvider>
                       <AptosWalletProvider>
-                        <InjectiveWalletProvider>
                               <SuiWalletProvider>
                                 <HashRouter>
                                   <Disclaimer />
                                   <App />
                                 </HashRouter>
                               </SuiWalletProvider>
-                        </InjectiveWalletProvider>
                       </AptosWalletProvider>
                     </XplaWalletProvider>
                   </AlgorandContextProvider>

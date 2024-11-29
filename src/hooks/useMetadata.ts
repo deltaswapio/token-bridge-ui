@@ -20,7 +20,6 @@ import {Metadata} from "../utils/metaplex";
 import useAlgoMetadata, {AlgoMetadata} from "./useAlgoMetadata";
 import useAptosMetadata, {AptosMetadata} from "./useAptosMetadata";
 import useEvmMetadata, {EvmMetadata} from "./useEvmMetadata";
-import useInjectiveMetadata, {InjectiveMetadata,} from "./useInjectiveMetadata";
 import useMetaplexData from "./useMetaplexData";
 import useNearMetadata from "./useNearMetadata";
 import useSolanaTokenMap from "./useSolanaTokenMap";
@@ -211,33 +210,6 @@ const constructAptosMetadata = (
   };
 };
 
-const constructInjectiveMetadata = (
-  addresses: string[],
-  metadataMap: DataWrapper<Map<string, InjectiveMetadata>>
-) => {
-  const isFetching = metadataMap.isFetching;
-  const error = metadataMap.error;
-  const receivedAt = metadataMap.receivedAt;
-  const data = new Map<string, GenericMetadata>();
-  addresses.forEach((address) => {
-    const meta = metadataMap.data?.get(address);
-    const obj = {
-      symbol: meta?.symbol || undefined,
-      logo: undefined,
-      tokenName: meta?.tokenName || undefined,
-      decimals: meta?.decimals,
-    };
-    data.set(address, obj);
-  });
-
-  return {
-    isFetching,
-    error,
-    receivedAt,
-    data,
-  };
-};
-
 const constructSeiMetadata = (
   addresses: string[],
   metadataMap: DataWrapper<Map<string, SeiMetadata>>
@@ -339,7 +311,6 @@ export default function useMetadata(
   const ethMetadata = useEvmMetadata(ethereumAddresses, chainId);
   const algoMetadata = useAlgoMetadata(algoAddresses);
   const aptosMetadata = useAptosMetadata(aptosAddresses);
-  const injMetadata = useInjectiveMetadata(injAddresses);
   const nearMetadata = useNearMetadata(nearAddresses);
   const seiMetadata = useSeiMetadata(seiAddresses);
   const suiMetadata = useSuiMetadata(suiAddresses);
@@ -363,8 +334,6 @@ export default function useMetadata(
         ? constructAptosMetadata(aptosAddresses, aptosMetadata)
         : chainId === CHAIN_ID_ALGORAND
         ? constructAlgoMetadata(algoAddresses, algoMetadata)
-        : chainId === CHAIN_ID_INJECTIVE
-        ? constructInjectiveMetadata(injAddresses, injMetadata)
         : chainId === CHAIN_ID_NEAR
         ? constructAlgoMetadata(nearAddresses, nearMetadata)
         : chainId === CHAIN_ID_SEI
@@ -389,7 +358,6 @@ export default function useMetadata(
       aptosAddresses,
       aptosMetadata,
       injAddresses,
-      injMetadata,
       nearAddresses,
       nearMetadata,
       seiAddresses,

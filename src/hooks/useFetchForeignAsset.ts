@@ -13,7 +13,6 @@ import {
     getForeignAssetAlgorand,
     getForeignAssetAptos,
     getForeignAssetEth,
-    getForeignAssetInjective,
     getForeignAssetNear,
     getForeignAssetSolana,
     getForeignAssetSui,
@@ -48,7 +47,6 @@ import {
     SOLANA_HOST,
     XPLA_LCD_CLIENT_CONFIG,
 } from "../utils/consts";
-import {getInjectiveWasmClient} from "../utils/injective";
 import {makeNearProvider} from "../utils/near";
 import {getForeignAssetSei, getSeiWasmClient} from "../utils/sei";
 import {getSuiProvider} from "../utils/sui";
@@ -200,16 +198,6 @@ function useFetchForeignAsset(
               ALGORAND_TOKEN_BRIDGE_ID,
               originChain,
               originAssetHex
-            );
-          }
-        : foreignChain === CHAIN_ID_INJECTIVE
-        ? () => {
-            const client = getInjectiveWasmClient();
-            return getForeignAssetInjective(
-              getTokenBridgeAddressForChain(foreignChain),
-              client,
-              originChain,
-              hexToUint8Array(originAssetHex)
             );
           }
         : foreignChain === CHAIN_ID_SEI

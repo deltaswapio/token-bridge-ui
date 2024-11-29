@@ -39,7 +39,6 @@ import SolanaTokenPicker from "./SolanaTokenPicker";
 import SuiTokenPicker from "./SuiTokenPicker";
 import TerraTokenPicker from "./TerraTokenPicker";
 import XplaTokenPicker from "./XplaTokenPicker";
-import InjectiveTokenPicker from "./InjectiveTokenPicker";
 import SeiTokenPicker from "./SeiTokenPicker";
 
 type TokenSelectorProps = {
@@ -146,14 +145,6 @@ export const TokenSelector = (props: TokenSelectorProps) => {
     />
   ) : lookupChain === CHAIN_ID_ALGORAND ? (
     <AlgoTokenPicker
-      value={sourceParsedTokenAccount || null}
-      disabled={disabled}
-      onChange={handleOnChange}
-      resetAccounts={maps?.resetAccounts}
-      tokenAccounts={maps?.tokenAccounts}
-    />
-  ) : lookupChain === CHAIN_ID_INJECTIVE ? (
-    <InjectiveTokenPicker
       value={sourceParsedTokenAccount || null}
       disabled={disabled}
       onChange={handleOnChange}
